@@ -18,10 +18,10 @@
 		</div>
 		<div class="card-body">
 
-			<form action="<?php echo base_url('admin/proses_simpan_mengajar'); ?>" method="post">
+			<form action="<?php echo base_url('guru/proses_simpan_materi_guru'); ?>" method="post">
 				<table class="table table-bordered">
-
-					<tr>
+				
+				<tr>
 						<td>Pilih Nama Guru <input type="hidden" name="idguruajar" value="">
 						</td>
 						<td><select class="form-control col-md-10" name="idguru" id="">
@@ -30,13 +30,35 @@
 								<?php endforeach; ?>
 							</select></td>
 					</tr>
-					<td>Pilih Mata Pelajaran</td>
+					<tr>
+					<td>Pilih Mata Pelajaran<input type="hidden" name="idguruajar" value=""></td>
 					<td><select class="form-control col-md-10" name="id_mapel" id="mapel">
 							<?php foreach($mapel as $dtm): ?>
 							<option value="<?=$dtm->id_mapel?>"><?php echo $dtm->nama_mapel; ?></option>
 							<?php endforeach; ?>
 						</select></td>
 					</tr>
+					<tr>
+						<td>Nomor Dan Nama Kompetensi Dasar 
+						</td>
+						<td><input type="text" class='form-control col-md-10' placeholder="3.10 .Nama Kompetensi dasar " name="namakd" id="namakd"></td>
+					</tr>
+					<tr>
+						<td>Link Materi Topik Pembahasan
+						</td>
+						<td><input type="text" class='form-control col-md-10' placeholder="http://portal.smktarunabhakti/course/webinteraktif " name="link_materi" id="linkmateri"></td>
+					</tr>
+					<tr>
+						<td>Topik Pembahasan
+						</td>
+						<td><textarea name="topik" class="form-control col-md-10" id="topik" cols="30" rows="4"></textarea></td>
+					</tr>
+					<tr>
+						<td>Pertemuan awal dan Pertemuan akhir (silahkan di inputkan angka * default adalah kosong)
+						</td>
+						<td><div class="form-group form-inline">&nbsp;awal :&nbsp; <input type="number" class='form-control col-md-3' placeholder="1 " name="pertemuanawal" id="pertawal"> &nbsp;akhir :&nbsp; <input type="number" name="pertemuanakhir" placeholder="2" class="form-control col-md-3" id=""></div></td>
+					</tr>
+					
 					<tr>
 						<td>Tahun Pelajaran</td>
 						<td><select class="form-control col-md-10" name="tapel" id="tapel">
@@ -47,15 +69,7 @@
 								<?php } ?>
 							</select></td>
 					</tr>
-                    <tr>
-						<td>Tingkat</td>
-						<td><select class="form-control col-md-10" name="tingkat" id="tingkat">
-								<?php for($i=10;$i<=12;$i++){
-                                ?>
-								<option value="<?=$i?>"><?php echo $i; ?></option>
-								<?php } ?>
-							</select></td>
-					</tr>
+                    
 
 				</table>
 
@@ -72,22 +86,18 @@
 
 			</form>
 			<hr>
-			<table class="display table table-bordered" cellspacing="0" id="dataguruajar" 
+			<table class="display table table-bordered" cellspacing="0" id="datamateriajar" 
 				cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						<th>No</th>
-
 						<th>Nomor dan KD</th>
-                        <th>Topik Pembahasan</th>
 						<th>Link Materi</th>
                         <th>Nama Guru</th>
 						<th>Nama Mapel</th>
 						<th>Pert Ke </th>
 						<th>Pert Hingga </th>
-						<th>Status</th>
-
-						<th>Data View</th>
+						<th>Tapel</th>
 						<th>Modify</th>
 
 

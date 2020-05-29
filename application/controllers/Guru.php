@@ -1,15 +1,16 @@
-<?php
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 Class Guru extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        //is_logged_in();
         $this->load->helper(array('form', 'url'));
         $this->load->model('Siswa_model');
         $this->load->model('Guru_model');
         $this->load->model('Mapel_model');
         $this->load->model('Mengajar_model');
-        $this->load->model('Konfig_model');
-        is_logged_in();
+        $this->load->model('Materi_model');
+       
     }
     public function index()
     {
@@ -36,51 +37,56 @@ Class Guru extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function proses_simpan_mengajar() {
+    public function proses_simpan_materi_guru() {
         $post = $this->input->post();
         //print_r($post);
         $kodemp = $this->Mapel_model->get_kode_mapel($post['id_mapel']);
         $kodemapelajar = $kodemp . "-" . $post['idguru'];
         $data = array(
+            'nomor_nama_kd' => $post['namakd'],
+            'topik_pembahasan' => $post['topik'],
+            'link_materi' => $post['link_materi'],
             'idguru' => $post['idguru'],
-            'kode_mapel_ajar' => $kodemapelajar,
             'id_mapel' => $post['id_mapel'],
-            'tingkat' => $post['tingkat'],
+            'topik_pembahasan' => $post['topik'],
+            'pertemuan_ke' => $post['pertemuanawal'],
+            'pertemuan_hingga' => $post['pertemuanakhir'],
             'tapel' => $post['tapel'],
             'status' => '1'
         );
-        $save= $this->Mengajar_model->simpanGuruAjar($data);
+        $save= $this->Materi_model->simpanMateriAjar($data);
         if($save==TRUE){
-            redirect(base_url("admin/data_guru_mengajar/sukses_simpan_mengajar"));
+            redirect(base_url("guru/daftar_materi/sukses_simpan_materi"));
         }else{
-            redirect(base_url("admin/data_guru_mengajar/gagal_simpan_mengajar"));
+            redirect(base_url("guru/daftar_materi/gagal_simpan_materi"));
         }
     }
 
-    function get_guru_mengajar() {
-        $list = $this->Mengajar_model->get_datatables();
+    function get_materi_mengajar() {
+        $list = $this->Materi_model->get_datatables();
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $field) {
             $no++;
             $row = array();
-            $row[] = $field->id_guru_ajar;
+            $row[] = $field->id_materi;
+            $row[] = $field->nomor_nama_kd;
+            $row[] = $field->link_materi;
             $row[] = $field->nama_lengkap;
-            $row[] = $field->kode_mapel_ajar;
             $row[] = $field->nama_mapel;
-            $row[] = $field->tingkat;
+            $row[] = $field->pertemuan_ke;
+            $row[] = $field->pertemuan_hingga;
             $row[] = $field->tapel;
-            $row[] = $field->status;
+           
 
-            $row[] = "<a href='" . base_url("admin/detail_mapel/$field->id_guru_ajar") . "' class='btn btn-primary btn-sm' >view</a>";
-            $row[] = "<a href='" . base_url("admin/edit_mapel/$field->id_guru_ajar") . "' class='btn btn-success btn-sm' >Edit</a>";
+            $row[] = "<a href='" . base_url("admin/edit_materi/$field->id_materi") . "' class='btn btn-success btn-sm' >Edit</a>";
             $data[] = $row;
         }
 
         $output = array(
             "draw" => $_POST['draw'],
-            "recordsTotal" => $this->Mengajar_model->count_all(),
-            "recordsFiltered" => $this->Mengajar_model->count_filtered(),
+            "recordsTotal" => $this->Materi_model->count_all(),
+            "recordsFiltered" => $this->Materi_model->count_filtered(),
             "data" => $data,
         );
         //output dalam format JSON

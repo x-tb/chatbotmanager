@@ -6,7 +6,7 @@ class Materi_model extends CI_Model {
     var $column_order = array('id_materi','topik_pembahasan','link_materi','idguru','id_mapel','pertemuan_ke','pertemuan_hingga','tapel','status'); //field yang ada di table user
     var $column_search =array('id_materi','topik_pembahasan','link_materi','idguru','id_mapel','pertemuan_ke','pertemuan_hingga','tapel','status');  //field yang diizin untuk pencarian 
     var $order = array('idguru' => 'asc'); // default order 
-    public $id_guru_ajar,$idguru,$idmapel,$nama,$email,$jkl,$tanggal_lahir,$stat_pegawai,$tmt,$nohp,$uname_tel,$status;
+    public $id_materi,$nomor_nama_kd,$topik_pembahasan,$link_materi,$idguru,$idmapel,$pertemuan_ke,$pertemuan_hingga,$status;
 
     public function __construct()
     {
@@ -25,8 +25,8 @@ class Materi_model extends CI_Model {
     {
          
         $this->db->from($this->table);
-        $this->db->join('api_guru',"api_guru_ajar.idguru=api_guru.idguru");
-        $this->db->join('api_mapel',"api_guru_ajar.id_mapel=api_mapel.id_mapel");
+        $this->db->join('api_guru',"api_link_materi.idguru=api_guru.idguru");
+        $this->db->join('api_mapel',"api_link_materi.id_mapel=api_mapel.id_mapel");
         $i = 0;
      
         foreach ($this->column_search as $item) // looping awal

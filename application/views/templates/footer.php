@@ -139,6 +139,19 @@ $(document).ready(function(e){
         
         }); // End of DataTable
     }
+    if(getme[5]=='daftar_materi'){
+        $('#datatable').reset;
+        $('#datamateriajar.display').DataTable({
+        "pageLength" : 10,
+        "serverSide": true,
+        "order": [[0, "asc" ]],
+        "ajax":{
+                url :  base_url+'guru/get_materi_mengajar',
+                type : 'POST'
+            }
+        
+        }); // End of DataTable
+    }
  
 }); // End Document Ready Function
 </script>
