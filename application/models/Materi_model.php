@@ -135,7 +135,7 @@ class Materi_model extends CI_Model {
         return $this->db->get()->result();
     }
     public function getMateriByIdGuru($idguru){
-        $this->db->select("api_link_materi.idguru,api_link_materi.id_mapel,api_link_materi.nomor_nama_kd,api_link_materi.link_materi,api_link_materi.pertemuan_ke,api_link_materi.pertemuan_hingga,api_mapel.nama_mapel");
+        $this->db->select("api_link_materi.idguru,api_link_materi.id_mapel,api_link_materi.nomor_nama_kd,api_link_materi.id_materi,api_link_materi.pertemuan_ke,api_link_materi.pertemuan_hingga,api_mapel.nama_mapel");
         $this->db->from('api_link_materi');
         $this->db->where('idguru',$idguru);
         //$this->db->join('api_guru',"api_link_materi.idguru=api_guru.idguru",'left');

@@ -14,12 +14,12 @@
 
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Daftar Penugasan Guru</h6>
+			<h6 class="m-0 font-weight-bold text-primary">Daftar Kompetensi dan Penugasan Guru</h6>
 		</div>
 		<div class="card-body">
 			<?php 
 
-//print_r($materi);
+print_r($materi);
 
 
 ?>
@@ -29,7 +29,8 @@
 				<div class="card-group">
 					<?php foreach($pelajaran as $mp): ?>
 					<div class="card">
-						<img class="card-img-top" src="<?php echo base_url('assets/img/ArtboardMateri.png');?>" alt="">
+						<img width="300" class="card-img-top"
+							src="<?php echo base_url('assets/img/newartboard2.png');?>" alt="">
 						<div class="card-body">
 							<h4 class="card-title"><?php echo $mp->nama_mapel; ?></h4>
 							<p><?php echo $mp->kode_mapel_ajar; ?></p>
@@ -39,23 +40,31 @@
 							<h5 class="text-white">Kompetensi Dasar</h5>
 						</div>
 						<div class="list-group list-group-flush">
-							<?php foreach($materi as $mt):
+                            <?php 
+                            $i=0;
+                            foreach($materi as $mt):
+                                $i++;
                             if($mt->id_mapel==$mp->id_mapel){
 
                             ?>
-							<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-								<?php echo $mt->nomor_nama_kd; ?><span class="badge badge-primary badge-pill"><i class="fa fa-plus" aria-hidden="true"></i>
-</span>
+							<a href="<?php echo base_url("guru/form_penugasan_guru/$mt->id_materi/$mt->idguru/$mt->id_mapel");?>"
+								class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+								<?php echo $mt->nomor_nama_kd; ?><span class="badge badge-primary badge-pill"><i
+										class="fa fa-plus" aria-hidden="true"></i>
+								</span>
 							</a>
+						
 							<?php } ?>
 							<?php endforeach; ?>
-                        </div>
+						</div>
 					</div>
 					<?php endforeach; ?>
 
 				</div>
 
 			</div>
+
+
 
 			<!-- end -->
 		</div>

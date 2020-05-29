@@ -130,12 +130,15 @@ class Mapel_model extends CI_Model {
         $this->db->from($tabel); //TABLE NAME
         return $this->db->count_all_results();
     }
-    public function getSiswaBelumLengkap(){
-        $this->db->where("(adm_kurikulum='Belum Lengkap' OR adm_prakerin='Belum Lengkap' OR adm_ukk='Belum Lengkap')", NULL, FALSE);
-        $this->db->order_by('kelas');
-        $query = $this->db->get('un_siswa');
+    public function getMapelByID($idmapel){
+        $this->db->select('nama_mapel');
+        $this->db->from("api_mapel");
+        $this->db->where('id_mapel',$idmapel);
+        $query = $this->db->get()->result();
         
-        return $query->result();
+        foreach($query as $dt){
+            return $dt->nama_mapel;
+        }
     }
     public function getAllmapel(){
         $this->db->select('id_mapel,nama_mapel');

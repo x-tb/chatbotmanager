@@ -52,6 +52,23 @@ Class Guru extends CI_Controller {
         $this->load->view('guru/daftar_penugasan_guru', $data);
         $this->load->view('templates/footer');
     }
+    public function form_penugasan_guru($idmateri,$idguru,$idmapel) {
+        $data['title'] = 'Form Tambah Penugasan  Guru ';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mail=$this->session->userdata('email');
+        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+        $data['idmapel']=$idmapel;
+        $data['pelajaran']=$this->Mapel_model->getMapelByID($idmapel);
+        $data['materi'] = $this->Materi_model->getMateriByIdGuru($idguru);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+
+        $this->load->view('guru/form_tambah_penugasan', $data);
+        $this->load->view('templates/footer');
+    }
+
 
     public function proses_simpan_materi_guru() {
         $post = $this->input->post();
