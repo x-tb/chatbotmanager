@@ -27,14 +27,29 @@ Class Guru extends CI_Controller {
         $data['title'] = 'Daftar Materi Mengajar Guru ';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $mail=$this->session->userdata('email');
-        $data['guru'] = $this->Guru_model->getAllguru();
+        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
         $idguru=$this->Guru_model->getIDguruFromMail($mail);
-        $data['mapel'] = $this->Materi_model->getMapelGuru($idguru)();
+        $data['mapel'] = $this->Materi_model->getMapelGuru($idguru);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         // $this->load->view('guru/form_input_guru_ajar', $data);
         $this->load->view('guru/daftar_materi', $data);
+        $this->load->view('templates/footer');
+    }
+    public function daftar_penugasan_guru() {
+        $data['title'] = 'Daftar Penugasan Mengajar Guru ';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mail=$this->session->userdata('email');
+        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+        $data['pelajaran']=$this->Materi_model->getMapelByIdGuru($idguru);
+        $data['materi'] = $this->Materi_model->getMateriByIdGuru($idguru);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $this->load->view('guru/daftar_penugasan_guru', $data);
         $this->load->view('templates/footer');
     }
 

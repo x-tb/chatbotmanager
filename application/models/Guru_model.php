@@ -29,6 +29,13 @@ class Guru_model extends CI_Model {
             return $guru->idguru;
         }
     }
+    public function getSatuGuru($mail){
+        $this->db->select('idguru,nama_lengkap');
+        $this->db->from('api_guru');
+        $this->db->like('email',$mail);
+        return $this->db->get()->result();
+        
+    }
     private function _get_datatables_query()
     {
          

@@ -130,7 +130,26 @@ class Materi_model extends CI_Model {
     public function getMapelGuru($idguru){
         $this->db->select('api_guru_ajar.idguru,api_guru_ajar.id_mapel,api_mapel.nama_mapel');
         $this->db->from('api_guru_ajar');
+        $this->db->where('idguru',$idguru);
         $this->db->join('api_mapel','api_guru_ajar.id_mapel=api_mapel.id_mapel','left');
+        return $this->db->get()->result();
+    }
+    public function getMateriByIdGuru($idguru){
+        $this->db->select("api_link_materi.idguru,api_link_materi.id_mapel,api_link_materi.nomor_nama_kd,api_link_materi.link_materi,api_link_materi.pertemuan_ke,api_link_materi.pertemuan_hingga,api_mapel.nama_mapel");
+        $this->db->from('api_link_materi');
+        $this->db->where('idguru',$idguru);
+        //$this->db->join('api_guru',"api_link_materi.idguru=api_guru.idguru",'left');
+        $this->db->join('api_mapel',"api_link_materi.id_mapel=api_mapel.id_mapel","right");
+       
+        return $this->db->get()->result();
+    }
+    public function getMapelByIdGuru($idguru){
+        $this->db->select("api_guru_ajar.idguru,api_guru_ajar.kode_mapel_ajar,api_guru_ajar.id_mapel,api_guru_ajar.tingkat,api_mapel.nama_mapel");
+        $this->db->from('api_guru_ajar');
+        $this->db->where('idguru',$idguru);
+        //$this->db->join('api_guru',"api_link_materi.idguru=api_guru.idguru",'left');
+        $this->db->join('api_mapel',"api_guru_ajar.id_mapel=api_mapel.id_mapel","right");
+       
         return $this->db->get()->result();
     }
  
