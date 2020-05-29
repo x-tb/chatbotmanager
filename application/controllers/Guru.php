@@ -9,7 +9,7 @@ Class Guru extends CI_Controller {
         $this->load->model('Mapel_model');
         $this->load->model('Mengajar_model');
         $this->load->model('Konfig_model');
-        //is_logged_in();
+        is_logged_in();
     }
     public function index()
     {
