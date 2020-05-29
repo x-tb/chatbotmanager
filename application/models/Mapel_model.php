@@ -134,11 +134,8 @@ class Mapel_model extends CI_Model {
         $this->db->select('nama_mapel');
         $this->db->from("api_mapel");
         $this->db->where('id_mapel',$idmapel);
-        $query = $this->db->get()->result();
-        
-        foreach($query as $dt){
-            return $dt->nama_mapel;
-        }
+       // echo $idsiswa;
+        return $this->db->get();
     }
     public function getAllmapel(){
         $this->db->select('id_mapel,nama_mapel');

@@ -59,8 +59,9 @@ Class Guru extends CI_Controller {
         $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
         $idguru=$this->Guru_model->getIDguruFromMail($mail);
         $data['idmapel']=$idmapel;
-        $data['pelajaran']=$this->Mapel_model->getMapelByID($idmapel);
-        $data['materi'] = $this->Materi_model->getMateriByIdGuru($idguru);
+        $data['idmateri']=$idmateri;
+        $data['pelajaran']=$this->Mapel_model->getMapelByID($idmapel)->result();
+        $data['materi'] = $this->Materi_model->getMateriById($idmateri);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);

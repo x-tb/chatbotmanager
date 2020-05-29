@@ -152,5 +152,14 @@ class Materi_model extends CI_Model {
        
         return $this->db->get()->result();
     }
+    public function getMateriById($id){
+        $this->db->select("nomor_nama_kd");
+        $this->db->from('api_link_materi');
+        $this->db->where('id_materi',$id);
+        $q=$this->db->get()->result();
+        foreach($q as $d){
+            return $d->nomor_nama_kd;
+        }
+    }
  
 }

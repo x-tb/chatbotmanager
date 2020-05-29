@@ -19,7 +19,7 @@
 		<div class="card-body">
 			<?php 
 
-print_r($materi);
+//print_r($materi);
 
 
 ?>
@@ -40,7 +40,7 @@ print_r($materi);
 							<h5 class="text-white">Kompetensi Dasar</h5>
 						</div>
 						<div class="list-group list-group-flush">
-                            <?php 
+							<?php 
                             $i=0;
                             foreach($materi as $mt):
                                 $i++;
@@ -48,12 +48,28 @@ print_r($materi);
 
                             ?>
 							<a href="<?php echo base_url("guru/form_penugasan_guru/$mt->id_materi/$mt->idguru/$mt->id_mapel");?>"
-								class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-								<?php echo $mt->nomor_nama_kd; ?><span class="badge badge-primary badge-pill"><i
+								class="list-group-item list-group-item-action d-flex justify-content-between align-items-center ">
+								<b><?php echo $mt->nomor_nama_kd; ?></b><span class="badge badge-primary badge-pill"><i
 										class="fa fa-plus" aria-hidden="true"></i>
 								</span>
 							</a>
-						
+							<ol class="list-group list-group-flush">
+								<li
+									class="list-group-item list-group-item-action d-flex justify-content-between align-items-left">
+									<i class="fa fa-angle-right" aria-hidden="true"></i> Tugas 1 dolor sit amet
+									consectetur adipisicing elit.
+									<a href="#"><span class="badge badge-danger badge-pill"><i class="fa fa-edit"
+												aria-hidden="true"></i>
+										</span></a></li>
+                                        <li
+									class="list-group-item list-group-item-action d-flex justify-content-between align-items-left">
+									<i class="fa fa-angle-right" aria-hidden="true"></i> lorem ipsum Ulangan Harian 1 dolor sit amet
+									.
+									<a href="#"><span class="badge badge-danger badge-pill"><i class="fa fa-edit"
+												aria-hidden="true"></i>
+										</span></a></li>
+							</ol>
+
 							<?php } ?>
 							<?php endforeach; ?>
 						</div>
