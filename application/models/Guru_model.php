@@ -20,7 +20,15 @@ class Guru_model extends CI_Model {
        // echo $idsiswa;
         return $this->db->get();
     }
-   
+    public function getIDguruFromMail($mail){
+        $this->db->select('idguru');
+        $this->db->from('api_guru');
+        $this->db->like('email',$mail);
+        $g=$this->db->get()->result();
+        foreach($g as $guru){
+            return $guru->idguru;
+        }
+    }
     private function _get_datatables_query()
     {
          

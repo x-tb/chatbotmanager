@@ -26,9 +26,10 @@ Class Guru extends CI_Controller {
     public function daftar_materi() {
         $data['title'] = 'Daftar Materi Mengajar Guru ';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
+        $mail=$this->session->userdata('email');
         $data['guru'] = $this->Guru_model->getAllguru();
-        $data['mapel'] = $this->Mapel_model->getAllmapel();
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+        $data['mapel'] = $this->Materi_model->getMapelGuru($idguru)();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);

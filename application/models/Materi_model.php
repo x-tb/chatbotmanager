@@ -127,5 +127,11 @@ class Materi_model extends CI_Model {
        
     return $this->db->insert('api_link_materi', $data);
     }
+    public function getMapelGuru($idguru){
+        $this->db->select('api_guru_ajar.idguru,api_guru_ajar.id_mapel,api_mapel.nama_mapel');
+        $this->db->from('api_guru_ajar');
+        $this->db->join('api_mapel','api_guru_ajar.id_mapel=api_mapel.id_mapel','left');
+        return $this->db->get()->result();
+    }
  
 }
