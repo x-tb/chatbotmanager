@@ -7,17 +7,17 @@ Level user dalam aplikasi ini terdiri dari :
 1. Admininstrator 
 2. Guru
 
+
+*******************
+Chatbot engine Telegram
+*******************
+
+ini adalah repository pertama yang dibuat dalam membangun chatbot untuk sistem informasi akademik
 (khusus untuk aplikasi chatbot di bangun menggunakan python di repository yang berbeda)
 untuk level user chatbot terdiri dari :
 1. Guru
 2. Siswa
 3. Orang Tua / Wali Siswa
-*******************
-Release Information
-*******************
-
-ini adalah repository pertama yang dibuat dalam membangun chatbot untuk sistem informasi akademik
-
 **************************
 Changelog and New Features
 **************************
