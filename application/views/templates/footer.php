@@ -178,6 +178,8 @@ $(document).ready(function(){
         myAlert("Pesan","Selamat Anda telah berhasil Menyimpan Data Baru ","success");
    }else if(data[6]=="sukses_simpan_penugasan"){
         myAlert("Pesan","Selamat Anda telah berhasil Menyimpan Penugasan Baru ","success");
+   }else if(data[6]=="sukses_edit_penugasan"){
+        myAlert("Pesan","Selamat Anda telah berhasil Mengubah data penugasan  ","success");
    }
     
     

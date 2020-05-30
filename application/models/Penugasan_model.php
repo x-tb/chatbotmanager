@@ -100,23 +100,11 @@ class Penugasan_model extends CI_Model {
         
 
     }
-    public function update()
+    public function updateData($id,$data)
     {
-        $post = $this->input->post();
-        $data_source=array(
-            'idguru' => $post['idguru'], 
-            'nama' => $post['nama'],
-            'nik'=>$post['nipk'],
-            'kode_jurusan'=>$this->convertKodeJurusan($post['komli']),
-            'komli' => $post['komli'],
-            'kelas' => $post['kelas'],
-            'tempat_lahir' => $post['tempat'],
-            'tanggal_lahir' => $post['tgl_lahir'],
-            'foto_nipd'=>$post['foto_nipd'],
-            'status'=>$post['status'] 
-        );
-        
-        return $this->db->update('un_siswa', $data_source, array('idsiswa' => $post['idsiswa']));
+      
+    $this->db->where('id_penugasan', $id);
+    return $this->db->update($this->table, $data);
     }
   
 

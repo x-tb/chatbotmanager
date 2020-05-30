@@ -17,6 +17,7 @@
 			<h6 class="m-0 font-weight-bold text-primary">Daftar Kompetensi dan Penugasan Guru</h6>
 		</div>
 		<div class="card-body">
+		<img width="1000" src="<?php echo base_url("assets/img/starbotsapa.svg"); ?>" alt="">
 			<?php 
 
 //print_r($tugas);
@@ -60,7 +61,7 @@
 								<li
 									class="list-group-item list-group-item-action d-flex justify-content-between align-items-left">
 									<p><b class="badge bg-primary text-white"><?php echo $tg->tipe_tugas; ?></b>&nbsp;<?php echo $tg->nama_tugas; ?></p>
-									<a href="<?php echo base_url("guru/form_edit_penugasan_guru/$mt->id_materi/$mt->idguru/$mt->id_mapel"); ?>"><span class="badge badge-danger badge-pill"><i class="fa fa-edit"
+									<a href="<?php echo base_url("guru/form_edit_penugasan_guru/$tg->id_penugasan/$mt->id_materi/$mt->idguru/$mt->id_mapel"); ?>"><span class="badge badge-danger badge-pill"><i class="fa fa-edit"
 												aria-hidden="true"></i>
 										</span></a>
 								</li>

@@ -7,11 +7,13 @@
 			<h6 class="m-0 font-weight-bold text-primary">Form Update Info Penugasan Siswa Melalui Telegram </h6>
 		</div>
 		<div class="card-body">
-
-			<form action="<?php echo base_url('guru/proses_simpan_penugasan'); ?>" method="post">
+<?php
+//print_r($tugas);
+foreach($tugas as $dt): ?>
+			<form action="<?php echo base_url('guru/proses_edit_penugasan'); ?>" method="post">
 				<table class="table table-bordered">
 
-					<tr>
+					<tr><input type="hidden" value="<?php echo $dt->id_penugasan; ?>" name="id_penugasan">
 						<?php foreach($namagr as $g): ?>
 						<td>Nama Guru <input type="hidden" name="idguru" value="<?=$g->idguru?>"> </td>
 						<td><input type="text" name="namaguru" disabled="disabled" value="<?=$g->nama_lengkap?>"
@@ -45,38 +47,42 @@
 					</tr>
 					<tr>
 						<td>Nama Tugas </td>
-						<td><input class="form-control col-md-10" type="text" name="namatugas" id="nm" /> </td>
+						<td><input class="form-control col-md-10" type="text" name="namatugas" value="<?php echo $dt->nama_tugas; ?>" id="nm" /> </td>
 					</tr>
 					<tr>
 						<td>Deskripsi Tugas </td>
 						<td>
 							<div id="editor">
-								<p>Hello World!</p>
-								<p>Some initial <strong>bold</strong> text</p>
-								<p><br></p>
+								<?php
+								echo $dt->deskripsi_tugas; ?>
 							</div>
-							<input class="form-control" type="hidden" name="deskripsi" id="deskripsi" />
+							<input class="form-control" value="<?php echo htmlentities($dt->deskripsi_tugas); ?>" type="hidden" name="deskripsi" id="deskripsi" />
 						</td>
 					</tr>
 					<tr>
 						<td>Tanggal Tugas </td>
 						<td>
-							<div class="form-inline">&nbsp;Tgl. Mulai : &nbsp;<input class="form-control col-md-3"
-									type="date" name="tgl_mulai" id="ml" />&nbsp;Tgl. Selesai : &nbsp;<input
+							<div class="form-inline">&nbsp;Tgl. Mulai : &nbsp;
+							<input class="form-control col-md-3" value="<?php echo $dt->tgl_penugasan; ?>"
+									type="date" name="tgl_mulai" id="ml" />&nbsp;Tgl. Selesai : &nbsp;
+							<input value="<?php echo $dt->deadline_tugas; ?>"
 									class="form-control col-md-3" type="date" name="tgl_selesai" id="sl" /> </div>
 						</td>
 					</tr>
 					<tr>
 						<td>Waktu </td>
 						<td>
-							<div class="form-inline">&nbsp;Jam Buka : &nbsp;<input class="form-control col-md-3"
-									type="time" name="jam_buka" id="jb" />&nbsp;Jam Tutup : &nbsp;<input type="time"
+							<div class="form-inline">&nbsp;Jam Buka : &nbsp;
+							<input class="form-control col-md-3" value="<?php echo $dt->waktu_buka; ?>"
+									type="time" name="jam_buka" id="jb" />&nbsp;Jam Tutup : &nbsp;
+									<input type="time" value="<?php echo $dt->waktu_tutup; ?>"
 									class="form-control col-md-3" name="jam_tutup" id="jt" /> </div>
 						</td>
 					</tr>
 					<tr>
 						<td>Tahun Pelajaran</td>
 						<td><select class="form-control col-md-10" name="tapel" id="tapel">
+								<option selected="selected" value="<?php echo $dt->tapel; ?>"><?php echo $dt->tapel; ?></option>
 								<?php for($i=2019;$i<=2022;$i++){
                                 $i2=$i+1;
                                 ?>
@@ -99,7 +105,16 @@
 
 
 
-				<!-- Create the editor container -->
+			
+				<hr>
+
+		</div>
+
+		</form>
+								<?php endforeach; ?>
+
+	</div>
+		<!-- Create the editor container -->
 
 
 				<!-- Include the Quill library -->
@@ -118,13 +133,6 @@
 					//console.log();
 
 				</script>
-				<hr>
-
-		</div>
-
-		</form>
-
-	</div>
 </div>
 </div>
 <!-- include summernote css/js -->
