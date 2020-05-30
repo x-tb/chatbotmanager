@@ -38,9 +38,9 @@ class Guru_model extends CI_Model {
     }
     private function _get_datatables_query()
     {
-         
+        $this->db->select("*"); 
         $this->db->from($this->table);
- 
+        $this->db->join('user',"api_guru.email=user.email",'left');
         $i = 0;
      
         foreach ($this->column_search as $item) // looping awal

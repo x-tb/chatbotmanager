@@ -65,4 +65,38 @@ class Menu extends CI_Controller
             redirect('menu/submenu');
         }
     }
+    public function form_edit_menu($id){
+        $data['title'] = 'Submenu Management';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->model('Menu_model', 'menu');
+        $data['subMenu'] = $this->menu->getSubmenuById($id);
+        $data['menu'] = $this->db->get('user_menu')->result_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('menu/form_edit_menu', $data);
+        $this->load->view('templates/footer');
+    }
+    public function proses_update_submenu(){
+        $this->load->model('Menu_model');
+        $post=$this->input->post();
+        $id=$post['id_submenu'];
+       
+        $aktif=$post['status'];
+        $data=array(
+            'menu_id'=>$post['menu_id'],
+            'title'=>$post['title'],
+            'url'=>$post['url'],
+            'icon'=>$post['icon'],
+            'is_active'=>$aktif
+        );
+        //print_r($data);
+       $update=$this->Menu_model->submenuUpdate($id,$data);
+        if($update==TRUE){
+            redirect(base_url("menu/submenu/sukses_edit_menu"));
+        }else{
+            redirect(base_url("menu/submenu/gagal_edit_menu"));
+        }
+    }
 }

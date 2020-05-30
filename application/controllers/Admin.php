@@ -289,12 +289,20 @@ class Admin extends CI_Controller {
             $row[] = $field->idguru;
             $row[] = $field->nik;
             $row[] = $field->nama_lengkap;
-            $row[] = $field->jkl;
+            $row[] = $field->email;
             $row[] = $field->tgl_lahir;
             $row[] = $field->stat_pegawai;
             $row[] = $field->uname_tel;
-
-            $row[] = "<a href='" . base_url("admin/detail_guru/$field->idguru") . "' class='btn btn-primary btn-sm' >view</a>";
+            if($field->password==""){
+                $val="Generate";
+                $btn="success";
+                $link="form_generate_user_guru";
+            }else{
+                $val="Reset";
+                $btn="danger";
+                $link="reset_user_guru";
+            }
+            $row[] = "<a href='" . base_url("admin/$link/$field->idguru") . "' class='btn btn-$btn btn-sm' >$val</a>";
             $row[] = "<a href='" . base_url("admin/edit_guru/$field->idguru") . "' class='btn btn-success btn-sm' >Edit</a>";
             $data[] = $row;
         }
@@ -425,6 +433,50 @@ class Admin extends CI_Controller {
         );
         //output dalam format JSON
         echo json_encode($output);
+    }
+    public function form_generate_user_guru($idguru){
+       
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Form Generate User Login Guru ';
+        $data['userdata']=$this->Guru_model->get_one_by_id($idguru)->result();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+
+        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $this->load->view('auth/registrationadmin',$data);
+        $this->load->view('templates/footer');
+       
+    }
+    public function prosesGenerateUserGuru(){
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Form Generate User Login Guru ';
+        $data = [
+            'name' => htmlspecialchars($this->input->post('name', true)),
+            'email' => htmlspecialchars($this->input->post('email')),
+            'image' => 'default.jpg',
+            'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+            'role_id' => 2,
+            'is_active' => 1,
+            'date_created' => time()
+        ];
+
+        // siapkan token
+        $email=$this->input->post('email');
+        $token = base64_encode(random_bytes(32));
+        $user_token = [
+            'email' => $email,
+            'token' => $token,
+            'date_created' => time()
+        ];
+
+        $this->db->insert('user', $data);
+       $cek= $this->db->insert('user_token', $user_token);
+       if($cek==TRUE){
+        redirect(base_url("admin/data_guru/sukses_generate_user_guru"));
+       }else{
+        redirect(base_url("admin/data_guru/gagal_generate_user_guru"));
+       }
     }
 
 }
