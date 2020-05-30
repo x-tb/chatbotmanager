@@ -19,7 +19,7 @@
 		<div class="card-body">
 			<?php 
 
-//print_r($materi);
+//print_r($tugas);
 
 
 ?>
@@ -54,20 +54,19 @@
 								</span>
 							</a>
 							<ol class="list-group list-group-flush">
+							<?php foreach($tugas as $tg): 
+								if($tg->id_materi==$mt->id_materi){
+								?>
 								<li
 									class="list-group-item list-group-item-action d-flex justify-content-between align-items-left">
-									<i class="fa fa-angle-right" aria-hidden="true"></i> Tugas 1 dolor sit amet
-									consectetur adipisicing elit.
-									<a href="#"><span class="badge badge-danger badge-pill"><i class="fa fa-edit"
+									<p><b class="badge bg-primary text-white"><?php echo $tg->tipe_tugas; ?></b>&nbsp;<?php echo $tg->nama_tugas; ?></p>
+									<a href="<?php echo base_url("guru/form_edit_penugasan_guru/$mt->id_materi/$mt->idguru/$mt->id_mapel"); ?>"><span class="badge badge-danger badge-pill"><i class="fa fa-edit"
 												aria-hidden="true"></i>
-										</span></a></li>
-                                        <li
-									class="list-group-item list-group-item-action d-flex justify-content-between align-items-left">
-									<i class="fa fa-angle-right" aria-hidden="true"></i> lorem ipsum Ulangan Harian 1 dolor sit amet
-									.
-									<a href="#"><span class="badge badge-danger badge-pill"><i class="fa fa-edit"
-												aria-hidden="true"></i>
-										</span></a></li>
+										</span></a>
+								</li>
+							<?php 
+								}
+						endforeach; ?>       
 							</ol>
 
 							<?php } ?>

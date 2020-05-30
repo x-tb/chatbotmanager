@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-lg">
                             <div class="p-5">
-                            <img class="img-thubmnail img-rounded mx-auto d-block" src="<?php echo base_url("assets/img/starbot.png"); ?>" height="100" alt="">
+                            <img class="img-thubmnail img-rounded mx-auto d-block" src="<?php echo base_url("assets/img/starbot.svg"); ?>" height="200" alt="">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Chatbot Manager</h1>
                                 </div>

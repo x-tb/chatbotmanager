@@ -39,7 +39,7 @@
             </div>
 
             <!-- Bootstrap core JavaScript-->
-            <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
+          
             <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
             <!-- Core plugin JavaScript-->
@@ -78,10 +78,11 @@
           <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
         
        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
+       <!-- Include the Quill library -->
 
        <script type="text/javascript">
 $(document).ready(function(e){
+
  var base_url = "<?php echo base_url();?>"; // You can use full url here but I prefer like this
  var aktifurl = window.location.href;
  console.log(aktifurl);
@@ -175,6 +176,8 @@ $(document).ready(function(){
         myAlert("Pesan","Data yang anda cari tidak di temukan ","info");
    }else if(data[6]=="sukses_simpan_mengajar"){
         myAlert("Pesan","Selamat Anda telah berhasil Menyimpan Data Baru ","success");
+   }else if(data[6]=="sukses_simpan_penugasan"){
+        myAlert("Pesan","Selamat Anda telah berhasil Menyimpan Penugasan Baru ","success");
    }
     
     
@@ -182,6 +185,8 @@ $(document).ready(function(){
 
 
 </script>
+
+
             </body>
 
             </html> 

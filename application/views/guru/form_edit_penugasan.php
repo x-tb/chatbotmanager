@@ -4,7 +4,7 @@
 
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Form Input Info Penugasan Siswa Melalui Telegram </h6>
+			<h6 class="m-0 font-weight-bold text-primary">Form Update Info Penugasan Siswa Melalui Telegram </h6>
 		</div>
 		<div class="card-body">
 

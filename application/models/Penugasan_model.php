@@ -1,32 +1,40 @@
 <?php
  
-class Materi_model extends CI_Model {
+class Penugasan_model extends CI_Model {
  
-    var $table = 'api_link_materi'; //nama tabel dari database
-    var $column_order = array('id_materi','topik_pembahasan','link_materi','idguru','id_mapel','pertemuan_ke','pertemuan_hingga','tapel','status'); //field yang ada di table user
-    var $column_search =array('id_materi','topik_pembahasan','link_materi','idguru','id_mapel','pertemuan_ke','pertemuan_hingga','tapel','status');  //field yang diizin untuk pencarian 
-    var $order = array('idguru' => 'asc'); // default order 
-    public $id_materi,$nomor_nama_kd,$topik_pembahasan,$link_materi,$idguru,$idmapel,$pertemuan_ke,$pertemuan_hingga,$status;
+    var $table = 'api_penugasan'; //nama tabel dari database
+    var $column_order = array('id_penugasan','id_materi','idguru','id_mapel','tipe_tugas','nama_tugas','tapel','status'); //field yang ada di table user
+    var $column_search =array('id_penugasan','id_materi','idguru','id_mapel','tipe_tugas','nama_tugas','tapel','status');  //field yang diizin untuk pencarian 
+    var $order = array('id_penugasan' => 'asc'); // default order 
+    public $id_penugasan,$id_materi,$idguru,$id_mapel,$tipe_tugas,$nama_tugas,$tapel,$status;
 
     public function __construct()
     {
         parent::__construct();
         $this->load->database();
     }
-    public function get_one_by_id($idmateri){
+    public function get_one_by_id($id){
         $this->db->select('*');
-        $this->db->from('api_link_materi');
-        $this->db->where('id_materi',$idmateri);
+        $this->db->from($this->table);
+        $this->db->where('id_penugasan',$id);
        // echo $idsiswa;
         return $this->db->get();
+    }
+    public function get_tugas_materi($idmateri){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('id_materi',$idmateri);
+       // echo $idsiswa;
+        return $this->db->get()->result();
     }
    
     private function _get_datatables_query()
     {
-         
+        $this->db->select("api_penugasan.*,api_link_materi.nomor_nama_kd,api_link_materi.topik_pembahasan,api_mapel.nama_mapel"); 
         $this->db->from($this->table);
-        $this->db->join('api_guru',"api_link_materi.idguru=api_guru.idguru");
-        $this->db->join('api_mapel',"api_link_materi.id_mapel=api_mapel.id_mapel");
+        $this->db->join('api_link_materi',"api_penugasan.id_materi=api_link_materi.id_materi");
+        $this->db->join('api_guru',"api_penugasan.idguru=api_guru.idguru");
+        $this->db->join('api_mapel',"api_penugasan.id_mapel=api_mapel.id_mapel");
         $i = 0;
      
         foreach ($this->column_search as $item) // looping awal
@@ -114,7 +122,7 @@ class Materi_model extends CI_Model {
 
     public function delete($id)
     {
-        return $this->db->delete($this->table, array("idguruajar" => $id));
+        return $this->db->delete($this->table, array("id_penugasan" => $id));
     }
   
     public function getTotalTb($tabel,$key,$where){
@@ -123,42 +131,16 @@ class Materi_model extends CI_Model {
         return $this->db->count_all_results();
     }
    
-    public function simpanMateriAjar($data){
+    public function simpanPenugasanGuru($data){
        
-    return $this->db->insert('api_link_materi', $data);
+        return $this->db->insert('api_penugasan', $data);
     }
-    public function getMapelGuru($idguru){
-        $this->db->select('api_guru_ajar.idguru,api_guru_ajar.id_mapel,api_mapel.nama_mapel');
-        $this->db->from('api_guru_ajar');
+    public function getTugasByGuru($idguru){
+        $this->db->select('*');
+        $this->db->from($this->table);
         $this->db->where('idguru',$idguru);
-        $this->db->join('api_mapel','api_guru_ajar.id_mapel=api_mapel.id_mapel','left');
         return $this->db->get()->result();
     }
-    public function getMateriByIdGuru($idguru){
-        $this->db->select("api_link_materi.idguru,api_link_materi.id_mapel,api_link_materi.nomor_nama_kd,api_link_materi.id_materi,api_link_materi.pertemuan_ke,api_link_materi.pertemuan_hingga,api_mapel.nama_mapel");
-        $this->db->from('api_link_materi');
-        $this->db->where('idguru',$idguru);
-        $this->db->join('api_mapel',"api_link_materi.id_mapel=api_mapel.id_mapel","right");
-        //$this->db->join('api_penugasan',"api_link_materi.id_materi=api_penugasan.id_materi",'left');
-       
-        return $this->db->get()->result();
-    }
-    public function getMapelByIdGuru($idguru){
-        $this->db->select("api_guru_ajar.idguru,api_guru_ajar.kode_mapel_ajar,api_guru_ajar.id_mapel,api_guru_ajar.tingkat,api_mapel.nama_mapel");
-        $this->db->from('api_guru_ajar');
-        $this->db->where('idguru',$idguru);
-        $this->db->join('api_mapel',"api_guru_ajar.id_mapel=api_mapel.id_mapel","right");
-       
-        return $this->db->get()->result();
-    }
-    public function getMateriById($id){
-        $this->db->select("nomor_nama_kd");
-        $this->db->from('api_link_materi');
-        $this->db->where('id_materi',$id);
-        $q=$this->db->get()->result();
-        foreach($q as $d){
-            return $d->nomor_nama_kd;
-        }
-    }
+   
  
 }
