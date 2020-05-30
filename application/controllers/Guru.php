@@ -3,7 +3,7 @@ Class Guru extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        is_logged_in();
+       // is_logged_in();
         $this->load->helper(array('form', 'url'));
         $this->load->model('Siswa_model');
         $this->load->model('Guru_model');
@@ -17,7 +17,7 @@ Class Guru extends CI_Controller {
     {
         $data['title'] = 'Dashboard Guru';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
+        
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
