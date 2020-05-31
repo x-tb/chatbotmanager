@@ -17,7 +17,11 @@
 			<h6 class="m-0 font-weight-bold text-primary">Daftar Kompetensi dan Penugasan Guru</h6>
 		</div>
 		<div class="card-body">
-		<img width="1000" src="<?php echo base_url("assets/img/starbotsapa.svg"); ?>" alt="">
+		<div>
+		<object type="image/svg+xml" data="<?php echo base_url("assets/img/starbotsapa.svg"); ?>" width="400">
+          Your browser does not support SVG.
+        </object>
+		</div>
 			<?php 
 
 //print_r($tugas);
@@ -27,8 +31,12 @@
 
 			<!-- start -->
 			<div class="row">
-				<div class="card-group">
-					<?php foreach($pelajaran as $mp): ?>
+				<div class="card-group col-md-12">
+					<?php
+					
+					foreach($pelajaran as $mp): 
+					
+						?>
 					<div class="card">
 						<img width="300" class="card-img-top"
 							src="<?php echo base_url('assets/img/newartboard2.png');?>" alt="">

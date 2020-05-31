@@ -13,6 +13,7 @@ class Admin extends CI_Controller {
         $this->load->model('Mapel_model');
         $this->load->model('Mengajar_model');
         is_logged_in();
+        my_auth();
     }
 
     public function index() {

@@ -23,7 +23,11 @@ class Materi_model extends CI_Model {
    
     private function _get_datatables_query()
     {
-         
+        //validasi admin dan data user untuk view all materi
+        $role= $_SESSION['role_id'];
+        if($role==2){
+            $this->db->where('email',$_SESSION['email']);
+        }
         $this->db->from($this->table);
         $this->db->join('api_guru',"api_link_materi.idguru=api_guru.idguru");
         $this->db->join('api_mapel',"api_link_materi.id_mapel=api_mapel.id_mapel");

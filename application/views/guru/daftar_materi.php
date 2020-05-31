@@ -9,6 +9,12 @@
 		background-color: #5bc0de !important;
 	}
 
+
+  .table-scrollable{
+    overflow: auto;
+}
+
+
 </style>
 <div class="container">
 
@@ -85,7 +91,8 @@
 
 			</form>
 			<hr>
-			<table class="display table table-bordered" cellspacing="0" id="datamateriajar" 
+			<div class="table-scrollable">
+			<table class="display  table table-bordered" cellspacing="0" id="datamateriajar" 
 				cellspacing="0" width="100%">
 				<thead>
 					<tr>
@@ -107,7 +114,7 @@
 
 			</table>
 
-
+			</div>
 
 		</div>
 	</div>

@@ -4,7 +4,10 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url('guru'); ?>">
                 <div class="sidebar-brand-icon ">
-                    <img src="<?php echo base_url('assets/img/starbot.svg'); ?>" width="60px" alt="">
+                <object type="image/svg+xml" data="<?php echo base_url('assets/img/starbot.svg'); ?>" width="60">
+          Your browser does not support SVG.
+        </object>
+                    
                 </div>
                 <div class="sidebar-brand-text mx-3">ChatBot Manager</div>
             </a>

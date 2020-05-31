@@ -3,7 +3,7 @@ Class Guru extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-       // is_logged_in();
+        is_logged_in();
         $this->load->helper(array('form', 'url'));
         $this->load->model('Siswa_model');
         $this->load->model('Guru_model');
@@ -11,7 +11,7 @@ Class Guru extends CI_Controller {
         $this->load->model('Mengajar_model');
         $this->load->model('Penugasan_model');
         $this->load->model('Materi_model');
-       
+      
     }
     public function index()
     {
@@ -117,13 +117,14 @@ Class Guru extends CI_Controller {
     }
 
     function get_materi_mengajar() {
+        
         $list = $this->Materi_model->get_datatables();
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $field) {
             $no++;
             $row = array();
-            $row[] = $field->id_materi;
+            $row[] = $no;
             $row[] = $field->nomor_nama_kd;
             $row[] = $field->link_materi;
             $row[] = $field->nama_lengkap;
