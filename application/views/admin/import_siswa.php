@@ -5,7 +5,7 @@
 
     <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Form Import Data Kelulusan</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Form Import Data Siswa</h6>
             </div>
     <div class="card-body">
             <?= $this->session->flashdata('message'); ?>
@@ -34,7 +34,7 @@
     </table>
     <?= form_close(); ?>
     <h5>Data Master Awal biodata siswa adalah data siswa download standar download sistem informasi sekolah sekolahan.id </h5>
-<img style="width:100%" src="<?php echo base_url("assets/img/sampleDataSiswaLulus.png"); ?>" alt="">
+
     </div>
     </div>
 

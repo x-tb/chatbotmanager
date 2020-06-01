@@ -14,7 +14,7 @@
 
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Daftar Kompetensi dan Penugasan Guru</h6>
+			<h6 class="m-0 font-weight-bold text-primary">Jadwal  Kompetensi dan Penugasan Guru</h6>
 		</div>
 		<div class="card-body">
 		<div>
@@ -37,7 +37,7 @@
 					foreach($pelajaran as $mp): 
 					
 						?>
-					<div class="card">
+					<div class="card col-md-6">
 						<img width="300" class="card-img-top"
 							src="<?php echo base_url('assets/img/newartboard2.png');?>" alt="">
 						<div class="card-body">

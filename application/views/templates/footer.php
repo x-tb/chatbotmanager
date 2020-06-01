@@ -153,6 +153,19 @@ $(document).ready(function(e){
         
         }); // End of DataTable
     }
+    if(getme[5]=='data_kelas'){
+        $('#datatable').reset;
+        $('#datakelas.display').DataTable({
+        "pageLength" : 10,
+        "serverSide": true,
+        "order": [[0, "asc" ]],
+        "ajax":{
+                url :  base_url+'admin/get_data_kelas',
+                type : 'POST'
+            }
+        
+        }); // End of DataTable
+    }
  
 }); // End Document Ready Function
 </script>

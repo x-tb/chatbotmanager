@@ -9,7 +9,7 @@
         </object>
                     
                 </div>
-                <div class="sidebar-brand-text mx-3">ChatBot Manager</div>
+                <div class="sidebar-brand-text mx-3">StarBot Akademik</div>
             </a>
 
             <!-- Divider -->

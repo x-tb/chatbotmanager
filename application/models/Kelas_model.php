@@ -1,32 +1,40 @@
 <?php
  
-class Mengajar_model extends CI_Model {
+class Kelas_model extends CI_Model {
  
-    var $table = 'api_guru_ajar'; //nama tabel dari database
-    var $column_order = array('id_guru_ajar','idguru','idmapel','tingkat','tapel','status'); //field yang ada di table user
-    var $column_search =array('id_guru_ajar','idguru','idmapel','tingkat','tapel','status');  //field yang diizin untuk pencarian 
+    var $table = 'api_kelas'; //nama tabel dari database
+    var $column_order = array('idkelas','nama_kelas','kode_jurusan','tapel','status'); //field yang ada di table user
+    var $column_search = array('nama_kelas','kode_jurusan','nama_walas','tapel','status'); //field yang diizin untuk pencarian 
     var $order = array('idguru' => 'asc'); // default order 
-    public $id_guru_ajar,$idguru,$idmapel,$nama,$email,$jkl,$tanggal_lahir,$stat_pegawai,$tmt,$nohp,$uname_tel,$status;
+    public $idkelas,$nama_kelas,$kode_jurusan,$nama_walas,$group_telegram,$uname_telegram,$status;
 
     public function __construct()
     {
         parent::__construct();
         $this->load->database();
     }
-    public function get_one_by_id($idguru){
+    public function get_one_by_id($idkelas){
         $this->db->select('*');
-        $this->db->from('api_guru_ajar');
-        $this->db->where('idguru',$idguru);
+        $this->db->from('api_kelas');
+        $this->db->where('idkelas',$idkelas);
        // echo $idsiswa;
         return $this->db->get();
+    }
+    public function get_group_kelas($idkelas){
+        $this->db->select('group_telegram');
+        $this->db->from('api_kelas');
+        $this->db->where('idkelas',$idkelas);
+        $r=$this->db->get()->result();
+        foreach($r as $dt){
+            return $dt->group_telegram;
+        }
     }
    
     private function _get_datatables_query()
     {
          
         $this->db->from($this->table);
-        $this->db->join('api_guru',"api_guru_ajar.idguru=api_guru.idguru");
-        $this->db->join('api_mapel',"api_guru_ajar.id_mapel=api_mapel.id_mapel");
+ 
         $i = 0;
      
         foreach ($this->column_search as $item) // looping awal
@@ -82,30 +90,28 @@ class Mengajar_model extends CI_Model {
         $this->db->from($this->table);
         return $this->db->count_all_results();
     }
-   
+  
     public function update()
     {
         $post = $this->input->post();
         $data_source=array(
-            'idguru' => $post['idguru'], 
-            'nama' => $post['nama'],
-            'nik'=>$post['nipk'],
-            'kode_jurusan'=>$this->convertKodeJurusan($post['komli']),
-            'komli' => $post['komli'],
-            'kelas' => $post['kelas'],
-            'tempat_lahir' => $post['tempat'],
-            'tanggal_lahir' => $post['tgl_lahir'],
-            'foto_nipd'=>$post['foto_nipd'],
+            'idkelas' => $post['idkelas'], 
+            'nama_kelas' => $post['namakelas'],
+            'group_telegram'=>$post['group'],
+            'nama_walas'=>$post['namawalas'],
+            'uname_telegram' => $post['unametelegram'],
+            'kode_jurusan' => $post['jurusan'],
+            'tapel' => $post['tapel'],
             'status'=>$post['status'] 
         );
         
-        return $this->db->update('un_siswa', $data_source, array('idsiswa' => $post['idsiswa']));
+        return $this->db->update('api_kelas', $data_source, array('idkelas' => $post['idkelas']));
     }
   
 
     public function delete($id)
     {
-        return $this->db->delete($this->table, array("idguruajar" => $id));
+        return $this->db->delete($this->table, array("idkelas" => $id));
     }
   
     public function getTotalTb($tabel,$key,$where){
@@ -113,18 +119,16 @@ class Mengajar_model extends CI_Model {
         $this->db->from($tabel); //TABLE NAME
         return $this->db->count_all_results();
     }
-   
-    public function simpanMateriGuru($data){
-       
-    return $this->db->insert('api_link_materi', $data);
+    public function getkelasByID($idkelas){
+        $this->db->select('nama_kelas');
+        $this->db->from("api_kelas");
+        $this->db->where('id_kelas',$idkelas);
+       // echo $idsiswa;
+        return $this->db->get();
     }
-    public function getMapelGuru($id){
-        $this->db->select("*");
-        $this->db->from($this->table);
-        $this->db->where('idguru',$id);
-        $this->db->join('api_mapel',"api_guru_ajar.id_mapel=api_mapel.id_mapel");
-
-        return $this->db->get()->result();
+    public function getAllkelas(){
+        $this->db->select('idkelas,nama_kelas');
+        return $this->db->get('api_kelas')->result();
     }
  
 }

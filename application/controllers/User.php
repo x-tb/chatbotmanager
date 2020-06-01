@@ -6,6 +6,8 @@ class User extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Mengajar_model');
+        $this->load->model("Guru_model");
         is_logged_in();
     }
 
@@ -13,7 +15,9 @@ class User extends CI_Controller
     {
         $data['title'] = 'My Profile';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
+        $email=$this->session->userdata('email');
+        $id=$this->Guru_model->getIDguruFromMail($email);
+        $data['mapelku']=$this->Mengajar_model->getMapelGuru($id);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);

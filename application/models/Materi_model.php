@@ -3,8 +3,8 @@
 class Materi_model extends CI_Model {
  
     var $table = 'api_link_materi'; //nama tabel dari database
-    var $column_order = array('id_materi','topik_pembahasan','link_materi','idguru','id_mapel','pertemuan_ke','pertemuan_hingga','tapel','status'); //field yang ada di table user
-    var $column_search =array('id_materi','topik_pembahasan','link_materi','idguru','id_mapel','pertemuan_ke','pertemuan_hingga','tapel','status');  //field yang diizin untuk pencarian 
+    var $column_order = array('id_materi','topik_pembahasan','link_materi','nama_lengkap','nama_mapel','pertemuan_ke','pertemuan_hingga','tapel','status'); //field yang ada di table user
+    var $column_search =array('link_materi','nama_lengkap','nama_mapel');  //field yang diizin untuk pencarian 
     var $order = array('idguru' => 'asc'); // default order 
     public $id_materi,$nomor_nama_kd,$topik_pembahasan,$link_materi,$idguru,$idmapel,$pertemuan_ke,$pertemuan_hingga,$status;
 
@@ -76,6 +76,7 @@ class Materi_model extends CI_Model {
  
     function count_filtered()
     {
+
         $this->_get_datatables_query();
         $query = $this->db->get();
         return $query->num_rows();
@@ -83,7 +84,12 @@ class Materi_model extends CI_Model {
  
     public function count_all()
     {
-        $this->db->from($this->table);
+         //validasi admin dan data user untuk view all materi
+         $role= $_SESSION['role_id'];
+         if($role==2){
+             $this->db->where('email',$_SESSION['email']);
+         }
+        $this->db->get($this->table);
         return $this->db->count_all_results();
     }
     public function getKodeJurusanSiswa($idsiswa){

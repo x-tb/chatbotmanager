@@ -12,6 +12,7 @@ class Admin extends CI_Controller {
         $this->load->model('Konfig_model');
         $this->load->model('Mapel_model');
         $this->load->model('Mengajar_model');
+        $this->load->model('Kelas_model');
         is_logged_in();
         my_auth();
     }
@@ -479,5 +480,133 @@ class Admin extends CI_Controller {
         redirect(base_url("admin/data_guru/gagal_generate_user_guru"));
        }
     }
+    //untuk manage kelas
+    public function data_kelas() {
+        $data['title'] = 'Data Kelas ';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['guru'] = $this->Guru_model->getAllguru();
+    
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $this->load->view('kelas/index', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function proses_simpan_kelas() {
+        $post = $this->input->post();
+        //print_r($post);
+        $kodemp = $this->Mapel_model->get_kode_mapel($post['id_mapel']);
+        $kodemapelajar = $kodemp . "-" . $post['idguru'];
+        
+        $save= $this->Kelas_model->simpanKelas($data);
+        if($save==TRUE){
+            redirect(base_url("admin/data_kelas/sukses_simpan_kelas"));
+        }else{
+            redirect(base_url("admin/data_kelas/gagal_simpan_kelas"));
+        }
+    }
+
+    public function get_data_kelas() {
+        $list = $this->Kelas_model->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $field) {
+            $no++;
+            $jurusan=array(
+                '1'=>"Teknik Komputer dan Jaringan",
+                '2'=>"Multimedia",
+                '3'=>"Rekayasa Perangkat Lunak",
+                '4'=>"Broadcasting",
+                '5'=>"Teknik Elektronika Industri"
+            );
+            $row = array();
+            $row[] = $no;
+            $row[] = $field->nama_kelas;
+            $row[] = $field->group_telegram;
+            $row[] = $field->nama_walas;
+            $row[] = $field->uname_telegram;
+            $row[] = $jurusan[$field->kode_jurusan];
+            $row[] = $field->status;
+
+            $row[] = "<a href='" . base_url("admin/edit_kelas/$field->idkelas") . "' class='btn btn-primary btn-sm' >view</a>";
+            $row[] = "<a href='" . base_url("admin/delete_kelas/$field->idkelas") . "' class='btn btn-success btn-sm' >Edit</a>";
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->Kelas_model->count_all(),
+            "recordsFiltered" => $this->Kelas_model->count_filtered(),
+            "data" => $data,
+        );
+        //output dalam format JSON
+        echo json_encode($output);
+    }
+    //modul mapel enrol kelas
+        public function data_mapel_kelas() {
+            $data['title'] = 'Data Enrol Mapel Kelas ';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['mapel'] = $this->Mapel_model->getAllmapel();
+            $data['kelas']=$this->Kelas_model->getAllkelas();
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            // $this->load->view('guru/form_input_guru_ajar', $data);
+            $this->load->view('guru/mapel_kelas', $data);
+            $this->load->view('templates/footer');
+        }
+    
+        public function proses_simpan_mapel_kelas() {
+            $post = $this->input->post();
+            //print_r($post);
+            $kodemp = $this->Mapel_model->get_kode_mapel($post['id_mapel']);
+            $kodemapelajar = $kodemp . "-" . $post['idguru'];
+            
+            $save= $this->Mengajar_model->simpanGuruAjar($data);
+            if($save==TRUE){
+                redirect(base_url("admin/data_kelas/sukses_simpan_kelas"));
+            }else{
+                redirect(base_url("admin/data_kelas/gagal_simpan_kelas"));
+            }
+        }
+    
+        public function get_data_mapel_kelas() {
+            $list = $this->Kelas_model->get_datatables();
+            $data = array();
+            $no = $_POST['start'];
+            foreach ($list as $field) {
+                $no++;
+                $jurusan=array(
+                    '1'=>"Teknik Komputer dan Jaringan",
+                    '2'=>"Multimedia",
+                    '3'=>"Rekayasa Perangkat Lunak",
+                    '4'=>"Broadcasting",
+                    '5'=>"Teknik Elektronika Industri"
+                );
+                $row = array();
+                $row[] = $no;
+                $row[] = $field->nama_kelas;
+                $row[] = $field->group_telegram;
+                $row[] = $field->nama_walas;
+                $row[] = $field->uname_telegram;
+                $row[] = $jurusan[$field->kode_jurusan];
+                $row[] = $field->status;
+    
+                $row[] = "<a href='" . base_url("admin/edit_kelas/$field->idkelas") . "' class='btn btn-primary btn-sm' >view</a>";
+                $row[] = "<a href='" . base_url("admin/delete_kelas/$field->idkelas") . "' class='btn btn-success btn-sm' >Edit</a>";
+                $data[] = $row;
+            }
+    
+            $output = array(
+                "draw" => $_POST['draw'],
+                "recordsTotal" => $this->Kelas_model->count_all(),
+                "recordsFiltered" => $this->Kelas_model->count_filtered(),
+                "data" => $data,
+            );
+            //output dalam format JSON
+            echo json_encode($output);
+        }
 
 }
