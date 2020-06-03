@@ -130,5 +130,15 @@ class Kelas_model extends CI_Model {
         $this->db->select('idkelas,nama_kelas');
         return $this->db->get('api_kelas')->result();
     }
- 
+    public function getKelasMapel(){
+        $this->db->select('api_guru_ajar.kode_mapel_ajar,api_guru.nama_lengkap,api_mapel.id_mapel,api_mapel.nama_mapel');
+        $this->db->from('api_guru_ajar');
+        $this->db->join('api_guru',"api_guru_ajar.idguru=api_guru.idguru");
+        $this->db->join('api_mapel',"api_guru_ajar.id_mapel=api_mapel.id_mapel");
+        return $this->db->get()->result();
+    }
+    public function simpanKelasMapel($data){
+       return  $this->db->insert("mapel_enrol_kelas",$data);
+    }
+
 }

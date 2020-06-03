@@ -3,8 +3,8 @@
 class Mengajar_model extends CI_Model {
  
     var $table = 'api_guru_ajar'; //nama tabel dari database
-    var $column_order = array('id_guru_ajar','idguru','idmapel','tingkat','tapel','status'); //field yang ada di table user
-    var $column_search =array('id_guru_ajar','idguru','idmapel','tingkat','tapel','status');  //field yang diizin untuk pencarian 
+    var $column_order = array('id_guru_ajar','nama_lengkap','idguru','idmapel','tingkat','tapel','status'); //field yang ada di table user
+    var $column_search =array('id_guru_ajar','nama_lengkap','idmapel','tingkat','tapel','status');  //field yang diizin untuk pencarian 
     var $order = array('idguru' => 'asc'); // default order 
     public $id_guru_ajar,$idguru,$idmapel,$nama,$email,$jkl,$tanggal_lahir,$stat_pegawai,$tmt,$nohp,$uname_tel,$status;
 

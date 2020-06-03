@@ -166,6 +166,19 @@ $(document).ready(function(e){
         
         }); // End of DataTable
     }
+    if(getme[5]=='data_mapel_kelas'){
+        $('#datatable').reset;
+        $('#datamapelkelas.display').DataTable({
+        "pageLength" : 10,
+        "serverSide": true,
+        "order": [[0, "asc" ]],
+        "ajax":{
+                url :  base_url+'admin/get_data_mapel_kelas',
+                type : 'POST'
+            }
+        
+        }); // End of DataTable
+    }
  
 }); // End Document Ready Function
 </script>
@@ -193,6 +206,10 @@ $(document).ready(function(){
         myAlert("Pesan","Selamat Anda telah berhasil Menyimpan Penugasan Baru ","success");
    }else if(data[6]=="sukses_edit_penugasan"){
         myAlert("Pesan","Selamat Anda telah berhasil Mengubah data penugasan  ","success");
+   }else if(data[6]=="gagal_edit_penugasan"){
+        myAlert("Pesan","Anda gagal Menambah data  ","error");
+   }else if(data[6]=="sukses_simpan_mapelkelas"){
+        myAlert("Pesan","Selamat Anda telah berhasil mengenroll kelas dalam mata pelajaran ","success");
    }
     
     

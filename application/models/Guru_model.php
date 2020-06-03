@@ -136,12 +136,15 @@ class Guru_model extends CI_Model {
         $this->db->from($tabel); //TABLE NAME
         return $this->db->count_all_results();
     }
-    public function getSiswaBelumLengkap(){
-        $this->db->where("(adm_kurikulum='Belum Lengkap' OR adm_prakerin='Belum Lengkap' OR adm_ukk='Belum Lengkap')", NULL, FALSE);
-        $this->db->order_by('kelas');
-        $query = $this->db->get('un_siswa');
-        
-        return $query->result();
+    public function getGuruNameById($id){
+        $this->db->select('nama_lengkap');
+        $this->db->from('api_guru');
+        $this->db->where('idguru',$id);
+       // echo $idsiswa;
+        $d= $this->db->get()->result();
+        foreach($d as $dt){
+            return $dt->nama_lengkap;
+        }
     }
     public function getAllguru(){
         $this->db->select('idguru,nama_lengkap');

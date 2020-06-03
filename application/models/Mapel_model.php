@@ -141,5 +141,15 @@ class Mapel_model extends CI_Model {
         $this->db->select('id_mapel,nama_mapel');
         return $this->db->get('api_mapel')->result();
     }
- 
+   
+    public function getMapelNameByKode($kode){
+        $this->db->select('nama_mapel');
+        $this->db->from('api_mapel');
+        $this->db->where('kode_mapel',$kode);
+       // echo $idsiswa;
+        $d= $this->db->get()->result();
+        foreach($d as $dt){
+            return $dt->nama_mapel;
+        }
+    }
 }

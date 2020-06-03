@@ -18,22 +18,22 @@
 		</div>
 		<div class="card-body">
 
-			<form action="<?php echo base_url('admin/proses_simpan_mengajar'); ?>" method="post">
+			<form action="<?php echo base_url('admin/proses_simpan_mapel_kelas'); ?>" method="post">
 				<table class="table table-bordered">
 
 					<tr>
 						<td>Pilih Kelas<input type="hidden" name="idguruajar" value="">
 						</td>
-						<td><select class="form-control col-md-10" name="idguru" id="">
+						<td><select class="form-control col-md-10" name="idkelas" >
 								<?php foreach($kelas as $dt): ?>
 								<option value="<?=$dt->idkelas?>"><?php echo $dt->nama_kelas; ?></option>
 								<?php endforeach; ?>
 							</select></td>
 					</tr>
 					<td>Pilih Mata Pelajaran</td>
-					<td><select class="form-control col-md-10" name="id_mapel" id="mapel">
+					<td><select class="form-control col-md-10" name="idmapel" id="mapel">
 							<?php foreach($mapel as $dtm): ?>
-							<option value="<?=$dtm->id_mapel?>"><?php echo $dtm->nama_mapel; ?></option>
+							<option value="<?=$dtm->kode_mapel_ajar?>"><?php echo $dtm->nama_lengkap." | ".$dtm->nama_mapel; ?></option>
 							<?php endforeach; ?>
 						</select></td>
 					</tr>
@@ -54,7 +54,7 @@
 
 			</form>
 			<hr>
-			<table class="display table table-bordered" cellspacing="0" id="datamapel" 
+			<table class="display table table-bordered" cellspacing="0" id="datamapelkelas" 
 				cellspacing="0" width="100%">
 				<thead>
 					<tr>
