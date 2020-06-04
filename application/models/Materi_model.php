@@ -3,8 +3,8 @@
 class Materi_model extends CI_Model {
  
     var $table = 'api_link_materi'; //nama tabel dari database
-    var $column_order = array('id_materi','topik_pembahasan','link_materi','idguru','id_mapel','pertemuan_ke','pertemuan_hingga','tapel','status'); //field yang ada di table user
-    var $column_search =array('id_materi','topik_pembahasan','link_materi','idguru','id_mapel','pertemuan_ke','pertemuan_hingga','tapel','status');  //field yang diizin untuk pencarian 
+    var $column_order = array('id_materi','topik_pembahasan','link_materi','nama_lengkap','nama_mapel','pertemuan_ke','pertemuan_hingga','tapel','status'); //field yang ada di table user
+    var $column_search =array('link_materi','nama_lengkap','nama_mapel');  //field yang diizin untuk pencarian 
     var $order = array('idguru' => 'asc'); // default order 
     public $id_materi,$nomor_nama_kd,$topik_pembahasan,$link_materi,$idguru,$idmapel,$pertemuan_ke,$pertemuan_hingga,$status;
 
@@ -23,7 +23,11 @@ class Materi_model extends CI_Model {
    
     private function _get_datatables_query()
     {
-         
+        //validasi admin dan data user untuk view all materi
+        $role= $_SESSION['role_id'];
+        if($role==2){
+            $this->db->where('email',$_SESSION['email']);
+        }
         $this->db->from($this->table);
         $this->db->join('api_guru',"api_link_materi.idguru=api_guru.idguru");
         $this->db->join('api_mapel',"api_link_materi.id_mapel=api_mapel.id_mapel");
@@ -72,6 +76,7 @@ class Materi_model extends CI_Model {
  
     function count_filtered()
     {
+
         $this->_get_datatables_query();
         $query = $this->db->get();
         return $query->num_rows();
@@ -79,7 +84,12 @@ class Materi_model extends CI_Model {
  
     public function count_all()
     {
-        $this->db->from($this->table);
+         //validasi admin dan data user untuk view all materi
+         $role= $_SESSION['role_id'];
+         if($role==2){
+             $this->db->where('email',$_SESSION['email']);
+         }
+        $this->db->get($this->table);
         return $this->db->count_all_results();
     }
     public function getKodeJurusanSiswa($idsiswa){
@@ -130,8 +140,35 @@ class Materi_model extends CI_Model {
     public function getMapelGuru($idguru){
         $this->db->select('api_guru_ajar.idguru,api_guru_ajar.id_mapel,api_mapel.nama_mapel');
         $this->db->from('api_guru_ajar');
+        $this->db->where('idguru',$idguru);
         $this->db->join('api_mapel','api_guru_ajar.id_mapel=api_mapel.id_mapel','left');
         return $this->db->get()->result();
+    }
+    public function getMateriByIdGuru($idguru){
+        $this->db->select("api_link_materi.idguru,api_link_materi.id_mapel,api_link_materi.nomor_nama_kd,api_link_materi.id_materi,api_link_materi.pertemuan_ke,api_link_materi.pertemuan_hingga,api_mapel.nama_mapel");
+        $this->db->from('api_link_materi');
+        $this->db->where('idguru',$idguru);
+        $this->db->join('api_mapel',"api_link_materi.id_mapel=api_mapel.id_mapel","right");
+        //$this->db->join('api_penugasan',"api_link_materi.id_materi=api_penugasan.id_materi",'left');
+       
+        return $this->db->get()->result();
+    }
+    public function getMapelByIdGuru($idguru){
+        $this->db->select("api_guru_ajar.idguru,api_guru_ajar.kode_mapel_ajar,api_guru_ajar.id_mapel,api_guru_ajar.tingkat,api_mapel.nama_mapel");
+        $this->db->from('api_guru_ajar');
+        $this->db->where('idguru',$idguru);
+        $this->db->join('api_mapel',"api_guru_ajar.id_mapel=api_mapel.id_mapel","right");
+       
+        return $this->db->get()->result();
+    }
+    public function getMateriById($id){
+        $this->db->select("nomor_nama_kd");
+        $this->db->from('api_link_materi');
+        $this->db->where('id_materi',$id);
+        $q=$this->db->get()->result();
+        foreach($q as $d){
+            return $d->nomor_nama_kd;
+        }
     }
  
 }

@@ -29,11 +29,18 @@ class Guru_model extends CI_Model {
             return $guru->idguru;
         }
     }
+    public function getSatuGuru($mail){
+        $this->db->select('idguru,nama_lengkap');
+        $this->db->from('api_guru');
+        $this->db->like('email',$mail);
+        return $this->db->get()->result();
+        
+    }
     private function _get_datatables_query()
     {
-         
+        $this->db->select("*"); 
         $this->db->from($this->table);
- 
+        $this->db->join('user',"api_guru.email=user.email",'left');
         $i = 0;
      
         foreach ($this->column_search as $item) // looping awal
@@ -129,12 +136,15 @@ class Guru_model extends CI_Model {
         $this->db->from($tabel); //TABLE NAME
         return $this->db->count_all_results();
     }
-    public function getSiswaBelumLengkap(){
-        $this->db->where("(adm_kurikulum='Belum Lengkap' OR adm_prakerin='Belum Lengkap' OR adm_ukk='Belum Lengkap')", NULL, FALSE);
-        $this->db->order_by('kelas');
-        $query = $this->db->get('un_siswa');
-        
-        return $query->result();
+    public function getGuruNameById($id){
+        $this->db->select('nama_lengkap');
+        $this->db->from('api_guru');
+        $this->db->where('idguru',$id);
+       // echo $idsiswa;
+        $d= $this->db->get()->result();
+        foreach($d as $dt){
+            return $dt->nama_lengkap;
+        }
     }
     public function getAllguru(){
         $this->db->select('idguru,nama_lengkap');

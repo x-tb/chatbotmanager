@@ -23,11 +23,11 @@ tbody {
                 
                  <th>NIK</th>
                  <th>Nama lengkap</th>
-                 <th>JKL</th>
+                 <th>e-mail</th>
                  <th>Tgl lahir</th> 
                  <th>Status Pegawai</th>
                  <th>Username Telegram</th>
-                 <th>Data View</th>
+                 <th>User Login</th>
                  <th>Modify</th>
                  
 

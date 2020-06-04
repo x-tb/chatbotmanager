@@ -85,7 +85,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'WPU User Registration';
+            $data['title'] = 'Starbot User Registration';
             $this->load->view('templates/auth_header', $data);
             $this->load->view('auth/registration');
             $this->load->view('templates/auth_footer');
@@ -112,7 +112,7 @@ class Auth extends CI_Controller
             $this->db->insert('user', $data);
             $this->db->insert('user_token', $user_token);
 
-            $this->_sendEmail($token, 'verify');
+            //$this->_sendEmail($token, 'verify');
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation! your account has been created. Please activate your account</div>');
             redirect('auth');

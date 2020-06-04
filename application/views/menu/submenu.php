@@ -1,10 +1,10 @@
-<!-- Begin Page Content -->
-<div class="container-fluid">
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
-
-
+<div class="container">
+     
+ <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary"><?=$title?></h6>
+            </div>
+    <div class="card-body">
 
     <div class="row">
         <div class="col-lg">
@@ -18,7 +18,7 @@
 
             <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newSubMenuModal">Add New Submenu</a>
 
-            <table class="table table-hover">
+            <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -41,7 +41,7 @@
                         <td><?= $sm['icon']; ?></td>
                         <td><?= $sm['is_active']; ?></td>
                         <td>
-                            <a href="" class="badge badge-success">edit</a>
+                            <a href="<?php echo base_url("menu/form_edit_menu/$sm[id]"); ?>" class="badge badge-success">edit</a>
                             <a href="" class="badge badge-danger">delete</a>
                         </td>
                     </tr>

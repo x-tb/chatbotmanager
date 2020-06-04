@@ -9,6 +9,12 @@
 		background-color: #5bc0de !important;
 	}
 
+
+  .table-scrollable{
+    overflow: auto;
+}
+
+
 </style>
 <div class="container">
 
@@ -24,11 +30,10 @@
 				<tr>
 						<td>Pilih Nama Guru <input type="hidden" name="idguruajar" value="">
 						</td>
-						<td><select class="form-control col-md-10" name="idguru" id="">
-								<?php foreach($guru as $dt): ?>
-								<option value="<?=$dt->idguru?>"><?php echo $dt->nama_lengkap; ?></option>
-								<?php endforeach; ?>
-							</select></td>
+						<td><?php foreach($namagr as $guru): ?><input type="hidden" name="idguru" value="<?=$guru->idguru?>">
+						<input class="form-control col-md-10" disabled="disabled" type="text" name="namaguru" value="<?=$guru->nama_lengkap?>" id="">
+						<?php endforeach; ?>
+						</td>
 					</tr>
 					<tr>
 					<td>Pilih Mata Pelajaran<input type="hidden" name="idguruajar" value=""></td>
@@ -86,7 +91,8 @@
 
 			</form>
 			<hr>
-			<table class="display table table-bordered" cellspacing="0" id="datamateriajar" 
+			<div class="table-scrollable">
+			<table class="display  table table-bordered" cellspacing="0" id="datamateriajar" 
 				cellspacing="0" width="100%">
 				<thead>
 					<tr>
@@ -108,7 +114,7 @@
 
 			</table>
 
-
+			</div>
 
 		</div>
 	</div>

@@ -15,7 +15,7 @@
 					
 					<td><input class="form-control col-md-5"  type="text" name="foto_nipd" value="<?php echo $one->foto_nipd;?>" id="foto_nipd">** nama file gambar sesuai dengan nama file yang di upload melalui ftp</td>
 				</tr>
-				<tr><td>Nomor Induk Siswa Nasional <input type="hidden" name="nisn_lama" value="<?php echo $one->nisn;?>" > </td><td> <input class="form-control col-md-10" type="text" name="nisn" id="nisn" value="<?php echo $one->nisn;?>" /> </td></tr>
+				<tr><td>Nomor Induk Siswa Nasional <input type="hidden" name="idsiswa" value="<?php echo $idsiswa;?>" > </td><td> <input class="form-control col-md-10" type="text" name="nisn" id="nisn" value="<?php echo $one->nisn;?>" /> </td></tr>
 				<td>Nomor Induk Peserta Didik  </td><td> <input class="form-control col-md-10" type="text" name="nipd" id="nipd" value="<?php echo $nipd;?>" /> </td></tr>
 				<tr><td>Nama Lengkap Siswa</td><td><input class="form-control col-md-10" type="text" name="nama" id="nama" value="<?php echo $one->nama;?>" /> </td></tr>
 				<tr><td>Tempat, Tanggal Lahir </td><td><input class="form-control-inline col-md-5" type="text" name="tempat" id="tempat" value="<?php echo $one->tempat_lahir;?>" /><input class="form-control-inline col-md-5" type="text" name="tgl_lahir" id="tgl_lahir"  value="<?php echo $one->tanggal_lahir;?>" /></td></tr>

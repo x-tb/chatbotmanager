@@ -12,16 +12,17 @@ class Home extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Pengumuman Kelulusan 2020';
+        $data['title'] = 'Home Of Starbot';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->load->view('templates/header', $data);
+        //$this->load->view('templates/header', $data);
         //$this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbarnew', $data);
+       // $this->load->view('templates/topbarnew', $data);
        // $data['konfig']=$this->Konfig_model->getKonfigurasi();
 
         $this->load->view('home/index', $data);
-        $this->load->view('templates/homefooter');
+       // $this->load->view('home/team',$data);
+       // $this->load->view('templates/homefooter');
     }
     function detail($nisn){
         $data['title'] = 'Pengumuman Kelulusan 2020';
