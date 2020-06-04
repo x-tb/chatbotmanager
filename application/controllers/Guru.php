@@ -24,7 +24,7 @@ Class Guru extends CI_Controller {
         $this->load->view('templates/footer');
     }
     public function daftar_materi() {
-        $data['title'] = 'Daftar Materi Mengajar Guru ';
+        $data['title'] = 'Daftar Materi Mengajar Guru SMK Taruna Bhakti ';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $mail=$this->session->userdata('email');
         $data['guru'] = $this->Guru_model->getAllguru();
