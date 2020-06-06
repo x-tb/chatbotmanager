@@ -199,5 +199,12 @@ class Siswa_model extends CI_Model {
         $this->db->where('nipd',$nipd);
         return $this->db->get('api_telegram_siswa')->num_rows();
     }
+    public function getSiswaKelas($kelas){
+        $this->db->select('idsiswa,nipd,nama,kelas');
+        $this->db->from("api_siswa");
+        $this->db->where("kelas",$kelas);
+        
+        return $this->db->get();
+    }
  
 }

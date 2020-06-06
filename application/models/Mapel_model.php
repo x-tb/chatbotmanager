@@ -29,6 +29,15 @@ class Mapel_model extends CI_Model {
             return $dt->kode_mapel;
         }
     }
+    public function get_nama_mapel($kode){
+        $this->db->select('nama_mapel');
+        $this->db->from('api_mapel');
+        $this->db->where('kode_mapel',$kode);
+        $r=$this->db->get()->result();
+        foreach($r as $dt){
+            return $dt->kode_mapel;
+        }
+    }
    
     private function _get_datatables_query()
     {

@@ -11,6 +11,8 @@ Class Guru extends CI_Controller {
         $this->load->model('Mengajar_model');
         $this->load->model('Penugasan_model');
         $this->load->model('Materi_model');
+        $this->load->model('Presensi_model');
+        $this->load->model('Kelas_model');
       
     }
     public function index()
@@ -200,6 +202,113 @@ Class Guru extends CI_Controller {
         }
 
     }
-    
+
+    public function list_presensi_telegram() {
+        
+        
+        $data['title'] = 'Rekap Presensi Online Dengan Bot Telegram ';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mail=$this->session->userdata('email');
+        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+        $data['mapel'] = $this->Materi_model->getMapelByIdGuru($idguru);
+        $data['kelas']=$this->Presensi_model->getKelasGuru();
+        $tgl=date("d-m-Y");
+ 
+        
+      
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $this->load->view('guru/presensi_telegram', $data);
+        $this->load->view('templates/footer');
+    }
+    public function tabel_presensi_telegram() {
+        
+        $post=$this->input->post();
+        //print_r($post);
+        $data['title'] = 'Rekap Presensi Online Dengan Bot Telegram ';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mail=$this->session->userdata('email');
+        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+       
+        $data['siswa'] =$this->Siswa_model->getSiswaKelas($post['nama_kelas'])->result();
+        $data['presensi'] = $this->Presensi_model->get_presensi_data($post['nama_mapel'],$post['nama_kelas'],$post['tanggal']);
+        $tgl=date("d-m-Y");
+ 
+        $data['presensi'] = $this->Presensi_model->get_presensi_data($post['nama_mapel'],$post['nama_kelas'],$post['tanggal']);
+      print_r($post);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $this->load->view('guru/rekap_presensi_siswa_online', $data);
+        $this->load->view('templates/footer');
+    }
+    function get_presensi() {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mail=$this->session->userdata('email');
+       
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+
+        $list = $this->Presensi_model->get_datatables($idguru);
+        $data = array();
+        $no = $_POST['start'];
+        $presen=$this->Presensi_model->get_presensi_data();
+        
+        
+
+        
+        foreach ($list as $field) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $field->nipd;
+            $row[] = $field->nama_siswa;
+            
+            $row[] = $field->kelas;
+            $row[] = strtoupper($field->kode_mapel_ajar);
+            switch($field->kehadiran):
+                case '1':
+                    $hadir="Hadir";
+                    break;    
+                case '':
+                    $hadir="Alpa";
+                    break;
+                case '2':
+                    $hadir="Sakit";
+                    break;
+                case '3':
+                    $hadir = "Izin";
+                    break;
+                default:
+                     $hadir ="Tanpa Keterangan";
+            endswitch;
+
+            $row[] = $hadir;
+            $row[] = $field->tgl_absen;
+            $row[] = $field->jam_absen;
+            $row[] = $field->keterangan;
+           
+          
+
+            $row[] = "<a href='" . base_url("guru/edit_materi/") . "' class='btn btn-success btn-sm' >Edit</a>";
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->Presensi_model->count_all(),
+            "recordsFiltered" => $this->Presensi_model->count_filtered(),
+            "data" => $data,
+        );
+        //output dalam format JSON
+        echo json_encode($output);
+    }
+    public function proses_presensi_guru(){
+
+    }
 }
 ?>

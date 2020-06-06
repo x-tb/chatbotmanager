@@ -179,6 +179,19 @@ $(document).ready(function(e){
         
         }); // End of DataTable
     }
+    if(getme[5]=='list_presensi_telegram'){
+        $('#datatable').reset;
+        $('#datapresensitelegram.display').DataTable({
+        "pageLength" : 10,
+        "serverSide": true,
+        "order": [[0, "asc" ]],
+        "ajax":{
+                url :  base_url+'guru/get_presensi',
+                type : 'POST'
+            }
+        
+        }); // End of DataTable
+    }
  
 }); // End Document Ready Function
 </script>
