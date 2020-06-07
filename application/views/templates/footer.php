@@ -223,6 +223,10 @@ $(document).ready(function(){
         myAlert("Pesan","Anda gagal Menambah data  ","error");
    }else if(data[6]=="sukses_simpan_mapelkelas"){
         myAlert("Pesan","Selamat Anda telah berhasil mengenroll kelas dalam mata pelajaran ","success");
+   }else if(data[6]=="gagal_simpan_mapelkelas"){
+        myAlert("Pesan","Anda Gagal mengenroll kelas dalam mata pelajaran ","error");
+   }else if(data[6]=="sukses_edit_presensi"){
+        myAlert("Pesan","Selamat Anda telah berhasil mengubah Presensi kehadiran ","success");
    }
     
     

@@ -12,6 +12,7 @@ class Presensi_model extends CI_Model {
     {
         parent::__construct();
         $this->load->database();
+        date_default_timezone_set('Asia/Jakarta');
     }
     public function get_one_by_id($id){
         $this->db->select('*');
@@ -24,7 +25,7 @@ class Presensi_model extends CI_Model {
 
         $originalDate = $tgl;
         $newDate = date("d-m-Y", strtotime($originalDate));
-        $this->db->select("id_presensi_online,nama_siswa,nipd,kehadiran,tgl_absen,jam_absen,keterangan");
+        $this->db->select("id_presensi_online,id_telegram,nama_siswa,nipd,kode_mapel_ajar,kehadiran,tgl_absen,jam_absen,keterangan");
         $this->db->from('api_presensi_online');
         $this->db->where('kelas',$namakelas);
         $this->db->where('kode_mapel_ajar',strtolower($kodemapel));
@@ -107,21 +108,36 @@ class Presensi_model extends CI_Model {
         return $this->db->count_all_results();
     }
   
-    public function update()
+    public function update_absensi()
     {
         $post = $this->input->post();
         $data_source=array(
-            'idkelas' => $post['idkelas'], 
-            'nama_kelas' => $post['namakelas'],
-            'group_telegram'=>$post['group'],
-            'nama_walas'=>$post['namawalas'],
-            'uname_telegram' => $post['unametelegram'],
-            'kode_jurusan' => $post['jurusan'],
-            'tapel' => $post['tapel'],
-            'status'=>$post['status'] 
+            'kehadiran' => $post['kehadiran'], 
+            'tgl_absen' => $post['tanggal'],
+            'jam_absen'=>date('h:m:s'),
+            'keterangan'=>"Manual Edit Guru Mapel"
         );
         
-        return $this->db->update('api_kelas', $data_source, array('idkelas' => $post['idkelas']));
+        return $this->db->update('api_presensi_online', $data_source, array('id_presensi_online' => $post['idpresensi']));
+    }
+    public function insert_absensi()
+    {
+        $post = $this->input->post();
+        $data_source=array(
+            'id_presensi_online'=>NULL,
+            'id_telegram'=>$post['telegram'],
+            'nama_siswa'=>$post['nama'],
+            'kelas'=>$post['nama_kelas'],
+            'nipd'=>$post['nipd'],
+            'kode_mapel_ajar'=>$post['nama_mapel'],
+            'kehadiran' => $post['kehadiran'], 
+            'tgl_absen' => $post['tanggal'],
+            'jam_absen'=>date('h:m:s'),
+            'keterangan'=>"Manual Edit Guru Mapel",
+            'status'=>'1'
+        );
+        
+        return $this->db->insert('api_presensi_online', $data_source);
     }
   
 

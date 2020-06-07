@@ -228,6 +228,7 @@ Class Guru extends CI_Controller {
         
         $post=$this->input->post();
         //print_r($post);
+        $data['post']=$post;
         $data['title'] = 'Rekap Presensi Online Dengan Bot Telegram ';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $mail=$this->session->userdata('email');
@@ -235,11 +236,10 @@ Class Guru extends CI_Controller {
         $idguru=$this->Guru_model->getIDguruFromMail($mail);
        
         $data['siswa'] =$this->Siswa_model->getSiswaKelas($post['nama_kelas'])->result();
-        $data['presensi'] = $this->Presensi_model->get_presensi_data($post['nama_mapel'],$post['nama_kelas'],$post['tanggal']);
-        $tgl=date("d-m-Y");
- 
-        $data['presensi'] = $this->Presensi_model->get_presensi_data($post['nama_mapel'],$post['nama_kelas'],$post['tanggal']);
-      print_r($post);
+     
+        $data['tanggal']=$this->dateToTanggal($post['tanggal']);
+        $data['presensi'] = $this->Presensi_model->get_presensi_data($post['nama_mapel'],$post['nama_kelas'],$this->dateToTanggal($post['tanggal']));
+        //print_r($post);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -257,9 +257,6 @@ Class Guru extends CI_Controller {
         $data = array();
         $no = $_POST['start'];
         $presen=$this->Presensi_model->get_presensi_data();
-        
-        
-
         
         foreach ($list as $field) {
             $no++;
@@ -307,8 +304,67 @@ Class Guru extends CI_Controller {
         //output dalam format JSON
         echo json_encode($output);
     }
-    public function proses_presensi_guru(){
+    public function update_absensi(){
+        $post=$this->input->post();
+        $proses=$this->Presensi_model->update_absensi();
+        if($proses==TRUE){
+            $this->curlPost("guru/list_presensi_telegram",$post['nama_mapel'],$post['nama_kelas'],$post['tanggal']);
+            redirect(base_url("guru/list_presensi_telegram/sukses_edit_presensi"));
+        }else{
+            redirect(base_url("guru/list_presensi_telegram/gagal_edit_presensi"));
+        }
+    }
+    public function insert_absensi(){
+        $post=$this->input->post();
+       // print_r($_POST);
+        $proses=$this->Presensi_model->insert_absensi();
+        if($proses==TRUE){
+            
+            //$this->curlPost("guru/list_presensi_telegram",$post['nama_mapel'],$post['nama_kelas'],$post['tanggal']);
+            redirect(base_url("guru/list_presensi_telegram/sukses_edit_presensi"));
+        }else{
+            redirect(base_url("guru/list_presensi_telegram/gagal_edit_presensi"));
+        }
+    }
+    public function dateToTanggal($date){
+        $dt=explode("-",$date);
+        $newdate=$dt[2]."/".$dt[1]."/".$dt[0];
+        return $newdate;
+    }
+    public function curlPost($mapel,$kelas,$tanggal){
+        $url=base_url("guru/tabel_presensi_telegram");
+        $postVars = array('nama_mapel', 'nama_kelas', 'tanggal');
+        $postData = array();
+        foreach($postVars as $name){
+            if(isset($_POST[$name])){
+                $postData[$name] = $_POST[$name];
+            }
+        }
 
+        //Setup cURL
+        $ch = curl_init();
+
+        //The site we'll be sending the POST data to.
+        curl_setopt($ch, CURLOPT_URL, $url);
+
+        //Tell cURL that we want to send a POST request.
+        curl_setopt($ch, CURLOPT_POST, 1);
+
+        //Attach our POST data.
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+
+        //Tell cURL that we want to receive the response that the site
+        //gives us after it receives our request.
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        //Finally, send the request.
+        $response = curl_exec($ch);
+
+        //Close the cURL session
+        curl_close($ch);
+
+        //Do whatever you want to do with the output.
+        print($response);
     }
 }
 ?>
