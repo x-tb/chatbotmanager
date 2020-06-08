@@ -180,11 +180,12 @@ class Presensi_model extends CI_Model {
             'kelas'=>$kelas,
             'kode_mapel_ajar'=>$kdmapel
         );
-        $this->db->select("id_telegram,nipd,kelas,kode_mapel_ajar,kehadiran,tgl_absen");
+        $this->db->select("id_telegram,nipd,kelas,kode_mapel_ajar,kehadiran,tgl_absen, count(kehadiran) ttlhadir");
         $this->db->from("api_presensi_online");
         $this->db->where($where);
         $this->db->where("tgl_absen >=",$startdate);
         $this->db->where('tgl_absen <=',$enddate);
+        
         $this->db->group_by('nipd');
         //$this->db->where('tgl_absen BETWEEN '.$startdate."AND ".$enddate);
         return    $this->db->get();

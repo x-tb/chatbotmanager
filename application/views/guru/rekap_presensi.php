@@ -51,6 +51,16 @@
 						</select></td>
 					</tr>
                     <tr>
+                        <th colspan="4">Jumlah Pertemuan Pada Range Presensi Tanggal yang di pilih  </th>
+                    </tr>
+					<tr>
+						<td colspan="2">*Input jumlah Pertemuan (Pertemuan efektif) 
+						</td>
+						<td colspan="2"><input type="number" class='form-control col-md-10' value="" name="pertemuanmax" id="max"></td>
+                        
+					</tr>
+                    
+                    <tr>
                         <th colspan="4">Pilih Range Laporan Presensi </th>
                     </tr>
 					<tr>
@@ -61,8 +71,7 @@
 						</td>
 						<td><input type="date" class='form-control col-md-10' value="" name="enddate" id="tgl"></td>
 					</tr>
-					
-                    
+                 
 
 				</table>
 

@@ -20,7 +20,7 @@
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">Rekap Kehadiran Siswa  Pada Pertemuan Tanggal :
-				<?php echo $tanggal; ?> Melalui Telegram  Bot</h6>
+			<?php echo $tanggalmulai;?> sampai dengan <?php echo $tanggalakhir; ?> Melalui Telegram  Bot</h6>
 		</div>
 		<div class="card-body">
 			<?php
@@ -58,8 +58,16 @@
 			<td><?php echo $post['nama_kelas']; ?></td>
 		</tr>
 		<tr>
-			<td>Tanggal Presensi </td>
-			<td><?php echo $tanggal?></td>
+			<td>Tanggal Periode Presensi </td>
+			<td><?php echo $tanggalmulai;?> sd <?php echo $tanggalakhir; ?></td>
+		</tr>
+		<tr>
+			<td>Jumlah Maximum Pertemuan </td>
+			<td><?php echo $maxpertemuan." Pertemuan"; ?></td>
+		</tr>
+		<tr>
+			<td colspan="2">Catatan :
+			<small class="text-muted">*Jika Persentase Kehadiran Masing-masing siswa tidak ada yang mencapai 100% silahkan cek kembali jumlah maximum pertemuan yang anda inputkan </small></td>
 		</tr>
 	</table>
 
@@ -75,8 +83,8 @@
 
 							<th>Kehadiran </th>
 
+							<th>Presentase</th>
 							<th>Keterangan</th>
-							<th>Modify</th>
 
 						</tr>
 					</thead>
@@ -96,11 +104,17 @@
 					$state=0;
 					$id_presensi=0;
 					$nama_mapel="";
+				
 					foreach($presensi as $dt){
 
 							$i++;
 							if($dt->nipd==$nama->nipd){
-								echo "<td>".noHadir($dt->kehadiran)."</td>";
+								echo "<td>".$dt->ttlhadir."</td>";
+								$bagi=$dt->ttlhadir/$maxpertemuan;
+								$persen=$bagi*100;
+								echo "<td>".$persen." %</td>";
+							    echo "<td> </td>";
+								
 								
 							}
 							
@@ -108,9 +122,9 @@
 							if($dt->nipd==$nama->nipd){
 								
 								
-								if($i>1){
+								if($i>=1){
 									$state=1;
-									$id_presensi=$dt->id_presensi_online;
+									
 									
 								break;
 								//run code loop di atas dan stop pda saat data yg sama lebih dari 1
@@ -119,30 +133,13 @@
 						
 						
 					}
+					
 					if($state==0){
-						echo "<td>Alpa</td><td>Tidak Ada</td><td>Tidak ada info</td>";
+						echo "<td>Alpa</td><td>Tidak ada info</td>";
 					}
 					
 					?>
-							<td>
-								<form class="form-inline" action=<?php if($state==0){ echo base_url('guru/insert_absensi'); }
-									 else { echo base_url('guru/update_absensi'); } ?> method="post">
-									<input type="hidden" value="<?=$id_presensi?>" name="idpresensi">
-									<input type="hidden" value="<?=$nama->nipd?>" name="nipd">
-									<input type="hidden" value="<?=$nama->id_telegram?>" name="telegram">
-									<input type="hidden" value="<?=$nama->nama?>" name="nama">
-									<input type="hidden" value="<?=$post['nama_mapel']?>" name="nama_mapel">
-									<input type="hidden" value="<?=$nama->kelas?>" name="nama_kelas">
-									<input type="hidden" value="<?=$tanggal?>" name="tanggal">
-									<select name="kehadiran" id="kehadiran">
-										<option value="1">Hadir</option>
-										<option value="2">Sakit</option>
-										<option value="3">Izin</option>
-									</select>
-									<input type="submit" <?php if($state==0){ ?>class="btn btn-primary"
-										<?php }else { echo 'class="btn btn-success"'; } ?> value="Edit">
-								</form>
-							</td>
+							
 
 
 						</tr>
@@ -152,7 +149,7 @@
 					</tbody>
 
 				</table>
-
+<?php  ?>
 			</div>
 
 		</div>

@@ -281,8 +281,9 @@ Class Guru extends CI_Controller {
         $idguru=$this->Guru_model->getIDguruFromMail($mail);
        
         $data['siswa'] =$this->Siswa_model->getSiswaKelas($post['nama_kelas'])->result();
-     
-        $data['tanggal']=$this->dateToTanggal($post['startdate']);
+        $data['maxpertemuan']=$post['pertemuanmax'];
+        $data['tanggalmulai']=$this->dateToTanggal($post['startdate']);
+        $data['tanggalakhir']=$this->dateToTanggal($post['enddate']);
         //print_r($post);
         //print $this->dateToTanggal($post['startdate']);
         $data['presensi'] = $this->Presensi_model->RekapRangePresensi(strtolower($post['nama_mapel']),$post['nama_kelas'],$this->dateToTanggal($post['startdate']),$this->dateToTanggal($post['enddate']))->result();
