@@ -269,32 +269,6 @@ Class Guru extends CI_Controller {
         $this->load->view('guru/rekap_presensi_siswa_online', $data);
         $this->load->view('templates/footer');
     }
-    public function tabel_rekap_presensi() {
-        
-        $post=$this->input->post();
-        //print_r($post);
-        $data['post']=$post;
-        $data['title'] = 'Rekap Presensi Online Dengan Bot Telegram ';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $mail=$this->session->userdata('email');
-        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
-        $idguru=$this->Guru_model->getIDguruFromMail($mail);
-       
-        $data['siswa'] =$this->Siswa_model->getSiswaKelas($post['nama_kelas'])->result();
-        $data['maxpertemuan']=$post['pertemuanmax'];
-        $data['tanggalmulai']=$this->dateToTanggal($post['startdate']);
-        $data['tanggalakhir']=$this->dateToTanggal($post['enddate']);
-        //print_r($post);
-        //print $this->dateToTanggal($post['startdate']);
-        $data['presensi'] = $this->Presensi_model->RekapRangePresensi(strtolower($post['nama_mapel']),$post['nama_kelas'],$this->dateToTanggal($post['startdate']),$this->dateToTanggal($post['enddate']))->result();
-        //print_r($data['presensi']);
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        // $this->load->view('guru/form_input_guru_ajar', $data);
-        $this->load->view('guru/rekap_presensi_laporan', $data);
-        $this->load->view('templates/footer');
-    }
     public function excel_presensi_harian() {
         $post=$this->input->post();
         $kodemapel=$post['kode_mapel'];
@@ -323,6 +297,68 @@ Class Guru extends CI_Controller {
         $this->load->view('guru/to_excel_presensi_harian', $data);
       
     }
+    //end modul rekap harina presensi
+
+    //start modul rekap presensi dengan range
+    public function tabel_rekap_presensi() {
+        
+        $post=$this->input->post();
+        //print_r($post);
+        $data['post']=$post;
+        $data['title'] = 'Rekap Presensi Online Dengan Bot Telegram ';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mail=$this->session->userdata('email');
+        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+       
+        $data['siswa'] =$this->Siswa_model->getSiswaKelas($post['nama_kelas'])->result();
+        $data['maxpertemuan']=$post['pertemuanmax'];
+        $data['tanggalmulai']=$this->dateToTanggal($post['startdate']);
+        $data['tanggalakhir']=$this->dateToTanggal($post['enddate']);
+        //print_r($post);
+        //print $this->dateToTanggal($post['startdate']);
+        $data['presensi'] = $this->Presensi_model->RekapRangePresensi(strtolower($post['nama_mapel']),$post['nama_kelas'],$this->dateToTanggal($post['startdate']),$this->dateToTanggal($post['enddate']))->result();
+        //print_r($data['presensi']);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $this->load->view('guru/rekap_presensi_laporan', $data);
+        $this->load->view('templates/footer');
+    }
+    public function to_excel_presensi_range() {
+        
+        $post=$this->input->post();
+        //print_r($post);
+        $data['post']=$post;
+        $data['title'] = 'Rekap Presensi Online Dengan Bot Telegram ';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mail=$this->session->userdata('email');
+        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+        $kelas=$post['nama_kelas'];
+        $tanggal=$post['tanggalakhir'];
+        $kodemapel=$post['kode_mapel'];
+        $file_kls=str_replace(" ","_",$kelas);
+        $file_tgl=str_replace('/',"_",$tanggal);
+        
+        $data['title'] = "Rekap_Presensi_".$kodemapel."_".$file_kls.$file_tgl;
+        $data['siswa'] =$this->Siswa_model->getSiswaKelas($post['nama_kelas'])->result();
+        $data['maxpertemuan']=$post['pertemuan'];
+        $data['tanggalmulai']=$post['tanggalmulai'];
+        $data['tanggalakhir']=$post['tanggalakhir'];
+        //print_r($post);
+        //print $this->dateToTanggal($post['startdate']);
+        $data['presensi'] = $this->Presensi_model->RekapRangePresensi(strtolower($post['nama_mapel']),$post['nama_kelas'],$post['tanggalmulai'],$post['tanggalakhir'])->result();
+        //print_r($data['presensi']);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $this->load->view('guru/to_excel_laporan_presensi', $data);
+        $this->load->view('templates/footer');
+    }
+    
     function get_presensi() {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $mail=$this->session->userdata('email');

@@ -66,6 +66,17 @@
 			<td><?php echo $maxpertemuan." Pertemuan"; ?></td>
 		</tr>
 		<tr>
+			<td>Download Data </td>
+			<td>
+			<form action="<?=base_url('guru/to_excel_presensi_range')?>" method="post">
+			<input type="hidden" value="<?php echo $post['nama_mapel']; ?>" name="kode_mapel">
+			<input type="hidden" value="<?php echo $post['nama_kelas']; ?>" name="nama_kelas">
+			<input type="hidden" value="<?php echo $tanggalmulai; ?>" name="tanggalmulai">
+			<input type="hidden" value="<?php echo $tanggalakhir; ?>" name="tanggalakhir">
+			<input type="hidden" value="<?php echo $maxpertemuan; ?>" name="pertemuan">
+			<input class="btn btn-success" type="submit" value="Download Excel"></form></td>
+		</tr>
+		<tr>
 			<td colspan="2">Catatan :
 			<ol>
 				<li><small class="text-muted">Jika Persentase Kehadiran Masing-masing siswa tidak ada yang mencapai 100% silahkan cek kembali jumlah maximum pertemuan yang anda inputkan </small></li>
