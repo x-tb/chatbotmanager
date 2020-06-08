@@ -317,6 +317,7 @@ Class Guru extends CI_Controller {
     public function insert_absensi(){
         $post=$this->input->post();
        // print_r($_POST);
+       //data id telegram register double menyebabkan tidak bisa absen dan double data di rekap atau lihat absensi juga
         $proses=$this->Presensi_model->insert_absensi();
         if($proses==TRUE){
             

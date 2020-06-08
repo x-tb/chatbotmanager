@@ -59,7 +59,7 @@
 		</tr>
 		<tr>
 			<td>Tanggal Presensi </td>
-			<td><?php echo $post['tanggal']; ?></td>
+			<td><?php echo $tanggal?></td>
 		</tr>
 	</table>
 

@@ -14,6 +14,7 @@ class Admin extends CI_Controller {
         $this->load->model('Mengajar_model');
         $this->load->model('Kelas_model');
         $this->load->model('KeMapel_model');
+        $this->load->model('Telegram_model');
         is_logged_in();
         my_auth();
     }
@@ -411,6 +412,7 @@ class Admin extends CI_Controller {
     }
 
     function get_guru_mengajar() {
+        
         $list = $this->Mengajar_model->get_datatables();
         $data = array();
         $no = $_POST['start'];
@@ -617,5 +619,73 @@ class Admin extends CI_Controller {
             //output dalam format JSON
             echo json_encode($output);
         }
+//modul telegram data
+    //modul mapel enrol kelas
+    public function data_telegram_siswa() {
+        $data['title'] = 'Data Enrol Mapel Kelas ';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+       
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $this->load->view('telegram/view_index_telegram', $data);
+        $this->load->view('templates/footer');
+    }
 
+    public function simpan_telegram_siswa() {
+        $post = $this->input->post();
+        $data_source=array(
+            'id_tel' => $post['id'], 
+            'nipd' => $post['nipd'],
+            'id_telegram'=>$post['id_telegram'],
+            'uname_telegram' => $post['unametelegram'],
+            'status'=>$post['status'] 
+        );
+        
+        $save= $this->Telegram_model->insert($data);
+        if($save==TRUE){
+            redirect(base_url("admin/data_telegram_siswa/sukses_simpan_telegram"));
+        }else{
+            redirect(base_url("admin/data_telegram_siswa/gagal_simpan_telegram"));
+        }
+    }
+
+    public function get_data_telegram() {
+       
+        $list = $this->Telegram_model->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $field) {
+            $no++;
+        
+            $row = array();
+            $row[] = $no;
+            $row[] = $field->nipd;
+            $row[] = $field->id_telegram;
+            $row[] = $field->uname_tel;
+            $row[] = $field->status;
+
+            $row[] = "<a href='" . base_url("admin/update_telegram/$field->id_tel") . "' class='btn btn-success btn-sm' >Edit</a>";
+            $row[] = "<a href='" . base_url("admin/delete_telegram/$field->id_tel") . "' class='btn btn-danger btn-sm' >Hapus</a>";
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->Telegram_model->count_all(),
+            "recordsFiltered" => $this->Telegram_model->count_filtered(),
+            "data" => $data,
+        );
+        //output dalam format JSON
+        echo json_encode($output);
+    }
+    public function delete_telegram($id){
+        $save= $this->Telegram_model->delete($id);
+        if($save==TRUE){
+            redirect(base_url("admin/data_telegram_siswa/sukses_hapus"));
+        }else{
+            redirect(base_url("admin/data_mapel_kelas/gagal_hapus"));
+        }
+    }
 }
