@@ -113,10 +113,13 @@
 
 							$i++;
 							if($dt->nipd==$nama->nipd){
-								echo "<td>".$dt->ttlhadir."</td>";
+								//Ternary operator logic is the process of using "(condition) ? (true return value) 
+								$totalkehadiran = ($dt->ttlhadir > $maxpertemuan ? $maxpertemuan : $dt->ttlhadir);
+								echo "<td>".$totalkehadiran."</td>";
 								$bagi=$dt->ttlhadir/$maxpertemuan;
 								$persen=$bagi*100;
-								echo "<td>".$persen." %</td>";
+								$persenbaru=($persen > 100 ? 100:$persen);
+								echo "<td>".round($persenbaru)." %</td>";
 							    echo "<td> </td>";
 								
 								

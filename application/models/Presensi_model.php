@@ -191,5 +191,11 @@ class Presensi_model extends CI_Model {
         return    $this->db->get();
     
     }
+    public function insert_presensi_batch($data){
+        return $this->db->insert_batch($this->table, $data);
+    }
+    public function update_presensi_batch($data){
+        return $this->db->update_batch($this->table, $data,'id_presensi_online');
+    }
 
 }

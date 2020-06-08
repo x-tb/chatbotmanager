@@ -258,7 +258,7 @@ Class Guru extends CI_Controller {
         $idguru=$this->Guru_model->getIDguruFromMail($mail);
        
         $data['siswa'] =$this->Siswa_model->getSiswaKelas($post['nama_kelas'])->result();
-     
+        $data['jmlsiswa']=$this->Siswa_model->getSiswaKelas($post['nama_kelas'])->num_rows();
         $data['tanggal']=$this->dateToTanggal($post['tanggal']);
         $data['presensi'] = $this->Presensi_model->get_presensi_data($post['nama_mapel'],$post['nama_kelas'],$this->dateToTanggal($post['tanggal']));
         //print_r($post);
@@ -406,40 +406,26 @@ Class Guru extends CI_Controller {
         $newdate=$dt[2]."/".$dt[1]."/".$dt[0];
         return $newdate;
     }
-    public function curlPost($mapel,$kelas,$tanggal){
-        $url=base_url("guru/tabel_presensi_telegram");
-        $postVars = array('nama_mapel', 'nama_kelas', 'tanggal');
-        $postData = array();
-        foreach($postVars as $name){
-            if(isset($_POST[$name])){
-                $postData[$name] = $_POST[$name];
-            }
+    public function multi_insert_absen(){
+        $datainsert=$this->input->post('dataInsert');
+        $cek=$this->Presensi_model->insert_presensi_batch($datainsert);
+        if($cek==TRUE){
+            echo "Berhasil Simpan Data Presensi Baru";
+        }else{
+            echo "Gagal Insert multi presensi ajax";
         }
-
-        //Setup cURL
-        $ch = curl_init();
-
-        //The site we'll be sending the POST data to.
-        curl_setopt($ch, CURLOPT_URL, $url);
-
-        //Tell cURL that we want to send a POST request.
-        curl_setopt($ch, CURLOPT_POST, 1);
-
-        //Attach our POST data.
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-
-        //Tell cURL that we want to receive the response that the site
-        //gives us after it receives our request.
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        //Finally, send the request.
-        $response = curl_exec($ch);
-
-        //Close the cURL session
-        curl_close($ch);
-
-        //Do whatever you want to do with the output.
-        print($response);
+        //print_r($datainsert);
+    }
+    public function multi_update_absen(){
+        $dataupdate=$this->input->post('dataUpdate');
+        $cek=$this->Presensi_model->update_presensi_batch($dataupdate);
+        //print_r($dataupdate);
+        if($cek==TRUE){
+            echo "Berhasil Ubah Data Presensi Baru";
+            redirect(base_url('guru/list_presensi_telegram'));
+        }else{
+            echo "Gagal Ubah multi presensi ajax";
+        }
     }
 }
 ?>
