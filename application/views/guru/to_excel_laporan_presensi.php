@@ -41,7 +41,7 @@ function noHadir($no){
 <table border="1" class="table table-bordered">
     <tr>
         <td>Nama Mata Pelajaran</td>
-        <td><?php echo $post['nama_mapel']; ?></td>
+        <td><?php echo $nama_mapel ?></td>
     </tr>
     <tr>
         <td>Guru Mata Pelajaran</td>
@@ -59,17 +59,7 @@ function noHadir($no){
         <td>Jumlah Maximum Pertemuan </td>
         <td><?php echo $maxpertemuan." Pertemuan"; ?></td>
     </tr>
-    <tr>
-        <td>Download Data </td>
-        <td>
-        <form action="guru/to_excel_presensi_range" method="post">
-        <input type="hidden" value="<?php echo $post['nama_mapel']; ?>" name="kode_mapel">
-        <input type="hidden" value="<?php echo $post['kelas']; ?>" name="kelas">
-        <input type="hidden" value="<?php echo $tanggalmulai; ?>" name="tanggalmulai">
-        <input type="hidden" value="<?php echo $tanggalakhir; ?>" name="tanggalakhir">
-        <input type="hidden" value="<?php echo $maxpertemuan; ?>" name="pertemuan">
-        <input class="btn btn-success" type="submit" value="Download Excel"></form></td>
-    </tr>
+   
     <tr>
         <td colspan="2">Catatan :
         <ol>

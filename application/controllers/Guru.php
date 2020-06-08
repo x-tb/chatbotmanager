@@ -341,7 +341,7 @@ Class Guru extends CI_Controller {
         $kodemapel=$post['kode_mapel'];
         $file_kls=str_replace(" ","_",$kelas);
         $file_tgl=str_replace('/',"_",$tanggal);
-        
+        $data['nama_mapel']=$kodemapel;
         $data['title'] = "Rekap_Presensi_".$kodemapel."_".$file_kls.$file_tgl;
         $data['siswa'] =$this->Siswa_model->getSiswaKelas($post['nama_kelas'])->result();
         $data['maxpertemuan']=$post['pertemuan'];
@@ -349,14 +349,10 @@ Class Guru extends CI_Controller {
         $data['tanggalakhir']=$post['tanggalakhir'];
         //print_r($post);
         //print $this->dateToTanggal($post['startdate']);
-        $data['presensi'] = $this->Presensi_model->RekapRangePresensi(strtolower($post['nama_mapel']),$post['nama_kelas'],$post['tanggalmulai'],$post['tanggalakhir'])->result();
-        //print_r($data['presensi']);
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $data['presensi'] = $this->Presensi_model->RekapRangePresensi(strtolower($kodemapel),$kelas,$post['tanggalmulai'],$post['tanggalakhir'])->result();
+       
         $this->load->view('guru/to_excel_laporan_presensi', $data);
-        $this->load->view('templates/footer');
+        //$this->load->view('templates/footer');
     }
     
     function get_presensi() {
