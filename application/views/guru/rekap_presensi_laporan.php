@@ -24,7 +24,7 @@
 		</div>
 		<div class="card-body">
 			<?php
-//	print_r($presensi);
+	
 	function noHadir($no){
 		switch ($no) {
 			case '1':
@@ -61,14 +61,6 @@
 			<td>Tanggal Presensi </td>
 			<td><?php echo $tanggal?></td>
 		</tr>
-		<tr>
-			<td>Download Presensi </td>
-			<td><form action="<?=base_url("guru/excel_presensi_harian")?>" method="post">
-			<input type="hidden" name="kode_mapel" value="<?php echo $post['nama_mapel']; ?>">
-			<input type="hidden" name="kelas" value="<?php echo $post['nama_kelas']; ?>">
-			<input type="hidden" name="tanggal" value="<?php echo $post['tanggal']; ?>">
-			<input type="submit" class="btn btn-success" value="Download Excel"></form></td>
-		</tr>
 	</table>
 
 			<div class="table-scrollable">
@@ -83,7 +75,6 @@
 
 							<th>Kehadiran </th>
 
-							<th>Jam Absen</th>
 							<th>Keterangan</th>
 							<th>Modify</th>
 
@@ -113,24 +104,22 @@
 								
 							}
 							
-							if($dt->nipd==$nama->nipd){
-								echo "<td>".$dt->jam_absen."</td>";
-							}
+							
 							if($dt->nipd==$nama->nipd){
 								
-								echo "<td>".$dt->keterangan."</td>";
-								if($i>=1){
+								
+								if($i>1){
 									$state=1;
 									$id_presensi=$dt->id_presensi_online;
+									
 								break;
-								
 								//run code loop di atas dan stop pda saat data yg sama lebih dari 1
 								}
 							}
 						
 						
 					}
-					if($state==0 AND $id_presensi==0){
+					if($state==0){
 						echo "<td>Alpa</td><td>Tidak Ada</td><td>Tidak ada info</td>";
 					}
 					
@@ -149,7 +138,6 @@
 										<option value="1">Hadir</option>
 										<option value="2">Sakit</option>
 										<option value="3">Izin</option>
-										<option value="4">Alpa</option>
 									</select>
 									<input type="submit" <?php if($state==0){ ?>class="btn btn-primary"
 										<?php }else { echo 'class="btn btn-success"'; } ?> value="Edit">

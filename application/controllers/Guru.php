@@ -224,6 +224,28 @@ Class Guru extends CI_Controller {
         $this->load->view('guru/presensi_telegram', $data);
         $this->load->view('templates/footer');
     }
+
+    public function rekap_presensi_telegram() {
+        
+        
+        $data['title'] = 'Rekap Presensi Online Dengan Bot Telegram ';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mail=$this->session->userdata('email');
+        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+        $data['mapel'] = $this->Materi_model->getMapelByIdGuru($idguru);
+        $data['kelas']=$this->Presensi_model->getKelasGuru();
+        $tgl=date("d-m-Y");
+ 
+        
+      
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $this->load->view('guru/rekap_presensi', $data);
+        $this->load->view('templates/footer');
+    }
     public function tabel_presensi_telegram() {
         
         $post=$this->input->post();
@@ -246,6 +268,59 @@ Class Guru extends CI_Controller {
         // $this->load->view('guru/form_input_guru_ajar', $data);
         $this->load->view('guru/rekap_presensi_siswa_online', $data);
         $this->load->view('templates/footer');
+    }
+    public function tabel_rekap_presensi() {
+        
+        $post=$this->input->post();
+        //print_r($post);
+        $data['post']=$post;
+        $data['title'] = 'Rekap Presensi Online Dengan Bot Telegram ';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mail=$this->session->userdata('email');
+        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+       
+        $data['siswa'] =$this->Siswa_model->getSiswaKelas($post['nama_kelas'])->result();
+     
+        $data['tanggal']=$this->dateToTanggal($post['startdate']);
+        //print_r($post);
+        //print $this->dateToTanggal($post['startdate']);
+        $data['presensi'] = $this->Presensi_model->RekapRangePresensi(strtolower($post['nama_mapel']),$post['nama_kelas'],$this->dateToTanggal($post['startdate']),$this->dateToTanggal($post['enddate']))->result();
+        //print_r($data['presensi']);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $this->load->view('guru/rekap_presensi_laporan', $data);
+        $this->load->view('templates/footer');
+    }
+    public function excel_presensi_harian() {
+        $post=$this->input->post();
+        $kodemapel=$post['kode_mapel'];
+        $cekmp=explode("-",$kodemapel);
+        $idguru=$cekmp[1];
+        $kelas=$post['kelas'];
+        $tanggal=$post['tanggal'];
+        $file_kls=str_replace(" ","_",$kelas);
+        $file_tgl=str_replace('/',"_",$tanggal);
+        
+        $data['title'] = "Rekap_Presensi_".$kodemapel."_".$file_kls.$file_tgl;
+    
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mail=$this->session->userdata('email');
+        $data['namagr'] = $this->Guru_model->getGuruNameById($idguru);
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+        $data['mapel'] = $kodemapel;
+        $data['kelas']=$kelas;
+        $data['tanggal']=$this->dateToTanggal($tanggal);
+       //print_r($post);
+        $tgl=date("d-m-Y");
+        $data['siswa'] =$this->Siswa_model->getSiswaKelas($kelas)->result();
+
+        $data['presensi'] = $this->Presensi_model->get_presensi_data(strtolower($kodemapel),$kelas,$this->dateToTanggal($tanggal));
+        //print_r($data['presensi']);
+        $this->load->view('guru/to_excel_presensi_harian', $data);
+      
     }
     function get_presensi() {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -289,8 +364,6 @@ Class Guru extends CI_Controller {
             $row[] = $field->jam_absen;
             $row[] = $field->keterangan;
            
-          
-
             $row[] = "<a href='" . base_url("guru/edit_materi/") . "' class='btn btn-success btn-sm' >Edit</a>";
             $data[] = $row;
         }

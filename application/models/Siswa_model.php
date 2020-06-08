@@ -3,7 +3,7 @@
 class Siswa_model extends CI_Model {
  
     var $table = 'api_siswa'; //nama tabel dari database
-    var $column_order = array('nisn','nipd','nama','komli','kelas','nama','status'); //field yang ada di table user
+    var $column_order = array('nipd','kelas','nama','komli','nama','status'); //field yang ada di table user
     var $column_search = array('nisn','nipd','nama','komli','kelas','status'); //field yang diizin untuk pencarian 
     var $order = array('idsiswa' => 'asc'); // default order 
     public $nisn,$nama,$bidang,$komli,$kelas,$tempat_lahir,$tanggal_lahir,$status;

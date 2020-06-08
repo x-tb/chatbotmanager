@@ -23,12 +23,12 @@ class Presensi_model extends CI_Model {
     }
     public function get_presensi_data($kodemapel,$namakelas,$tgl){
 
-        $originalDate = $tgl;
-        $newDate = date("d-m-Y", strtotime($originalDate));
+       
         $this->db->select("id_presensi_online,id_telegram,nama_siswa,nipd,kode_mapel_ajar,kehadiran,tgl_absen,jam_absen,keterangan");
         $this->db->from('api_presensi_online');
         $this->db->where('kelas',$namakelas);
         $this->db->where('kode_mapel_ajar',strtolower($kodemapel));
+        $this->db->where('tgl_absen',$tgl);
        // $this->db->where('tgl_absen',$newDate);
         return $this->db->get()->result();
       
@@ -129,7 +129,7 @@ class Presensi_model extends CI_Model {
             'nama_siswa'=>$post['nama'],
             'kelas'=>$post['nama_kelas'],
             'nipd'=>$post['nipd'],
-            'kode_mapel_ajar'=>$post['nama_mapel'],
+            'kode_mapel_ajar'=>strtolower($post['nama_mapel']),
             'kehadiran' => $post['kehadiran'], 
             'tgl_absen' => $post['tanggal'],
             'jam_absen'=>date('h:m:s'),
@@ -174,6 +174,21 @@ class Presensi_model extends CI_Model {
         //output yg di mau daftar kelas guru ajar
         $query =$this->db->query("SELECT m.kode_mapel_ajar,m.id_kelas,k.nama_kelas FROM mapel_enrol_kelas m JOIN api_kelas k WHERE k.idkelas=m.id_kelas AND m.kode_mapel_ajar LIKE '%40%'");
         return $query->result();
+    }
+    public function RekapRangePresensi($kdmapel,$kelas,$startdate,$enddate){
+        $where=array(
+            'kelas'=>$kelas,
+            'kode_mapel_ajar'=>$kdmapel
+        );
+        $this->db->select("id_telegram,nipd,kelas,kode_mapel_ajar,kehadiran,tgl_absen");
+        $this->db->from("api_presensi_online");
+        $this->db->where($where);
+        $this->db->where("tgl_absen >=",$startdate);
+        $this->db->where('tgl_absen <=',$enddate);
+        $this->db->group_by('nipd');
+        //$this->db->where('tgl_absen BETWEEN '.$startdate."AND ".$enddate);
+        return    $this->db->get();
+    
     }
 
 }
