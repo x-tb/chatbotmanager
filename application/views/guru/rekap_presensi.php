@@ -56,7 +56,7 @@
 					<tr>
 						<td colspan="2">*Input jumlah Pertemuan (Pertemuan efektif) 
 						</td>
-						<td colspan="2"><input type="number" class='form-control col-md-10' value="" name="pertemuanmax" id="max"></td>
+						<td colspan="2"><input type="number" class='form-control col-md-10' value="" required name="pertemuanmax" id="max"></td>
                         
 					</tr>
                     
@@ -66,10 +66,10 @@
 					<tr>
 						<td>Tanggal Mulai
 						</td>
-						<td><input type="date" class='form-control col-md-10' value="" name="startdate" id="tgl"></td>
+						<td><input type="date" class='form-control col-md-10' value="" name="startdate" required id="tgl"></td>
                         <td>Tanggal Selesai
 						</td>
-						<td><input type="date" class='form-control col-md-10' value="" name="enddate" id="tgl"></td>
+						<td><input type="date" class='form-control col-md-10' value="" name="enddate" required id="tgl"></td>
 					</tr>
                  
 

@@ -67,7 +67,11 @@
 		</tr>
 		<tr>
 			<td colspan="2">Catatan :
-			<small class="text-muted">*Jika Persentase Kehadiran Masing-masing siswa tidak ada yang mencapai 100% silahkan cek kembali jumlah maximum pertemuan yang anda inputkan </small></td>
+			<ol>
+				<li><small class="text-muted">Jika Persentase Kehadiran Masing-masing siswa tidak ada yang mencapai 100% silahkan cek kembali jumlah maximum pertemuan yang anda inputkan </small></li>
+				<li><small> Jika Terdapat Beberapa Siswa Memiliki presentase lebih dari 100% cek data kehadiran siswa lebih dari 1X absen dalam 1 mapel pada tanggal yang sama </small></li>
+			</ol>
+			</td>
 		</tr>
 	</table>
 
