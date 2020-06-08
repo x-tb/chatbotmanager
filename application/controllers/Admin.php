@@ -14,7 +14,7 @@ class Admin extends CI_Controller {
         $this->load->model('Mengajar_model');
         $this->load->model('Kelas_model');
         $this->load->model('KeMapel_model');
-        $this->load->model('Telegram_model');
+        $this->load->model('Telegram_model'); 
         is_logged_in();
         my_auth();
     }
