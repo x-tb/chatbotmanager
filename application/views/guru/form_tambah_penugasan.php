@@ -36,6 +36,7 @@
 					<tr>
 						<td>Jenis Penugasan /Penilaian </td>
 						<td> <select class="form-control col-md-8" name="tipetugas" id="jenis">
+								<option value="Harian">Pertemuan Harian</option>
 								<option value="Projek">Projek</option>
 								<option value="Portofolio">Portofolio</option>
 								<option value="UH">Ulangan Harian</option>

@@ -688,4 +688,10 @@ class Admin extends CI_Controller {
             redirect(base_url("admin/data_mapel_kelas/gagal_hapus"));
         }
     }
+    public function mybot_terkini(){
+        $TOKEN = '1036073568:AAFPTFJt_miOOoEMtJ2FgZaJDj5mQpYx7SE';
+        $url="https://api.telegram.org/bot$TOKEN/getUpdates";
+
+        redirect($url);
+    }
 }
