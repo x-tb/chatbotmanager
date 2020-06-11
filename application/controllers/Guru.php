@@ -190,7 +190,7 @@ Class Guru extends CI_Controller {
             'deadline_tugas'=>$post['tgl_selesai'],
             'waktu_tutup'=>$post['jam_tutup'],
             'tapel'=>$post['tapel'],
-            'status'=>1
+            'status'=>$post['status']
 
         );
         print_r($post);

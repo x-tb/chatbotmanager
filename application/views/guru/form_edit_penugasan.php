@@ -35,9 +35,41 @@ foreach($tugas as $dt): ?>
 						<td><input class="form-control col-md-10" type="text" value="<?php echo $materi; ?>"
 								name="namakd" id="kd" /> </td>
 					</tr>
+					<?php 
+						function ubahPenugasan($stt){
+							switch ($stt) {
+								case 'HARIAN':
+									$namatugas="Pertemuan Harian";
+									break;
+								case 'Projek':
+									$namatugas="Projek";
+									break;
+								case 'Portofolio':
+									$namatugas="Portofolio";
+									break;
+								case 'UH':
+									$namatugas="Ulangan Harian";
+									break;
+								case 'PTS':
+									$namatugas="Penilaian Tengah Semester (PTS)";
+									break;
+								case 'PAS':
+									$namatugas="Penilaian Akhir Semester (PAS)";
+									break;
+								default:
+								    $namatugas ="HARIAN";
+									break;
+								
+							}
+							return $namatugas;
+						}
+						
+						?>
 					<tr>
 						<td>Jenis Penugasan /Penilaian </td>
 						<td> <select class="form-control col-md-8" name="tipetugas" id="jenis">
+								<option value="<?=$dt->tipe_tugas?>"><?=ubahPenugasan($dt->tipe_tugas)?></option>
+								<option value="HARIAN">Pertemuan Harian</option>
 								<option value="Projek">Projek</option>
 								<option value="Portofolio">Portofolio</option>
 								<option value="UH">Ulangan Harian</option>
@@ -81,7 +113,7 @@ foreach($tugas as $dt): ?>
 					</tr>
 					<tr>
 						<td>Tahun Pelajaran</td>
-						<td><select class="form-control col-md-10" name="tapel" id="tapel">
+						<td><select class="form-control col-md-8" name="tapel" id="tapel">
 								<option selected="selected" value="<?php echo $dt->tapel; ?>"><?php echo $dt->tapel; ?></option>
 								<?php for($i=2019;$i<=2022;$i++){
                                 $i2=$i+1;
@@ -90,7 +122,36 @@ foreach($tugas as $dt): ?>
 								<?php } ?>
 							</select></td>
 					</tr>
-
+					<tr>
+						<td>Status Tugas</td>
+						<?php 
+						function ubahStatus($stt){
+							switch ($stt) {
+								case '0':
+									$status="Di Tangguhkan";
+									break;
+								case '1':
+									$status="Terbuka/Aktif";
+									break;
+								case '2':
+									$status="Tertutup/Selesai";
+									break;
+								default:
+									$status ="Terbuka/Aktif";
+									break;
+								
+							}
+							return $status;
+						}
+						
+						?>
+						<td><select class="form-control col-md-8" name="status" id="status">
+						<option value="<?=$dt->status?>"><?=ubahStatus($dt->status)?></option>
+						<option value="1">Terbuka/Aktif</option>
+						<option value="2">Tertutup/Selesai</option>
+						<option value="0">Di Tangguhkan</option>
+						</select></td>
+					</tr>
 
 				</table>
 
