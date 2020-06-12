@@ -1,5 +1,5 @@
 <?php
- 
+  QRcode::png($codeContents, $tempdir.date("m").'_starbot.png', QR_ECLEVEL_H);
  header("Content-type: application/vnd-ms-excel");
  
  header("Content-Disposition: attachment; filename=$title.xls");
@@ -33,13 +33,13 @@
 		</tr>
 		
 		<tr>
-			<td colspan="6">Catatan :
+			<td colspan="9">Catatan :
 			<ol>
 				<li><small class="text-muted">Jika Persentase Kehadiran Masing-masing siswa tidak ada yang mencapai 100% silahkan cek kembali jumlah maximum pertemuan yang anda inputkan </small></li>
 				<li><small> Jika Terdapat Beberapa Siswa Memiliki presentase lebih dari 100% cek data kehadiran siswa lebih dari 1X absen dalam 1 mapel pada tanggal yang sama </small></li>
 			</ol>
 			</td>
-            <td colspan="3"><img src="" alt=""></td>
+            
 		</tr>
 	</table>
 

@@ -329,8 +329,10 @@ Class Guru extends CI_Controller {
         $this->load->view('templates/footer');
     }
     public function to_excel_presensi_range() {
-        require_once( APPPATH . 'assets/vendor/phpqrcode/qrlib.php' );
-        $tempdir = "assets/qrcode";
+        //path di windows dan linux family beda dengan / atau \
+        require_once( APPPATH . '..\assets\vendor\phpqrcode\qrlib.php' );
+        $data['tempdir'] = "assets/qrcode/";
+        $data['codeContents'] = 'https://www.smktarunabhakti.net'; 
         $post=$this->input->post();
         //print_r($post);
         $data['post']=$post;
