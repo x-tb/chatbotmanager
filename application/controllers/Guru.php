@@ -329,7 +329,8 @@ Class Guru extends CI_Controller {
         $this->load->view('templates/footer');
     }
     public function to_excel_presensi_range() {
-        
+        require_once( APPPATH . 'assets/vendor/phpqrcode/qrlib.php' );
+        $tempdir = "assets/qrcode";
         $post=$this->input->post();
         //print_r($post);
         $data['post']=$post;
@@ -343,7 +344,7 @@ Class Guru extends CI_Controller {
         $kodemapel=$post['kode_mapel'];
         $file_kls=str_replace(" ","_",$kelas);
         $file_tgl=str_replace('/',"_",$tanggal);
-        
+
         $data['nama_mapel']=$kodemapel;
         $data['title'] = "Laporan_Presensi_".$kodemapel."_".$file_kls.$file_tgl;
         $data['siswa'] =$this->Siswa_model->getSiswaKelas($post['nama_kelas'])->result();
