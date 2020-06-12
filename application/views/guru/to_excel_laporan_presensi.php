@@ -203,7 +203,7 @@
     <tr>
         <td colspan="3">Ramadin Tarigan,ST</td>
         <td colspan="2">Verra Rousmawati, M.Sc</td>
-        <td colspan="2">Puguh Rismadi Ismail, S.Kom</td>
+        <td colspan="2"><?= $user['name']; ?></td>
         <td colspan="2"><?=date("d-M-Y")?></td>
     </tr>
 </table>
