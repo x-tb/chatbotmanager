@@ -178,7 +178,8 @@ class Presensi_model extends CI_Model {
     public function RekapRangePresensi($kdmapel,$kelas,$startdate,$enddate){
         $where=array(
             'kelas'=>$kelas,
-            'kode_mapel_ajar'=>$kdmapel
+            'kode_mapel_ajar'=>$kdmapel,
+            'kehadiran'=>'1'
         );
         $this->db->select("id_telegram,nipd,kelas,kode_mapel_ajar,kehadiran,tgl_absen, count(kehadiran) ttlhadir");
         $this->db->from("api_presensi_online");
@@ -190,6 +191,38 @@ class Presensi_model extends CI_Model {
         //$this->db->where('tgl_absen BETWEEN '.$startdate."AND ".$enddate);
         return    $this->db->get();
     
+    }
+    public function rekap_ijin_siswa($kdmapel,$kelas,$startdate,$enddate){
+        $where=array(
+            'kelas'=>$kelas,
+            'kode_mapel_ajar'=>$kdmapel,
+            'kehadiran'=>'i'
+        );
+        $this->db->select("id_telegram,nipd,kehadiran,tgl_absen, count(kehadiran) ttl_ijin");
+        $this->db->from("api_presensi_online");
+        $this->db->where($where);
+        $this->db->where("tgl_absen >=",$startdate);
+        $this->db->where('tgl_absen <=',$enddate);
+        
+        $this->db->group_by('nipd');
+        //$this->db->where('tgl_absen BETWEEN '.$startdate."AND ".$enddate);
+        return    $this->db->get();
+    }
+    public function rekap_sakit_siswa($kdmapel,$kelas,$startdate,$enddate){
+        $where=array(
+            'kelas'=>$kelas,
+            'kode_mapel_ajar'=>$kdmapel,
+            'kehadiran'=>'s'
+        );
+        $this->db->select("id_telegram,nipd,kehadiran,tgl_absen, count(kehadiran) ttl_sakit");
+        $this->db->from("api_presensi_online");
+        $this->db->where($where);
+        $this->db->where("tgl_absen >=",$startdate);
+        $this->db->where('tgl_absen <=',$enddate);
+        
+        $this->db->group_by('nipd');
+        //$this->db->where('tgl_absen BETWEEN '.$startdate."AND ".$enddate);
+        return    $this->db->get();
     }
     public function insert_presensi_batch($data){
         return $this->db->insert_batch($this->table, $data);

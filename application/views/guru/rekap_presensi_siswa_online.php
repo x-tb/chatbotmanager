@@ -30,10 +30,10 @@
 			case '1':
 				$kehadiran="Hadir";
 				break;
-			case '2':
+			case 's':
 				$kehadiran="Sakit";
 				break;
-			case '3':
+			case 'i':
 				$kehadiran="Izin";
 				break;
 					
@@ -153,9 +153,9 @@
 									<input id="tanggal<?=$no?>" type="hidden" value="<?=$tanggal?>" name="tanggal">
 									<select id="kehadiran<?=$no?>" name="kehadiran" id="kehadiran">
 										<option value="1">Hadir</option>
-										<option value="2">Sakit</option>
-										<option value="3">Izin</option>
-										<option value="4">Alpa</option>
+										<option value="s">Sakit</option>
+										<option value="i">Izin</option>
+										<option value="0">Alpa</option>
 									</select>
 									<input type="submit" <?php if($state==0){ ?>class="btn btn-primary"
 										<?php }else { echo 'class="btn btn-success"'; } ?> value="Edit">

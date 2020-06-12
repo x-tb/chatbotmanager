@@ -30,10 +30,10 @@
 			case '1':
 				$kehadiran="Hadir";
 				break;
-			case '2':
+			case 's':
 				$kehadiran="Sakit";
 				break;
-			case '3':
+			case 'i':
 				$kehadiran="Izin";
 				break;
 					
@@ -90,18 +90,24 @@
 				<table class="display  table table-bordered" cellspacing="0" id="datapresensi" cellspacing="0"
 					width="100%">
 					<thead>
-						<tr>
-							<th>No</th>
-							<th>NIPD</th>
-							<th>Nama</th>
-							<th>Nama Kelas</th>
-
-							<th>Kehadiran </th>
-
-							<th>Presentase</th>
-							<th>Keterangan</th>
-
-						</tr>
+					<tr>
+            <td rowspan="2">No</td>
+            <td rowspan="2">NIPD</td>
+            <td rowspan="2">Nama</td>
+			<td rowspan="2">Kelas</td>
+            <td colspan="4">Kehadiran</td>
+            <td rowspan="2">Persentase</td>
+          
+            
+        </tr>
+        <tr>
+           
+            <td>hadir</td>
+            <td>sakit</td>
+            <td>ijin</td>
+            <td>alpa</td>
+           
+        </tr>
 					</thead>
 					<tbody>
 						<?php
@@ -130,9 +136,51 @@
 								$bagi=$dt->ttlhadir/$maxpertemuan;
 								$persen=$bagi*100;
 								$persenbaru=($persen > 100 ? 100:$persen);
-								echo "<td>".round($persenbaru)." %</td>";
-							    echo "<td> </td>";
+								$totalsakit=0;
+								$totalijin=0;
 								
+								
+								//print_r($datasakit);
+								if(!empty($datasakit)){
+									foreach($datasakit as $sakit){
+										if($dt->nipd==$sakit->nipd){
+											if($ijin->ttl_sakit>0){
+												$totalsakit=$ijin->ttl_sakit;
+												echo "<td>".$ijin->ttl_sakit."</td>";
+											}else{
+												$totalsakit=0;
+												echo "<td>0</td>";
+											}
+										}
+									}
+								}else{
+									$totalsakit=0;
+									echo "<td>0</td>";
+								}
+								if(!empty($dataijin)){
+									foreach($dataijin as $ijin){
+										if($dt->nipd==$ijin->nipd){
+											if($ijin->ttl_ijin>0){
+												$totalijin=$ijin->ttl_ijin;
+												echo "<td>".$ijin->ttl_ijin."</td>";
+											}else{
+												$totalijin=0;
+												echo "<td>0</td>";
+											}
+										}else{
+											$totalijin=0;
+											echo "<td>0</td>";
+										}
+									}
+								}else{
+									$totalijin=0;
+									echo "<td>0</td>";
+								}
+								$alpa=intval($maxpertemuan)-$totalijin-$totalsakit-$totalkehadiran;
+								
+								echo "<td>".$alpa."</td>";
+								echo "<td>".round($persenbaru)." %</td>";
+
 								
 							}
 							

@@ -279,7 +279,7 @@ Class Guru extends CI_Controller {
         $file_kls=str_replace(" ","_",$kelas);
         $file_tgl=str_replace('/',"_",$tanggal);
         
-        $data['title'] = "Rekap_Presensi_".$kodemapel."_".$file_kls.$file_tgl;
+        $data['title'] = "Presensi_harian_".$kodemapel."_".$file_kls.$file_tgl;
     
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $mail=$this->session->userdata('email');
@@ -318,6 +318,8 @@ Class Guru extends CI_Controller {
         //print_r($post);
         //print $this->dateToTanggal($post['startdate']);
         $data['presensi'] = $this->Presensi_model->RekapRangePresensi(strtolower($post['nama_mapel']),$post['nama_kelas'],$this->dateToTanggal($post['startdate']),$this->dateToTanggal($post['enddate']))->result();
+        $data['dataijin'] = $this->Presensi_model->rekap_ijin_siswa(strtolower($post['nama_mapel']),$post['nama_kelas'],$this->dateToTanggal($post['startdate']),$this->dateToTanggal($post['enddate']))->result();
+        $data['datasakit'] = $this->Presensi_model->rekap_sakit_siswa(strtolower($post['nama_mapel']),$post['nama_kelas'],$this->dateToTanggal($post['startdate']),$this->dateToTanggal($post['enddate']))->result();
         //print_r($data['presensi']);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -331,7 +333,7 @@ Class Guru extends CI_Controller {
         $post=$this->input->post();
         //print_r($post);
         $data['post']=$post;
-        $data['title'] = 'Rekap Presensi Online Dengan Bot Telegram ';
+       
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $mail=$this->session->userdata('email');
         $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
@@ -341,15 +343,19 @@ Class Guru extends CI_Controller {
         $kodemapel=$post['kode_mapel'];
         $file_kls=str_replace(" ","_",$kelas);
         $file_tgl=str_replace('/',"_",$tanggal);
+        
         $data['nama_mapel']=$kodemapel;
-        $data['title'] = "Rekap_Presensi_".$kodemapel."_".$file_kls.$file_tgl;
+        $data['title'] = "Laporan_Presensi_".$kodemapel."_".$file_kls.$file_tgl;
         $data['siswa'] =$this->Siswa_model->getSiswaKelas($post['nama_kelas'])->result();
+        
         $data['maxpertemuan']=$post['pertemuan'];
         $data['tanggalmulai']=$post['tanggalmulai'];
         $data['tanggalakhir']=$post['tanggalakhir'];
         //print_r($post);
         //print $this->dateToTanggal($post['startdate']);
         $data['presensi'] = $this->Presensi_model->RekapRangePresensi(strtolower($kodemapel),$kelas,$post['tanggalmulai'],$post['tanggalakhir'])->result();
+        $data['dataijin'] = $this->Presensi_model->rekap_ijin_siswa(strtolower($kodemapel),$kelas,$post['tanggalmulai'],$post['tanggalakhir'])->result();
+        $data['datasakit'] = $this->Presensi_model->rekap_sakit_siswa(strtolower($kodemapel),$kelas,$post['tanggalmulai'],$post['tanggalakhir'])->result();
        
         $this->load->view('guru/to_excel_laporan_presensi', $data);
         //$this->load->view('templates/footer');

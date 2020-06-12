@@ -38,7 +38,7 @@ foreach($tugas as $dt): ?>
 					<?php 
 						function ubahPenugasan($stt){
 							switch ($stt) {
-								case 'HARIAN':
+								case 'Harian':
 									$namatugas="Pertemuan Harian";
 									break;
 								case 'Projek':
@@ -57,7 +57,7 @@ foreach($tugas as $dt): ?>
 									$namatugas="Penilaian Akhir Semester (PAS)";
 									break;
 								default:
-								    $namatugas ="HARIAN";
+								    $namatugas ="Pertemuan Harian";
 									break;
 								
 							}
@@ -69,7 +69,7 @@ foreach($tugas as $dt): ?>
 						<td>Jenis Penugasan /Penilaian </td>
 						<td> <select class="form-control col-md-8" name="tipetugas" id="jenis">
 								<option value="<?=$dt->tipe_tugas?>"><?=ubahPenugasan($dt->tipe_tugas)?></option>
-								<option value="HARIAN">Pertemuan Harian</option>
+								<option value="Harian">Pertemuan Harian</option>
 								<option value="Projek">Projek</option>
 								<option value="Portofolio">Portofolio</option>
 								<option value="UH">Ulangan Harian</option>
