@@ -27,6 +27,16 @@ class Penugasan_model extends CI_Model {
        // echo $idsiswa;
         return $this->db->get()->result();
     }
+    public function get_nama_tugas($idtugas){
+        $this->db->select('nama_tugas');
+        $this->db->from($this->table);
+        $this->db->where('id_penugasan',$idtugas);
+       // echo $idsiswa;
+        $get=$this->db->get()->result();
+        foreach($get as $dt){
+            return $dt->nama_tugas;
+        }
+    }
    
     private function _get_datatables_query()
     {
