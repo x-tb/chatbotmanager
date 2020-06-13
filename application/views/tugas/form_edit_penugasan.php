@@ -10,7 +10,7 @@
 <?php
 //print_r($tugas);
 foreach($tugas as $dt): ?>
-			<form action="<?php echo base_url('guru/proses_edit_penugasan'); ?>" method="post">
+			<form action="<?php echo base_url('penugasan/proses_edit_penugasan'); ?>" method="post">
 				<table class="table table-bordered">
 
 					<tr><input type="hidden" value="<?php echo $dt->id_penugasan; ?>" name="id_penugasan">
@@ -79,7 +79,9 @@ foreach($tugas as $dt): ?>
 					</tr>
 					<tr>
 						<td>Nama Tugas </td>
-						<td><input class="form-control col-md-10" type="text" name="namatugas" value="<?php echo $dt->nama_tugas; ?>" id="nm" /> </td>
+						<td><input class="form-control col-md-10" type="text" name="namatugas" value="<?php echo $dt->nama_tugas; ?>" id="nm" /> 
+					
+						</td>
 					</tr>
 					<tr>
 						<td>Deskripsi Tugas </td>
@@ -88,6 +90,7 @@ foreach($tugas as $dt): ?>
 								<?php
 								echo $dt->deskripsi_tugas; ?>
 							</div>
+							<small class="text-muted">*Jangan lupa selalu enter di akhir kata dari deskripsi agar tersimpan ke database</small>
 							<input class="form-control" value="<?php echo htmlentities($dt->deskripsi_tugas); ?>" type="hidden" name="deskripsi" id="deskripsi" />
 						</td>
 					</tr>
@@ -158,7 +161,7 @@ foreach($tugas as $dt): ?>
 				<table width="100%">
 					<tr>
 						<td><input type="submit" class="btn btn-primary" value="Simpan"> <a class="btn btn-success"
-								href="<?php echo base_url('guru/daftar_penugasan_guru'); ?>">Kembali ke Daftar Materi
+								href="<?php echo base_url('penugasan'); ?>">Kembali ke Daftar Materi
 								dan Tugas</a></td>
 
 					</tr>
@@ -178,6 +181,7 @@ foreach($tugas as $dt): ?>
 		<!-- Create the editor container -->
 
 
+			
 				<!-- Include the Quill library -->
 				<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
