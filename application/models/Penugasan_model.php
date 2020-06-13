@@ -129,6 +129,13 @@ class Penugasan_model extends CI_Model {
         $this->db->where('idguru',$idguru);
         return $this->db->get()->result();
     }
+    public function getTugasNilaiByGuru($idguru){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('idguru',$idguru);
+        $this->db->not_like('tipe_tugas','Harian');
+        return $this->db->get()->result();
+    }
    
  
 }
