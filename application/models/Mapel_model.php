@@ -150,7 +150,7 @@ class Mapel_model extends CI_Model {
         $this->db->select('id_mapel,nama_mapel');
         return $this->db->get('api_mapel')->result();
     }
-   
+   //fungsi diulang tapi jangan dihapus takut digunakan 
     public function getMapelNameByKode($kode){
         $this->db->select('nama_mapel');
         $this->db->from('api_mapel');
@@ -160,5 +160,22 @@ class Mapel_model extends CI_Model {
         foreach($d as $dt){
             return $dt->nama_mapel;
         }
+    }
+    public function getNamaMapelById($idmapel){
+        $this->db->select('nama_mapel');
+        $this->db->from('api_mapel');
+        $this->db->where('id_mapel',$idmapel);
+       // echo $idsiswa;
+        $d= $this->db->get()->result();
+        foreach($d as $dt){
+            return $dt->nama_mapel;
+        }
+    }
+    public function getKelasByKodeMapel($kodemapel){
+        $this->db->select("mapel_enrol_kelas.id_kelas,api_kelas.nama_kelas");
+        $this->db->from("mapel_enrol_kelas");
+        $this->db->join('api_kelas','api_kelas.idkelas=mapel_enrol_kelas.id_kelas');
+        $this->db->where('kode_mapel_ajar',$kodemapel);
+        return $this->db->get()->result();
     }
 }
