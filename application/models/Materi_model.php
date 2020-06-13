@@ -20,6 +20,16 @@ class Materi_model extends CI_Model {
        // echo $idsiswa;
         return $this->db->get();
     }
+    public function get_nama_by_id($idmateri){
+        $this->db->select('nomor_nama_kd');
+        $this->db->from('api_link_materi');
+        $this->db->where('id_materi',$idmateri);
+       // echo $idsiswa;
+        $get=$this->db->get()->result();
+        foreach($get as $cari){
+            return $cari->nomor_nama_kd;
+        }
+    }
    
     private function _get_datatables_query()
     {
