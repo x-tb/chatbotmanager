@@ -8,7 +8,7 @@
 		</div>
 		<div class="card-body">
 
-			<form action="<?php echo base_url('guru/proses_simpan_penugasan'); ?>" method="post">
+			<form action="<?php echo base_url('penugasan/proses_simpan_penugasan'); ?>" method="post">
 				<table class="table table-bordered">
 
 					<tr>
@@ -56,7 +56,9 @@
 								<p>Some initial <strong>bold</strong> text</p>
 								<p><br></p>
 							</div>
+							<small class="text-muted">*Jangan lupa selalu enter di akhir kata dari deskripsi agar tersimpan ke database</small>
 							<input class="form-control" type="hidden" name="deskripsi" id="deskripsi" />
+							
 						</td>
 					</tr>
 					<tr>
@@ -92,7 +94,7 @@
 				<table width="100%">
 					<tr>
 						<td><input type="submit" class="btn btn-primary" value="Simpan"> <a class="btn btn-success"
-								href="<?php echo base_url('guru/daftar_penugasan_guru'); ?>">Kembali ke Daftar Materi
+								href="<?php echo base_url('penugasan'); ?>">Kembali ke Daftar Materi
 								dan Tugas</a></td>
 
 					</tr>

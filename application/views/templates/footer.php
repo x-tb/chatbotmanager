@@ -227,8 +227,39 @@
             				}
 
             			}); // End of DataTable
-            		}
+					}
+					//modul view calon siswa
+            		if (getme[5] == 'data_calon_siswa') {
+            			$('#datatable').reset;
+            			$('#datacalonsiswa.display').DataTable({
+            				"pageLength": 40,
+            				"serverSide": true,
+            				"order": [
+            					[0, "asc"]
+            				],
+            				"ajax": {
+            					url: base_url + 'dashboardppdb/get_calon_siswa',
+            					type: 'POST'
+            				}
 
+            			}); // End of DataTable
+            		}
+					//modul view catatan calon siswa
+            		if (getme[5] == 'data_catatan_calon_siswa') {
+            			$('#datatable').reset;
+            			$('#datawawancara.display').DataTable({
+            				"pageLength": 20,
+            				"serverSide": true,
+            				"order": [
+            					[0, "asc"]
+            				],
+            				"ajax": {
+            					url: base_url + 'dashboardppdb/get_ctt_calon_siswa',
+            					type: 'POST'
+            				}
+
+            			}); // End of DataTable
+            		}
 
             	}); // End Document Ready Function
 

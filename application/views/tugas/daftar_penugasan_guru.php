@@ -56,7 +56,7 @@
                             if($mt->id_mapel==$mp->id_mapel){
 
                             ?>
-							<a href="<?php echo base_url("guru/form_penugasan_guru/$mt->id_materi/$mt->idguru/$mt->id_mapel");?>"
+							<a href="<?php echo base_url("penugasan/form_penugasan_guru/$mt->id_materi/$mt->idguru/$mt->id_mapel");?>"
 								class="list-group-item list-group-item-action d-flex justify-content-between align-items-center ">
 								<b><?php echo $mt->nomor_nama_kd; ?></b><span class="badge badge-primary badge-pill"><i
 										class="fa fa-plus" aria-hidden="true"></i>
@@ -69,7 +69,7 @@
 								<li
 									class="list-group-item list-group-item-action d-flex justify-content-between align-items-left">
 									<p><b class="badge bg-primary text-white"><?php echo $tg->tipe_tugas; ?></b>&nbsp;<?php echo $tg->nama_tugas; ?></p>
-									<a href="<?php echo base_url("guru/form_edit_penugasan_guru/$tg->id_penugasan/$mt->id_materi/$mt->idguru/$mt->id_mapel"); ?>"><span class="badge badge-danger badge-pill"><i class="fa fa-edit"
+									<a href="<?php echo base_url("penugasan/form_edit_penugasan_guru/$tg->id_penugasan/$mt->id_materi/$mt->idguru/$mt->id_mapel"); ?>"><span class="badge badge-danger badge-pill"><i class="fa fa-edit"
 												aria-hidden="true"></i>
 										</span></a>
 								</li>

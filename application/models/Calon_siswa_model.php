@@ -1,40 +1,24 @@
 <?php
  
-class Penugasan_model extends CI_Model {
+class Calon_siswa_model extends CI_Model {
  
-    var $table = 'api_penugasan'; //nama tabel dari database
-    var $column_order = array('id_penugasan','id_materi','idguru','id_mapel','tipe_tugas','nama_tugas','tapel','status'); //field yang ada di table user
-    var $column_search =array('id_penugasan','id_materi','idguru','id_mapel','tipe_tugas','nama_tugas','tapel','status');  //field yang diizin untuk pencarian 
-    var $order = array('id_penugasan' => 'asc'); // default order 
-    public $id_penugasan,$id_materi,$idguru,$id_mapel,$tipe_tugas,$nama_tugas,$tapel,$status;
+    var $table = 'calon_siswa'; //nama tabel dari database
+    var $column_order = array('id_calon','nomor_ppdb','nama','pilihan_1','pilihan_2','asal_sekolah','status'); //field yang ada di table user
+    var $column_search = array('nomor_ppdb','nama','pilihan_1','pilihan_2','asal_sekolah','status'); //field yang diizin untuk pencarian 
+    var $order = array('id_calon' => 'asc'); // default order 
+    public $id_calon,$nomor_ppdb,$nama,$jkl,$tempat_lahir,$tanggal_lahir,$pilihan_1,$pilihan_2,$asal_sekolah,$status;
 
     public function __construct()
     {
         parent::__construct();
         $this->load->database();
     }
-    public function get_one_by_id($id){
-        $this->db->select('*');
-        $this->db->from($this->table);
-        $this->db->where('id_penugasan',$id);
-       // echo $idsiswa;
-        return $this->db->get();
-    }
-    public function get_tugas_materi($idmateri){
-        $this->db->select('*');
-        $this->db->from($this->table);
-        $this->db->where('id_materi',$idmateri);
-       // echo $idsiswa;
-        return $this->db->get()->result();
-    }
    
     private function _get_datatables_query()
     {
-        $this->db->select("api_penugasan.*,api_link_materi.nomor_nama_kd,api_link_materi.topik_pembahasan,api_mapel.nama_mapel"); 
+         
         $this->db->from($this->table);
-        $this->db->join('api_link_materi',"api_penugasan.id_materi=api_link_materi.id_materi");
-        $this->db->join('api_guru',"api_penugasan.idguru=api_guru.idguru");
-        $this->db->join('api_mapel',"api_penugasan.id_mapel=api_mapel.id_mapel");
+ 
         $i = 0;
      
         foreach ($this->column_search as $item) // looping awal
@@ -100,42 +84,49 @@ class Penugasan_model extends CI_Model {
         
 
     }
-    public function updateData($id,$data)
+    public function update()
     {
-      
-    $this->db->where('id_penugasan', $id);
-    return $this->db->update($this->table, $data);
+        $post = $this->input->post();
+        $data_source=array(
+            'nisn' => $post['nisn'], 
+            'nipd'=>$post['nipd'],
+            'nama' => $post['nama'],
+            'kode_jurusan'=>$this->convertKodeJurusan($post['komli']),
+            'komli' => $post['komli'],
+            'kelas' => $post['kelas'],
+            'tempat_lahir' => $post['tempat'],
+            'tanggal_lahir' => $post['tgl_lahir'],
+            'foto_nipd'=>$post['foto_nipd'],
+            'status'=>$post['status'] 
+        );
+       // print_r($data_source);
+        $cek=$this->cekTelegramSiswa($post['nipd']);
+        //jika data ditemukan maka update jika blum ada uname telegram maka insert
+        if($cek>0){
+            $data=array(
+                'uname_tel'=>$post['uname_telegram']
+            );
+            $this->update2telegramSiswa($post['nipd'],$data);
+        }else{
+            $data=array(
+                'nipd'=>$post['nipd'],
+                'uname_tel'=>$post['uname_telegram']
+            );
+            $this->insertToTelegramSiswa($data);
+        }
+        return $this->db->update('api_siswa', $data_source, array('idsiswa' => $post['idsiswa']));
     }
-  
-
+    
     public function delete($id)
     {
-        return $this->db->delete($this->table, array("id_penugasan" => $id));
+        return $this->db->delete($this->table, array("nisn" => $id));
     }
-  
+    public function truncateSiswa(){
+        return $this->db->truncate('un_siswa');
+    }
     public function getTotalTb($tabel,$key,$where){
         $this->db->where($key, $where); // OTHER CONDITIONS IF ANY
         $this->db->from($tabel); //TABLE NAME
         return $this->db->count_all_results();
     }
-   
-    public function simpanPenugasanGuru($data){
-       
-        return $this->db->insert('api_penugasan', $data);
-    }
-    public function getTugasByGuru($idguru){
-        $this->db->select('*');
-        $this->db->from($this->table);
-        $this->db->where('idguru',$idguru);
-        return $this->db->get()->result();
-    }
-    public function getTugasNilaiByGuru($idguru){
-        $this->db->select('*');
-        $this->db->from($this->table);
-        $this->db->where('idguru',$idguru);
-        $this->db->not_like('tipe_tugas','Harian');
-        return $this->db->get()->result();
-    }
-   
- 
 }
