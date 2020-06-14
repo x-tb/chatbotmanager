@@ -74,6 +74,14 @@ Class Penilaian extends CI_Controller{
         $data['namatugas']=$nama_tugas;
         $data['namamapel']=$nama_mapel;
         $data['kode_mapel']=$kode_mapel;
+        $data['cek_tugas_kelas']=$this->Penugasan_model->cekTugasUploadKelas($idtugas)->result_array();
+        //print_r($data['cek_tugas_kelas']);
+        $data['btnimport1']='<button type="submit" class="btn btn-secondary"> <i class="fa fa-file-excel" aria-hidden="true">
+        upload  &nbsp; </i> </button>';
+        $data['btnimport2']='<button type="submit" class="btn btn-success"> <i class="fa fa-file-excel" aria-hidden="true">
+        upload  &nbsp; </i> </button>';
+        $data['cekupload']='<span class="text-success">&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i> Sudah Upload</span>';
+        $data['jml_kls']=$this->Penugasan_model->cekTugasUploadKelas($idtugas)->num_rows();
 
         //supply data for hidden 
         $data['id_tugas']=$idtugas;
@@ -126,16 +134,14 @@ Class Penilaian extends CI_Controller{
                 $nipd = $rowData[0][1];
                 $nilai = $rowData[0][3];
                 
-                //$tgllahirReal=date('d-m-Y', PHPExcel_Shared_Date::ExcelToPHP($tgllahir));
-
-                $cekdata = $this->db->get_where('api_nilai_siswa', ['nipd' => $nipd]);
-                if ($cekdata->num_rows() > 0) {
-                    ++$jmlgagal;
-                } else {
+                //$tgllahirReal=date('d-m-Y', PHPExcel_Shared_Date::ExcelToPHP($tgllahir));  
                     //lanjut disini ubah tabel api_tugas jadi api_nilai_siswa
                     $id_penugasan= $this->input->post('id_tugas');
                     $id_mapel = $this->input->post('id_mapel');
                     $id_guru = $this->input->post('id_guru');
+                    $id_kelas=$this->input->post('id_kelas');
+                    $nama_kelas=$this->input->post('nama_kelas');
+                    $kode_mapel=$this->input->post('kode_mapel');
                     $tgl_pengumpulan = date("d/m/Y");
                     $feedback_guru = "belum ada feedback";
                     $link_portofolio = "link kosong";
@@ -157,8 +163,9 @@ Class Penilaian extends CI_Controller{
 
                     $this->db->insert('api_nilai_siswa', $datasimpan);
                     ++$jmlsukses;
-                }
+                
             }
+            $this->Penugasan_model->ceklistUpoadNilaiKelas($id_penugasan,$kode_mapel,$id_kelas,$nama_kelas);
             redirect(base_url("penilaian/viewnilai/sukses_import/$jmlsukses/$jmlgagal"));
         }
     }
