@@ -4,7 +4,7 @@
 
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Form Import Nilai Mata Pelajaran</h6>
+			<h6 class="m-0 font-weight-bold text-primary">Form Upload Nilai Mata Pelajaran</h6>
 		</div>
 		<div class="card-body">
 			<?= $this->session->flashdata('message'); ?>
@@ -46,17 +46,49 @@
                     <input value="<?=$id_tugas?>" type="hidden" name="id_tugas">
                     <input value="<?=$id_mapel?>" type="hidden" name="id_mapel">
                     <input value="<?=$id_guru?>" type="hidden" name="id_guru">
+					<input value="<?=$kode_mapel?>" type="hidden" name="kode_mapel">
                     <input value="<?=$kls->nama_kelas?>" type="hidden" name="nama_kelas">
 						<?=$kls->nama_kelas?>
+					<input value="<?=$kls->id_kelas?>" type="hidden" name="id_kelas">
 					</td>
 					<td>
-						<input type="file" name="uploadfile" accept=".xls,.xlsx"> <button type="submit" class="btn btn-primary">Import</button><button type="button" class="btnreload" style="display: none;">Reload</button>
+						<input type="file" name="uploadfile" accept=".xls,.xlsx"> <button type="button" class="btnreload" style="display: none;">Reload</button>
+						<?php 
+						$no=0;
+						if(!empty($cek_tugas_kelas)){
+							foreach($cek_tugas_kelas as $upload){
+								$no++;
+								
+								if($upload['id_kelas']==$kls->id_kelas){
+									
+									echo $btnimport1;
+									echo $cekupload;
+									if($no==$jml_kls){
+									break;
+									}
+								}
+								$klas=$kls->id_kelas;
+								//echo $klas;
+								
+								
+							}
+							
+						}else{
+							echo $btnimport2;
+						}
+					//	print_r($cek_tugas_kelas);
+					foreach($cek_tugas_kelas as $pusing){
+						if($kls->id_kelas!=$pusing['id_kelas']){
+							echo "&nbsp;".$btnimport2;
+						}
+					}
+						?>			
 					</td>
 				</tr>
                 <?= form_close(); ?>
                 <?php endforeach; ?>
                 <tr>
-                    <td colspan="2"> <a href="<?= base_url('assets/samplefile/datasiswaSampleLulus.xlsx') ?>">Download Template File Excel</a></td>
+                    <td colspan="2"> <a href="<?= base_url('assets/samplefile/template_nilai_kelas.xlsx') ?>">Download Template File Excel</a></td>
                 </tr>
 				
                
