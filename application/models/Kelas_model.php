@@ -140,5 +140,8 @@ class Kelas_model extends CI_Model {
     public function simpanKelasMapel($data){
        return  $this->db->insert("mapel_enrol_kelas",$data);
     }
+    public function simpanKelas($data){
+        return $this->db->insert("api_kelas",$data);
+    }
 
 }
