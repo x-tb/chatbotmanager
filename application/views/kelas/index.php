@@ -18,11 +18,11 @@
 		</div>
 		<div class="card-body">
 
-			<form action="<?php echo base_url('admin/proses_simpan_mengajar'); ?>" method="post">
+			<form action="<?php echo base_url('admin/proses_simpan_kelas'); ?>" method="post">
 				<table class="table table-bordered">
                 <tr>
                         <td>Nama Kelas</td>
-                        <td><input type="text" name="namakelas" class="form-control col-md-10" id=""></td>
+                        <td><input type="text" name="nama_kelas" class="form-control col-md-10" id=""></td>
                     </tr>
                     <tr>
                         <td>Group Telegram Kelas</td>
@@ -31,15 +31,15 @@
 					<tr>
 						<td>Pilih Nama Wali Kelas <input type="hidden" name="idguruajar" value="">
 						</td>
-						<td><select class="form-control col-md-10" name="idguru" id="">
+						<td><select class="form-control col-md-10" name="nama_walas" id="">
 								<?php foreach($guru as $dt): ?>
-								<option value="<?=$dt->idguru?>"><?php echo $dt->nama_lengkap; ?></option>
+								<option value="<?=$dt->nama_lengkap?>"><?php echo $dt->nama_lengkap; ?></option>
 								<?php endforeach; ?>
 							</select></td>
 					</tr>
 					<tr>
                         <td>User Name telegram Walas</td>
-                        <td><input type="text" name="unametelegram" class="form-control col-md-10" id=""></td>
+                        <td><input type="text" name="username" class="form-control col-md-10" id=""></td>
                     </tr>
 					<tr>
 						<td>Tahun Pelajaran</td>
@@ -53,7 +53,7 @@
 					</tr>
                     <tr>
 						<td>Kompetensi Keahlian</td>
-						<td><select class="form-control col-md-10" name="tingkat" id="tingkat">
+						<td><select class="form-control col-md-10" name="jurusan" id="tingkat">
                                 <?php
                                 $jurusan=array(
                                     '1'=>"Teknik Komputer dan Jaringan",
@@ -93,11 +93,11 @@
 						<th>Nama Kelas</th>
                         <th>Group Telegram</th>
 						<th>Nama Walas</th>
-                        <th>Kode Jurusan</th>
-						<th>Kompetensi Keahlian</th>
+                        <th>ID Telegram Walas</th>
+						<th>Komli</th>
 						<th>Status</th>
 
-						<th>Data View</th>
+						<th>View</th>
 						<th>Modify</th>
 
 

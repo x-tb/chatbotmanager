@@ -178,4 +178,11 @@ class Mapel_model extends CI_Model {
         $this->db->where('kode_mapel_ajar',$kodemapel);
         return $this->db->get()->result();
     }
+    public function getKelasByIdGuru($kodemapel){
+        $this->db->select("mapel_enrol_kelas.kode_mapel_ajar,mapel_enrol_kelas.id_kelas,api_kelas.nama_kelas");
+        $this->db->from("mapel_enrol_kelas");
+        $this->db->join('api_kelas','api_kelas.idkelas=mapel_enrol_kelas.id_kelas');
+        $this->db->like('kode_mapel_ajar',$kodemapel);
+        return $this->db->get()->result();
+    }
 }

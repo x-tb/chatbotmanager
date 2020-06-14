@@ -146,6 +146,23 @@ class Penugasan_model extends CI_Model {
         $this->db->not_like('tipe_tugas','Harian');
         return $this->db->get()->result();
     }
-   
+    public function cekTugasUploadKelas($idtugas){
+        $this->db->select('api_kelas.nama_kelas,ceklist_nilai_kelas.id_kelas,ceklist_nilai_kelas.id_penugasan,kode_mapel,upload_cek');
+        $this->db->from("ceklist_nilai_kelas");
+        $this->db->join('api_kelas','api_kelas.idkelas=ceklist_nilai_kelas.id_kelas');
+        $this->db->where('ceklist_nilai_kelas.id_penugasan',$idtugas);
+        return $this->db->get();
+    }
+    public function ceklistUpoadNilaiKelas($idtugas,$kodemapel,$idkelas,$kelas){
+        $data=array(
+            'id_penugasan'=>$idtugas,
+            'kode_mapel'=>$kodemapel,
+            'id_kelas'=>$idkelas,
+            'kelas'=>$kelas,
+            'upload_cek'=>1,
+            'status'=>1
+        );
+        $this->db->insert("ceklist_nilai_kelas",$data);
+    }
  
 }

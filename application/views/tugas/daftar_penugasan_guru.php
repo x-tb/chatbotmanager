@@ -103,7 +103,7 @@
 			<?php endforeach; ?>
 <table class="table table-bordered">
 	<tr>
-		<th>Total Tagihan Nilai Akademik Anda </th>
+		<th>Total Penugasan  Anda </th>
 		<td><span id="totalTagihanNilai" class="badge badge-pill bg-primary text-white">Auto Jquery</span></td>
 		<th>Belum Terisi</th>
 		<td><span id="jumlahTerisi" class="badge badge-pill bg-danger text-white">5 item</span></td>
@@ -119,3 +119,8 @@
 		</div>
 	</div>
 </div>
+<script>
+var numItems = $('.nomor').length;
+$("#totalTagihanNilai").html(numItems+" Item");
+console.log(numItems);
+</script>
