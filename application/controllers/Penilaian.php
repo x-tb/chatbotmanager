@@ -28,6 +28,7 @@ Class Penilaian extends CI_Controller{
         $data['pelajaran']=$this->Materi_model->getMapelByIdGuru($idguru);
         $data['materi'] = $this->Materi_model->getMateriByIdGuru($idguru);
         $data['tugas']=$this->Penugasan_model->getTugasNilaiByGuru($idguru);
+        $data['kelas']=$this->Mapel_model->getKelasByIdGuru($idguru);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -169,20 +170,22 @@ Class Penilaian extends CI_Controller{
             redirect(base_url("penilaian/viewnilai/sukses_import/$jmlsukses/$jmlgagal"));
         }
     }
-    public function viewnilai(){
+    public function view_nilai(){
         $data['title'] = 'View Nilai Kelas';
         //fungsi ini dirubah semua ya
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $mail=$this->session->userdata('email');
         $idguru=$this->Guru_model->getIDguruFromMail($mail);
-        $idguru=$this->Guru_model->getIDguruFromMail($mail);
-        $data['pelajaran']=$this->Materi_model->getMapelByIdGuru($idguru);
-        $data['materi'] = $this->Materi_model->getMateriByIdGuru($idguru);
+        $post=$this->input->post();
+        //$data['nama_kelas']=$this->Kelas_model->getKelasById($post['kelas'])->result();
+        print_r($post);
+        $data['post']=$post;
+       
         $data['tugas']=$this->Penugasan_model->getTugasNilaiByGuru($idguru);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('penilaian/index_nilai', $data);
+        $this->load->view('penilaian/view_nilai', $data);
         $this->load->view('templates/footer');
     }
 }

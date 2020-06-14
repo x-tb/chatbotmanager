@@ -504,7 +504,16 @@ class Admin extends CI_Controller {
         //print_r($post);
         $kodemp = $this->Mapel_model->get_kode_mapel($post['id_mapel']);
         $kodemapelajar = $kodemp . "-" . $post['idguru'];
-        
+        $data=array(
+            'idkelas'=>NULL,
+            'nama_kelas'=>$post['nama_kelas'],
+            'group_telegram'=>$post['group'],
+            'nama_walas'=>$post['nama_walas'],
+            'uname_telegram'=>$post['username'],
+            'kode_jurusan'=>$post['jurusan'],
+            'tapel'=>$post['tapel'],
+            'status'=>1
+        );
         $save= $this->Kelas_model->simpanKelas($data);
         if($save==TRUE){
             redirect(base_url("admin/data_kelas/sukses_simpan_kelas"));
