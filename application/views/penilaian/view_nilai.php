@@ -23,27 +23,7 @@
 				 Pada Tugas</h6>
 		</div>
 		<div class="card-body">
-			<?php
-//	print_r($presensi);
-	function noHadir($no){
-		switch ($no) {
-			case '1':
-				$kehadiran="Hadir";
-				break;
-			case 's':
-				$kehadiran="Sakit";
-				break;
-			case 'i':
-				$kehadiran="Izin";
-				break;
-					
-			default:
-				$kehadiran="Alpa";
-				break;
-		}
-		return $kehadiran;
-	}
-	?>
+
 			<table class="table table-bordered">
 				<tr>
 					<td>Nama Mata Pelajaran</td>
@@ -58,21 +38,26 @@
 					<td><?php foreach($nama_kelas as $kls){ echo $kls->nama_kelas; } ?></td>
 				</tr>
 				<tr>
-					<td>Tanggal Presensi </td>
-					<td><?php echo $tanggal?></td>
+					<td>Kompetensi Dasar </td>
+					<td><?php echo $post['nama_materi']?></td>
 				</tr>
 				<tr>
-					<td>Download Presensi </td>
+					<td>Nama Tugas </td>
+					<td><?php echo $post['nama_tugas']?></td>
+				</tr>
+				<tr>
+					<td>Download Nilai </td>
 					<td>
-						<form action="<?=base_url("guru/excel_presensi_harian")?>" method="post">
+						<form class="form-inline" action="<?=base_url("guru/excel_presensi_harian")?>" method="post">
 							<input type="hidden" name="kode_mapel" value="<?php echo $post['nama_mapel']; ?>">
-							<input type="hidden" name="kelas" value="<?php echo $post['nama_kelas']; ?>">
-							<input type="hidden" name="tanggal" value="<?php echo $post['tanggal']; ?>">
-							<input type="submit" class="btn btn-success" value="Download Excel"></form>
+							<input type="hidden" name="kelas" value="<?php foreach($nama_kelas as $kls){ echo $kls->nama_kelas; } ?>">
+							<input type="hidden" name="id_penugasan" value="<?php echo $post['id_penugasan']; ?>">
+							<input type="submit" class="btn btn-success form-inline" value="Download Excel"></form>
+						
 					</td>
 				</tr>
 			</table>
-			<div class="col-md-12"><p class="text-muted"><b>info:</b> <small>Untuk mengubah data nilai siswa per siswa silahkan gunakan tombol edit di samping baris data,<br>tombol warna hijau menandakan otomatis dari telegram selain itu tidak ada respon dari siswa</small> </p></div>
+			<div class="col-md-12"><p class="text-muted"><b>info:</b> <small>Untuk mengubah data nilai siswa per siswa silahkan gunakan tombol edit di samping baris data</small> </p></div>
 			<div class="table-scrollable">
 				<table class="display  table table-bordered" cellspacing="0" id="datapresensi" cellspacing="0"
 					width="100%">
@@ -83,17 +68,19 @@
 							<th>Nama</th>
 							<th>Nama Kelas</th>
 
-							<th>Tgl Pengumpulan </th>
+							
 
 							<th>Nilai</th>
 							<th>Keterangan</th>
-							<th>Modify</th>
-
+							
+			
+			
 						</tr>
 					</thead>
 					<tbody>
 						<?php
 				$no=0;
+				//print_r($siswa);
 				foreach($siswa as $nama): 
 				$no++;
 				?>
@@ -103,124 +90,53 @@
 							<td><?=$nama->nama?></td>
 							<td><?=$nama->kelas?></td>
 							<?php
-					$i=0;
-					$state=0;
-					$id_presensi=0;
-					$nama_mapel="";
-					foreach($presensi as $dt){
-
-							$i++;
-							if($dt->nipd==$nama->nipd){
-								echo "<td>".noHadir($dt->kehadiran)."</td>";
-								
-							}
-							
-							if($dt->nipd==$nama->nipd){
-								echo "<td>".$dt->jam_absen."</td>";
-							}
-							if($dt->nipd==$nama->nipd){
-								
-								echo "<td>".$dt->keterangan."</td>";
-								if($i>=1){
-									$state=1;
-									$id_presensi=$dt->id_presensi_online;
-								break;
-								
-								//run code loop di atas dan stop pda saat data yg sama lebih dari 1
-								}
-							}
-						
-						
-					}
-					if($state==0 AND $id_presensi==0){
-						echo "<td>Alpa</td><td>Tidak Ada</td><td>Tidak ada info</td>";
-					}
 					
-					?>
-							<td>
-								<form id="formPresensi<?=$no?>" class="form-inline" action=<?php if($state==0){ echo base_url('guru/insert_absensi'); }
-									 else { echo base_url('guru/update_absensi'); } ?> method="post">
-									<input id="idpresensi<?=$no?>" type="hidden" value="<?=$id_presensi?>"
-										name="idpresensi">
-									<input id="nipd<?=$no?>" type="hidden" value="<?=$nama->nipd?>" name="nipd">
-									<input id="telegram<?=$no?>" type="hidden" value="<?=$nama->id_telegram?>"
-										name="telegram">
-									<input id="nama<?=$no?>" type="hidden" value="<?=$nama->nama?>" name="nama">
-									<input id="mapel<?=$no?>" type="hidden" value="<?=$post['nama_mapel']?>"
-										name="nama_mapel">
-									<input id="kelas<?=$no?>" type="hidden" value="<?=$nama->kelas?>"
-										name="nama_kelas">
-									<input id="tanggal<?=$no?>" type="hidden" value="<?=$tanggal?>" name="tanggal">
-									<select id="kehadiran<?=$no?>" name="kehadiran" id="kehadiran">
-										<option value="1">Hadir</option>
-										<option value="s">Sakit</option>
-										<option value="i">Izin</option>
-										<option value="0">Alpa</option>
-									</select>
-									<input type="submit" <?php if($state==0){ ?>class="btn btn-primary"
-										<?php }else { echo 'class="btn btn-success"'; } ?> value="Edit">
-								</form>
-							</td>
-
+					foreach($nilai as $dt):
+						if($nama->nipd==$dt->nipd){
+						echo "<input type='hidden' id=idnilai$no value='$dt->id_tugas_siswa' name='idnilai'>";
+						echo "<td width='10%'>";
+						echo "<input type='hidden' class='form-inline nilaihidden col-md-10' value='$dt->nilai' name='nilai'>";
+						echo "<span class=dtshow >".$dt->nilai."<span>";
+						echo "</td>";
+						echo "<td width='20%'>";
+						echo "<span class=dtshow >".$dt->feedback_guru."</span>";
+						echo "<input type='hidden' class='form-inline nilaihidden' value='$dt->feedback_guru' name='feedback'>";
+						echo"</td>";
+						}
+				    endforeach;?>
 
 						</tr>
 
 
 						<?php endforeach; ?>
 					</tbody>
-
+					
 				</table>
 <div class="col-md-12"><p class="text-muted"><b>note:</b> <small>silahkan klik resend pada kotak dialog yang muncul setelah klik tombol simpan agar tampilan data sesuai perubahan , tombol simpan warna merah di bawah ini tidak perlu di klik apabila anda hanya ingin merubah 1 presensi data siswa</small> </p></div>
 			</div>
 
 		</div>
-		<div class="card-footer"><button id="presensiButtonSave" class="btn btn-danger"  type="submit">Simpan</button></div>
+		<div class="card-footer"><button id="ButtonSave" class="btn btn-secondary"  type="submit">Simpan</button>	<button class="btn btn-primary form-inline" id="btnMode">Mode Edit</button></div>
 	</div>
 </div>
 <script>
-$("#presensiButtonSave").click(function(e){
-	let urlInsert="<?php echo base_url("guru/multi_insert_absen"); ?>";
-	let urlUpdate="<?php echo base_url("guru/multi_update_absen"); ?>";
-	let jmlsiswa="<?=$jmlsiswa?>";
-	let dataUpdate=[];
-		let dataInsert=[];
-		
-	for(i=1;i<=jmlsiswa;i++){
-		console.log(i);
-		let form=$("#idpresensi"+i).val();
-		
-		let kodemapel=$("#kodemapelini").val();
-		let idpresensi=$("#idpresensi"+i).val();
-		let nipd=$("#nipd"+i).val();
-		let tele=$("#telegram"+i).val();
-		let kelas=$("#kelas"+i).val();
-		let nama=$("#nama"+i).val();
-		let tanggal=$("#tanggal"+i).val();
-		let kehadiran=$("#kehadiran"+i).val();
-		let keterangan="Absen Manual Guru Mapel";
-		if(form==0){
-			
-			console.log("action = insert");
-			//tempInsert.push(dataInsert);
-			dataInsert.push({id_telegram:tele,nama_siswa:nama,kelas:kelas,nipd:nipd,kode_mapel_ajar:kodemapel,kehadiran:kehadiran,tgl_absen:tanggal,jam_absen:'<?=date("h:m:s")?>',keterangan:keterangan,status:'1'});
-			
-		}else{
-			console.log("action = update");
-			dataUpdate.push({id_presensi_online:idpresensi,kehadiran:kehadiran,keterangan:keterangan});
-			
-			
-		}
+$("#btnMode").click(function(e){
+	//change hidden value to text
+	var btn=$("#btnMode").text();
+	if(btn=="Mode Edit"){
+		$(".nilaihidden").prop("type", "text");
+		$(".dtshow").hide();
+		$("#btnMode").html("View Mode");
+		$("#ButtonSave").toggleClass('btn-secondary btn-danger');
+	}else{
+		$(".nilaihidden").prop("type", "hidden");
+		$(".dtshow").show();
+		$("#btnMode").html("Mode Edit");
+		$("#ButtonSave").toggleClass('btn-danger btn-secondary');
 	}
-	console.log(dataInsert);
-	console.log(dataUpdate);
-	$.post( urlInsert, {dataInsert})
-  		.done(function( dataInsert ) {
-    		console.log("data berhasil simpan");
- 		});
-	$.post( urlUpdate, {dataUpdate})
-  		.done(function( dataUpdate ) {
-    		console.log("data berhasil ubah");
-  	});
-	  location.reload(); 
-	}); 
+	
+	console.log(btn);
+	
+});
+
 </script>

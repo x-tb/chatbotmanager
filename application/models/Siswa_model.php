@@ -207,5 +207,14 @@ class Siswa_model extends CI_Model {
         $this->db->order_by('api_siswa.idsiswa');
         return $this->db->get();
     }
+    public function getSiswaKelasByNamaKelas($kelas){
+        $namakelas=strtoupper($kelas);
+        $this->db->select('idsiswa,nipd,nama,kelas');
+        $this->db->from("api_siswa");
+      
+        $this->db->like("kelas",$namakelas);
+        $this->db->order_by('idsiswa');
+        return $this->db->get();
+    }
  
 }
