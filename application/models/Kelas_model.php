@@ -122,7 +122,7 @@ class Kelas_model extends CI_Model {
     public function getkelasByID($idkelas){
         $this->db->select('nama_kelas');
         $this->db->from("api_kelas");
-        $this->db->where('id_kelas',$idkelas);
+        $this->db->where('idkelas',$idkelas);
        // echo $idsiswa;
         return $this->db->get();
     }
@@ -143,5 +143,12 @@ class Kelas_model extends CI_Model {
     public function simpanKelas($data){
         return $this->db->insert("api_kelas",$data);
     }
-
+    public function getNamaKelasById($idkelas){
+        $this->db->select('nama_kelas');
+        $this->db->where('idkelas',$idkelas);
+        $q=$this->db->get('api_kelas')->result();
+        foreach($q as $dt){
+            return $dt->nama_kelas;
+        }
+    }
 }
