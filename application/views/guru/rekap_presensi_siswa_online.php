@@ -183,7 +183,7 @@ $("#presensiButtonSave").click(function(e){
 	let urlUpdate="<?php echo base_url("guru/multi_update_absen"); ?>";
 	let jmlsiswa="<?=$jmlsiswa?>";
 	let dataUpdate=[];
-		let dataInsert=[];
+	let dataInsert=[];
 		
 	for(i=1;i<=jmlsiswa;i++){
 		console.log(i);

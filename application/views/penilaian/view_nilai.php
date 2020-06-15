@@ -89,27 +89,47 @@
 				?>
 						<tr>
 							<td><?=$no?></td>
-							<td><?=$nama->nipd?></td>
+							<td><input type="hidden" id="nipd<?=$no?>" name="nipd"><?=$nama->nipd?></td>
 							<td><?=$nama->nama?></td>
 							<td><?=$nama->kelas?></td>
 							<?php
-					
+					$flagidnilai=0;
 					foreach($nilai as $dt):
 						if($nama->nipd==$dt->nipd){
-						echo "<input type='hidden' id=idnilai$no value='$dt->id_tugas_siswa' name='idnilai'>";
-						echo "<td width='10%'>";
-						echo "<input type='hidden' class='form-inline nilaihidden col-md-10' value='$dt->nilai' name='nilai'>";
-						echo "<span class=dtshow >".$dt->nilai."<span>";
-						echo "</td>";
-						echo "<td class='kolfeedback' width='20%'>";
-						echo "<span class=dtshow >".$dt->feedback_guru."</span>";
-						echo "<input type='hidden' class='form-inline nilaihidden' value='$dt->feedback_guru' name='feedback'>";
-						echo"</td>";
-						echo "<td class='kolportofolio'>";
-						echo "<input class='kolportofolio' type='text' id=link$no value='$dt->link_portofolio' name='linkportofolio'>";
-						echo "</td>";
+							$flagidnilai=$dt->id_tugas_siswa;
+							echo "<input type='hidden' id=idnilai$no value='$dt->id_tugas_siswa' name='idnilai'>";
+							echo "<input type='hidden' id=nilailama$no value='$dt->id_tugas_siswa' name='idnilai'>";
+							echo "<td width='10%'>";
+							echo "<input type='hidden'id=nilaibaru$no class='form-inline nilaihidden col-md-10' value='$dt->nilai' name='nilai'>";
+							echo "<span class=dtshow >".$dt->nilai."<span>";
+							echo "</td>";
+							echo "<td class='kolfeedback' width='20%'>";
+							echo "<span class=dtshow >".$dt->feedback_guru."</span>";
+							echo "<input type='hidden' id=feedback$no class='form-inline nilaihidden' value='$dt->feedback_guru' name='feedback'>";
+							echo"</td>";
+							echo "<td class='kolportofolio'>";
+							echo "<input class='kolportofolio' id=portofolio$no type='text' id=link$no value='$dt->link_portofolio' name='linkportofolio'>";
+							echo "</td>";
 						}
-				    endforeach;?>
+					endforeach;
+					if($flagidnilai==0){
+						echo "<input type='hidden' id=idnilai$no value='0' name='idnilai'>";
+						echo "<input type='hidden' id=nipd$no value=$nama->nipd name='nipd'>";
+							
+							echo "<td width='10%'>";
+							echo "<input type='hidden'id=nilai$no class='form-inline nilaihidden col-md-10' value='0' name='nilai'>";
+							echo "<span class=dtshow>0</span>";
+							echo "</td>";
+							echo "<td class='kolfeedback' width='20%'>";
+							echo "<span class=dtshow>belum ada feedback</span>";
+							echo "<input type='hidden' id=feedback$no class='form-inline nilaihidden' value='feedback guru' name='feedback'>";
+							echo"</td>";
+							echo "<td class='kolportofolio'>";
+							
+							echo "<input class='kolportofolio' id=portofolio$no type='text' id=link$no value='link kosong' name='linkportofolio'>";
+							echo "</td>";
+					}
+					?>
 
 						</tr>
 
@@ -118,6 +138,7 @@
 					</tbody>
 					
 				</table>
+			
 <div class="col-md-12"><p class="text-muted"><b>note:</b> <small>silahkan klik resend pada kotak dialog yang muncul setelah klik tombol simpan agar tampilan data sesuai perubahan , tombol simpan warna merah di bawah ini tidak perlu di klik apabila anda hanya ingin merubah 1 presensi data siswa</small> </p></div>
 			</div>
 
@@ -187,5 +208,54 @@ $("#btnPortofolio").click(function(e){
 	console.log(btn);
 	
 });
+
+$("#ButtonSave").click(function(e){
+	let urlInsert="<?php echo base_url("penilaian/multi_insert_absen"); ?>";
+	let urlUpdate="<?php echo base_url("penilaian/multi_update_absen"); ?>";
+	let jmlsiswa="<?=$jmlsiswa?>";
+	let idguru="<?=$post['id_guru']?>";
+	let idtugas="<?=$post['id_penugasan']?>";
+	let dataUpdate=[];
+	let dataInsert=[];
+		
+	for(i=1;i<=jmlsiswa;i++){
+		console.log(i);
+		let form=$("#idnilai"+i).val();
+		
+		let kodemapel=$("#kodemapelini").val();
+		let idnilai=$("#idnilai"+i).val();
+		let nipd=$("#nipd"+i).val();
+		let nilai=$("#nilai"+i).val();
+		let feedback=$("#feedback"+i).val();
+		let link=$("#link"+i).val();
+		let tanggal="<?=date("d/m/Y")?>";
+		
+		if(form==0){
+			
+			console.log("action = insert");
+			//tempInsert.push(dataInsert);
+			dataInsert.push({nipd:nipd,id_penugasan:idtugas,id_mapel:kodemapel,id_guru:idguru,tgl_pengumpulan:tanggal,nilai:nilai,feedback_guru:feedback,link_portofolio:link,link_video_yt:'link tidak ada',status:'1'});
+			
+		}else{
+			console.log("action = update");
+			dataUpdate.push({id_tugas_siswa:idnilai,tgl_pengumpulan:tanggal,nilai:nilai,feedback_guru:feedback});
+			
+			
+		}
+	}
+	console.log(dataInsert);
+	console.log(dataUpdate);
+	$.post( urlInsert, {dataInsert})
+  		.done(function( dataInsert ) {
+    		console.log("data berhasil simpan");
+ 		});
+	$.post( urlUpdate, {dataUpdate})
+  		.done(function( dataUpdate ) {
+    		console.log("data berhasil ubah");
+  	});
+	  location.reload(); 
+}); 
+	
+
 
 </script>

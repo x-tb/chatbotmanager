@@ -178,6 +178,7 @@ Class Penilaian extends CI_Controller{
       // echo $idtugas;
         $data['nama_kelas']=$this->Kelas_model->getKelasById($post['kelas'])->result();
         $data['siswa']=$this->Siswa_model->getSiswaKelasByNamaKelas($kelas)->result();
+        $data['jmlsiswa']=$this->Siswa_model->getSiswaKelasByNamaKelas($kelas)->num_rows();
         $data['nilai']=$this->Penilaian_model->getNilaiByTugas($idtugas)->result();
        // print_r($kelas);
         $data['post']=$post;
