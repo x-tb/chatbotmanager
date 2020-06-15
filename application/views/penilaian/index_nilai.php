@@ -143,9 +143,6 @@ foreach($pelajaran as $mp):
 				</tr>
 			</table>
 
-			<?php//enif empty
-
-			?>
 			<!-- end -->
 		</div>
 
