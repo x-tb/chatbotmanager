@@ -25,8 +25,8 @@
 
 ?>
 			<?php
-					
-					foreach($pelajaran as $mp): 
+		//	print_r($materi);		
+foreach($pelajaran as $mp):
 					
 						?>
 			<tr>
@@ -52,12 +52,13 @@
 					<th>Modify</th>
 				</tr>
 				<?php 
-                            $i=0;
-                            foreach($materi as $mt):
-                                $i++;
-                            if($mt->id_mapel==$mp->id_mapel){
+	//loop materi kd			
+    $i=0;
+    foreach($materi as $mt):
+       $i++;
+       if($mt->id_mapel==$mp->id_mapel){
 
-                            ?>
+           ?>
 
 
 				<tr>
@@ -65,11 +66,11 @@
 
 				</tr>
 				<?php
-                //materi start looop
-                $notugas=0;
-                foreach($tugas as $tg): 
+                //materi tugas start looop
+         $notugas=0;
+        foreach($tugas as $tg): 
                    
-								if($tg->id_materi==$mt->id_materi){
+			if($tg->id_materi==$mt->id_materi){
                                     $notugas++;
 								?>
 				<tr class="nomor">
@@ -98,80 +99,37 @@
 							<i class="fa fa-eye" aria-hidden="true">
 								lihat/edit &nbsp; </i>
 						</button>
+						<?php
+					
+						$data['kelas']=$kelas;
+						$data['id_tugas']=$tg->id_penugasan;
+						$data['nama_mapel']=$mp->nama_mapel;
+						$data['nama_kd']=$mt->nomor_nama_kd;
+						$data['id_guru']=$mt->idguru;
+						$data['id_mapel']=$mt->id_mapel;
+						$data['kode_mapel_ajar']=$mp->kode_mapel_ajar;
+						$data['nama_tugas']=$tg->nama_tugas;
 
-						<!-- Modal -->
-						<div class="modal fade" id="pilihanForm<?=$tg->id_penugasan?>" tabindex="-1" role="dialog"
-							aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-							<div class="modal-dialog modal-dialog-centered" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLongTitle">Pilih Kelas</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<form action="<?=base_url("penilaian/view_nilai")?>" method="post">
-									<div class="modal-body">
-										
-										<input type="hidden" value="<?=$tg->id_penugasan?>" name="id_penugasan">
-										<input type="hidden" value="<?php echo $mp->nama_mapel; ?>" name="nama_mapel">
-										<input type="hidden" value="<?=$mt->nomor_nama_kd?>" name="nama_materi">
-										<input type="hidden" value="<?=$mt->idguru?>" name="id_guru">
-										<input type="hidden" value="<?=$mt->id_mapel?>" name="id_mapel">
-										<input type="hidden" value="<?=$mp->kode_mapel_ajar?>" name="kode_mapel">
-										<input type="hidden" value="<?=$tg->nama_tugas?>" name="nama_tugas">
-										<table class="table table-bordered">
-											<tr>
-												<td>Kode Mata Pelajaran</td>
-												<td><?=$mp->kode_mapel_ajar?></td>
-											</tr>
-											<tr>
-												<td>Nama Mata Pelajaran</td>
-												<td><?php echo $mp->nama_mapel; ?></td>
-											</tr>
-											<tr>
-												<td>Nama Penugasan </td>
-												<td><?=$tg->nama_tugas?></td>
-											</tr>
-											<tr>
-												<td>Pilih Kelas </td>
-												<td><select class="form-control" name="kelas" id="kls">
-													<?php foreach($kelas as $kls):
-														if($kls->kode_mapel_ajar==$mp->kode_mapel_ajar){
-														?>
-												<option  value="<?=$kls->id_kelas?>"><?=$kls->nama_kelas?></option>
-													<? } endforeach; ?>
-												</select></td>
-											</tr>
-										</table>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary btn-sm"
-											data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-success btn-sm">Lanjut <i></i></button>
-									</div>
-									</form>
-								</div>
-							</div>
-						</div>
+						$this->load->view('penilaian/modal_pilihan_kelas',$data); ?>
+
 					</td>
 
 
 				</tr>
 				<?php 
-                //endloop for id materi content
-								}
-						endforeach; ?>
+            //endloop for id materi content
+    		}
+	    	endforeach; ?>
 
 				<?php
                 //end loop mapel kd
-             } ?>
+         } ?>
 				<?php 
                         //end loop mapel
-                        endforeach; ?>
+        endforeach; ?>
 			</table>
 			<hr>
-			<?php endforeach; ?>
+<?php endforeach ?>
 			<table class="table table-bordered">
 				<tr>
 					<th>Total Tagihan Nilai Akademik Anda </th>
@@ -185,7 +143,9 @@
 				</tr>
 			</table>
 
+			<?php//enif empty
 
+			?>
 			<!-- end -->
 		</div>
 
@@ -193,6 +153,7 @@
 	</div>
 
 </div>
+				
 <script>
 	var numItems = $('.nomor').length;
 	$("#totalTagihanNilai").html(numItems + " Item");

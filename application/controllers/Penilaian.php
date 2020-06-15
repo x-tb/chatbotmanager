@@ -25,10 +25,13 @@ Class Penilaian extends CI_Controller{
         $mail=$this->session->userdata('email');
         $idguru=$this->Guru_model->getIDguruFromMail($mail);
         $idguru=$this->Guru_model->getIDguruFromMail($mail);
+        
         $data['pelajaran']=$this->Materi_model->getMapelByIdGuru($idguru);
+        //print_r($data['pelajaran']);
         $data['materi'] = $this->Materi_model->getMateriByIdGuru($idguru);
         $data['tugas']=$this->Penugasan_model->getTugasNilaiByGuru($idguru);
         $data['kelas']=$this->Mapel_model->getKelasByIdGuru($idguru);
+       // print_r($data);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
