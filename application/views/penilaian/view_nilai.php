@@ -57,9 +57,11 @@
 					</td>
 				</tr>
 			</table>
-			<div class="col-md-12"><p class="text-muted"><b>info:</b> <small>Untuk mengubah data nilai siswa per siswa silahkan gunakan tombol edit di samping baris data</small> </p></div>
+			<div class="row">
+			<div class="col-md-8"><p class="text-muted"><b>info:</b> <small>Untuk menambahkan portofolio atau feedback guru silahkan checklist tombol disamping </small></p></div><div class="col-md-4"><button id="btnFeedback" class="btn btn-primary btn-sm" id="kolfeedback"> <i class="fa fa-check text-white"> &nbsp;Feedback <small>Guru</small></i></button>&nbsp;<button id="btnPortofolio" class="btn btn-success btn-sm" > <i class="fa fa-check text-white"> &nbsp;Link <small>Portofolio</small></i></button> </div>
+			</div>
 			<div class="table-scrollable">
-				<table class="display  table table-bordered" cellspacing="0" id="datapresensi" cellspacing="0"
+				<table class="display bg-light table table-bordered" cellspacing="0" id="datapresensi" cellspacing="0"
 					width="100%">
 					<thead>
 						<tr>
@@ -71,7 +73,8 @@
 							
 
 							<th>Nilai</th>
-							<th>Keterangan</th>
+							<th class="kolfeedback">Feedback <small>guru</small></th>
+							<th class="kolportofolio">Link <small>Portofolio</small></th>
 							
 			
 			
@@ -98,10 +101,13 @@
 						echo "<input type='hidden' class='form-inline nilaihidden col-md-10' value='$dt->nilai' name='nilai'>";
 						echo "<span class=dtshow >".$dt->nilai."<span>";
 						echo "</td>";
-						echo "<td width='20%'>";
+						echo "<td class='kolfeedback' width='20%'>";
 						echo "<span class=dtshow >".$dt->feedback_guru."</span>";
 						echo "<input type='hidden' class='form-inline nilaihidden' value='$dt->feedback_guru' name='feedback'>";
 						echo"</td>";
+						echo "<td class='kolportofolio'>";
+						echo "<input class='kolportofolio' type='text' id=link$no value='$dt->link_portofolio' name='linkportofolio'>";
+						echo "</td>";
 						}
 				    endforeach;?>
 
@@ -120,6 +126,12 @@
 	</div>
 </div>
 <script>
+// A $( document ).ready() block.
+$( document ).ready(function() {
+    $(".kolfeedback").hide();
+	$(".kolportofolio").hide();
+
+});
 $("#btnMode").click(function(e){
 	//change hidden value to text
 	var btn=$("#btnMode").text();
@@ -133,6 +145,43 @@ $("#btnMode").click(function(e){
 		$(".dtshow").show();
 		$("#btnMode").html("Mode Edit");
 		$("#ButtonSave").toggleClass('btn-danger btn-secondary');
+	}
+	
+	
+});
+
+$("#btnFeedback").click(function(e){
+	//change hidden value to text
+	var btn=$("#btnFeedback").text();
+	if(btn=="   Feedback Guru"){
+		
+		$(".kolfeedback").show();
+		$("#btnFeedback").html("<i class='fa fa-check text-white' > No Feedback <small>Guru</small></i>");
+		$("#btnFeedback").toggleClass('btn-primary btn-secondary');
+	}else{
+		
+		$(".kolfeedback").hide();
+		$("#btnFeedback").html("<i class='fa fa-check text-white' >   Feedback <small>Guru</small></i>");
+		$("#btnFeedback").toggleClass('btn-secondary btn-primary');
+	}
+	
+	console.log(btn);
+	
+});
+
+$("#btnPortofolio").click(function(e){
+	//change hidden value to text
+	var btn=$("#btnPortofolio").text();
+	if(btn=="   Link Portofolio"){
+		
+		$(".kolportofolio").show();
+		$("#btnPortofolio").html("<i class='fa fa-check text-white' >   No Link <small>Portofolio</small></i>");
+		$("#btnPortofolio").toggleClass('btn-success btn-secondary');
+	}else{
+		
+		$(".kolportofolio").hide();
+		$("#btnPortofolio").html("<i class='fa fa-check text-white' >   Link <small>Portofolio</small></i>");
+		$("#btnPortofolio").toggleClass('btn-secondary btn-success');
 	}
 	
 	console.log(btn);
