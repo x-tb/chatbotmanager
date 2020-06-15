@@ -15,6 +15,12 @@ class Penilaian_model extends CI_model{
         $this->db->from($this->table);
         return $this->db->get();
     }
+    public function insert_nilai_batch($data){
+        return $this->db->insert_batch($this->table, $data);
+    }
+    public function update_nilai_batch($data){
+        return $this->db->update_batch($this->table, $data,'id_tugas_siswa');
+    }
 }
 
 ?>

@@ -190,6 +190,27 @@ Class Penilaian extends CI_Controller{
         $this->load->view('penilaian/view_nilai', $data);
         $this->load->view('templates/footer');
     }
+    public function multi_insert_nilai(){
+        $datainsert=$this->input->post('dataInsert');
+        $cek=$this->Penilaian_model->insert_nilai_batch($datainsert);
+        if($cek==TRUE){
+            echo "Berhasil Simpan Data Nilai Baru";
+        }else{
+            echo "Gagal Insert multi nilai ajax";
+        }
+        //print_r($datainsert);
+    }
+    public function multi_update_nilai(){
+        $dataupdate=$this->input->post('dataUpdate');
+        $cek=$this->Penilaian_model->update_nilai_batch($dataupdate);
+        //print_r($dataupdate);
+        if($cek==TRUE){
+            echo "Berhasil Ubah Data nilai Baru";
+            
+        }else{
+            echo "Gagal Ubah multi nilai ajax";
+        }
+    }
 }
 
 ?>
