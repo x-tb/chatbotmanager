@@ -10,11 +10,13 @@ Class Penilaian extends CI_Controller{
         $this->load->model('Siswa_model');
         $this->load->model('Guru_model');
         $this->load->model('Mapel_model');
+        $this->load->model('Kelas_model');
         $this->load->model('Mengajar_model');
         $this->load->model('Penugasan_model');
         $this->load->model('Materi_model');
         $this->load->model('Presensi_model');
         $this->load->model('Kelas_model');
+        $this->load->model('Penilaian_model');
       
     }
     public function index()
@@ -28,6 +30,7 @@ Class Penilaian extends CI_Controller{
         
         $data['pelajaran']=$this->Materi_model->getMapelByIdGuru($idguru);
         //print_r($data['pelajaran']);
+        
         $data['materi'] = $this->Materi_model->getMateriByIdGuru($idguru);
         $data['tugas']=$this->Penugasan_model->getTugasNilaiByGuru($idguru);
         $data['kelas']=$this->Mapel_model->getKelasByIdGuru($idguru);
@@ -38,21 +41,7 @@ Class Penilaian extends CI_Controller{
         $this->load->view('penilaian/index_nilai', $data);
         $this->load->view('templates/footer');
     }
-    public function tipe_penilaian() {
-        $data['title'] = 'Daftar Materi Mengajar Guru SMK Taruna Bhakti ';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        
-        $mail=$this->session->userdata('email');
-        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
-        $idguru=$this->Guru_model->getIDguruFromMail($mail);
-        $data['mapel'] = $this->Materi_model->getMapelGuru($idguru);
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        // $this->load->view('guru/form_input_guru_ajar', $data);
-        $this->load->view('penilaian/daftar_nilai_kelas', $data);
-        $this->load->view('templates/footer');
-    }
+ 
     public function upload_nilai(){
         $post=$this->input->post();
         $idtugas=$post['id_penugasan'];
@@ -179,9 +168,18 @@ Class Penilaian extends CI_Controller{
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $mail=$this->session->userdata('email');
         $idguru=$this->Guru_model->getIDguruFromMail($mail);
+       
+       
         $post=$this->input->post();
-        //$data['nama_kelas']=$this->Kelas_model->getKelasById($post['kelas'])->result();
-        print_r($post);
+       // $data['nama_kelas']=$this->Kelas_model-> getkelasByID($idkelas)->result();
+       $idkelas=$post['kelas'];
+       $idtugas=$post['id_penugasan'];
+       $kelas=$this->Kelas_model->getNamaKelasById($idkelas);
+      // echo $idtugas;
+        $data['nama_kelas']=$this->Kelas_model->getKelasById($post['kelas'])->result();
+        $data['siswa']=$this->Siswa_model->getSiswaKelasByNamaKelas($kelas)->result();
+        $data['nilai']=$this->Penilaian_model->getNilaiByTugas($idtugas)->result();
+       // print_r($kelas);
         $data['post']=$post;
        
         $data['tugas']=$this->Penugasan_model->getTugasNilaiByGuru($idguru);
