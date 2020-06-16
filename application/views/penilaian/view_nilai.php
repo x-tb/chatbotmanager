@@ -19,8 +19,7 @@
 
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Rekap Nilai Mata Pelajaran  :
-				 Pada Tugas</h6>
+			<h6 class="m-0 font-weight-bold text-primary">Rekap Nilai Mata Pelajaran </h6>
 		</div>
 		<div class="card-body">
 
@@ -61,14 +60,14 @@
 			<div class="col-md-8"><p class="text-muted"><b>info:</b> <small>Untuk menambahkan portofolio atau feedback guru silahkan checklist tombol disamping </small></p></div><div class="col-md-4"><button id="btnFeedback" class="btn btn-primary btn-sm" id="kolfeedback"> <i class="fa fa-check text-white"> &nbsp;Feedback <small>Guru</small></i></button>&nbsp;<button id="btnPortofolio" class="btn btn-success btn-sm" > <i class="fa fa-check text-white"> &nbsp;Link <small>Portofolio</small></i></button> </div>
 			</div>
 			<div class="table-scrollable">
-				<table class="display bg-light table table-bordered" cellspacing="0" id="datapresensi" cellspacing="0"
+				<table class="display  table table-bordered" cellspacing="0" id="datapresensi" cellspacing="0"
 					width="100%">
 					<thead>
-						<tr>
+						<tr class="bg-light">
 							<th>No</th>
 							<th>NIPD</th>
 							<th>Nama</th>
-							<th>Nama Kelas</th>
+							<th>Nama <small>Kelas</small></th>
 
 							
 
@@ -139,7 +138,7 @@
 					
 				</table>
 			
-<div class="col-md-12"><p class="text-muted"><b>note:</b> <small>silahkan klik resend pada kotak dialog yang muncul setelah klik tombol simpan agar tampilan data sesuai perubahan , tombol simpan warna merah di bawah ini tidak perlu di klik apabila anda hanya ingin merubah 1 presensi data siswa</small> </p></div>
+<div class="col-md-12"><p class="text-muted"><b>note:</b> <small>silahkan klik resend pada kotak dialog yang muncul setelah klik tombol simpan agar tampilan data sesuai perubahan</small> </p></div>
 			</div>
 
 		</div>
