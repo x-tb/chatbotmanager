@@ -19,7 +19,7 @@
 
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Rekap Nilai Mata Pelajaran </h6>
+			<h6 class="m-0 font-weight-bold text-primary">Rekap Nilai Mata Pelajaran di SMK Taruna Bhakti </h6>
 		</div>
 		<div class="card-body">
 
