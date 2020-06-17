@@ -3,10 +3,10 @@
 class Catatan_wawancara_model extends CI_Model {
  
     var $table = 'hasil_test_wawancara_ppdb_siswa'; //nama tabel dari database
-    var $column_order = array('id_wawancara','nomor_ppdb','catatan','id_telegram','username_telegram','status'); //field yang ada di table user
+    var $column_order = array('id_wawancara','nomor_ppdb','catatan','tanggal_kegiatan','id_telegram','username_telegram','status'); //field yang ada di table user
     var $column_search = array('nomor_ppdb','catatan','id_telegram','username_telegram','status'); //field yang diizin untuk pencarian 
     var $order = array('id_wawancara' => 'asc'); // default order 
-    public $id_wawancara,$nomor_ppdb,$catatan,$jkl,$tempat_lahir,$tanggal_lahir,$pilihan_1,$pilihan_2,$asal_sekolah,$username_telegram,$status;
+    public $id_wawancara,$nomor_ppdb,$catatan,$tanggal_kegiatan,$jkl,$tempat_lahir,$tanggal_lahir,$pilihan_1,$pilihan_2,$asal_sekolah,$username_telegram,$status;
 
     public function __construct()
     {
@@ -16,7 +16,7 @@ class Catatan_wawancara_model extends CI_Model {
    
     private function _get_datatables_query()
     {
-        $this->db->select("id_wawancara,calon_siswa.nomor_ppdb,nama,tempat_lahir,tanggal_lahir,pilihan_1,pilihan_2,asal_sekolah,catatan,username_telegram,");
+        $this->db->select("id_wawancara,calon_siswa.nomor_ppdb,nama,tempat_lahir,tanggal_lahir,pilihan_1,pilihan_2,asal_sekolah,catatan,tanggal_kegiatan,username_telegram,");
         $this->db->join('calon_siswa','calon_siswa.nomor_ppdb=hasil_test_wawancara_ppdb_siswa.nomor_ppdb') ;
         $this->db->from($this->table);
  
@@ -88,5 +88,11 @@ class Catatan_wawancara_model extends CI_Model {
         $this->db->where($key, $where); // OTHER CONDITIONS IF ANY
         $this->db->from($tabel); //TABLE NAME
         return $this->db->count_all_results();
+    }
+    public function get_catatan_rekap(){
+        $this->db->select("id_wawancara,calon_siswa.nomor_ppdb,nama,tempat_lahir,tanggal_lahir,pilihan_1,pilihan_2,asal_sekolah,catatan,tanggal_kegiatan,username_telegram,");
+        $this->db->join('calon_siswa','calon_siswa.nomor_ppdb=hasil_test_wawancara_ppdb_siswa.nomor_ppdb') ;
+        $this->db->from($this->table);
+        return $this->db->get();
     }
 }

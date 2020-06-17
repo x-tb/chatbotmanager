@@ -17,7 +17,8 @@
 			<h6 class="m-0 font-weight-bold text-primary">Data Catatan Wawancara Calon Siswa PPDB SMK Taruna Bhakti </h6>
 		</div>
 		<div class="card-body">
-
+<div class="col-md-6"><a class="btn btn-success" href="<?=base_url("dashboardppdb/export_excel_rekap_catatan")?>">Export Excel</a></div>
+<hr>
 			
 			<table class="display table table-bordered" cellspacing="0" id="datawawancara" 
 				cellspacing="0" width="100%">
@@ -32,6 +33,7 @@
 						<th>Pilihan 2</th>
 						<th>Asal Sekolah</th>
                         <th>Catatan </th>
+						<th>Tgl Kegiatan</th>
                         <th>Petugas</th>
                        
 						<th>Modify</th>

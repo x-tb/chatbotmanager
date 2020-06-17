@@ -180,7 +180,7 @@ Class Dashboardppdb extends CI_Controller {
         foreach ($list as $field) {
             $no++;
             $row = array();
-            $row[] = $field->id_wawancara;
+            $row[] = $no;
             $row[] = $field->nomor_ppdb;
             $row[] = $field->nama;
            
@@ -190,6 +190,7 @@ Class Dashboardppdb extends CI_Controller {
           
             $row[] =$field->asal_sekolah;
             $row[]=$field->catatan;
+            $row[]=$field->tanggal_kegiatan;
             $row[]=$field->username_telegram;
           
             $row[] = "<a href='" . base_url("dashboardppdb/hapus_catatan/$field->id_wawancara") . "' class='btn btn-danger btn-sm' >hapus</a>";
@@ -204,6 +205,20 @@ Class Dashboardppdb extends CI_Controller {
         );
         //output dalam format JSON
         echo json_encode($output);
+    }
+    public function export_excel_rekap_catatan()
+    {
+        $data['title'] = 'Data Catatan Calon siswa';
+        $data['namafile']="rekap_catatan_ppdb_".date("d_m_Y");
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mail=$this->session->userdata('email');
+        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+        $data['calon']=$this->Catatan_wawancara_model->get_catatan_rekap()->result();
+       
+        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $this->load->view('ppdb/export_excel_catatan', $data);
+     
     }
     public function hapus_catatan($id){
         $hapus=$this->Catatan_wawancara_model->delete($id);
