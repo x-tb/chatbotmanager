@@ -112,29 +112,15 @@ class Materi_model extends CI_Model {
         
 
     }
-    public function update()
-    {
-        $post = $this->input->post();
-        $data_source=array(
-            'idguru' => $post['idguru'], 
-            'nama' => $post['nama'],
-            'nik'=>$post['nipk'],
-            'kode_jurusan'=>$this->convertKodeJurusan($post['komli']),
-            'komli' => $post['komli'],
-            'kelas' => $post['kelas'],
-            'tempat_lahir' => $post['tempat'],
-            'tanggal_lahir' => $post['tgl_lahir'],
-            'foto_nipd'=>$post['foto_nipd'],
-            'status'=>$post['status'] 
-        );
-        
-        return $this->db->update('un_siswa', $data_source, array('idsiswa' => $post['idsiswa']));
+    public function editMateriAjar($data){
+       
+        $this->db->where('id_materi', $id);
+        return $this->db->update($this->table, $data);
     }
-  
 
     public function delete($id)
     {
-        return $this->db->delete($this->table, array("idguruajar" => $id));
+        return $this->db->delete($this->table, array("id_materi" => $id));
     }
   
     public function getTotalTb($tabel,$key,$where){
@@ -145,7 +131,7 @@ class Materi_model extends CI_Model {
    
     public function simpanMateriAjar($data){
        
-    return $this->db->insert('api_link_materi', $data);
+     return $this->db->insert('api_link_materi', $data);
     }
     public function getMapelGuru($idguru){
         $this->db->select('api_guru_ajar.idguru,api_guru_ajar.id_mapel,api_mapel.nama_mapel');
@@ -179,6 +165,13 @@ class Materi_model extends CI_Model {
         foreach($q as $d){
             return $d->nomor_nama_kd;
         }
+    }
+    public function getOneMateribyId($id){
+        //$this->db->select("api_link_materi.id_materi,api_link_materi.nomor_nama_kd,api_link_materi.topik_pembahasan,api_link_materi.link_materi,api_link_materi");
+        $this->db->from('api_link_materi');
+        $this->db->where('api_link_materi.id_materi',$id);
+        
+        return $this->db->get();
     }
  
 }
