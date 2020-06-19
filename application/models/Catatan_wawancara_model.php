@@ -4,7 +4,7 @@ class Catatan_wawancara_model extends CI_Model {
  
     var $table = 'hasil_test_wawancara_ppdb_siswa'; //nama tabel dari database
     var $column_order = array('id_wawancara','nomor_ppdb','catatan','tanggal_kegiatan','id_telegram','username_telegram','status'); //field yang ada di table user
-    var $column_search = array('nomor_ppdb','catatan','id_telegram','nama','username_telegram','status'); //field yang diizin untuk pencarian 
+    var $column_search = array('nomor_ppdb','catatan','tanggal_kegiatan','id_telegram','username_telegram','status'); //field yang diizin untuk pencarian 
     var $order = array('id_wawancara' => 'asc'); // default order 
     public $id_wawancara,$nomor_ppdb,$catatan,$tanggal_kegiatan,$jkl,$tempat_lahir,$tanggal_lahir,$pilihan_1,$pilihan_2,$asal_sekolah,$username_telegram,$status;
 
