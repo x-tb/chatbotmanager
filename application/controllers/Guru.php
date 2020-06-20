@@ -41,6 +41,22 @@ Class Guru extends CI_Controller {
         $this->load->view('templates/footer');
     }
    
+    public function form_edit_materi($id) {
+        $data['title'] = 'Form edit Materi Mengajar  ';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mail=$this->session->userdata('email');
+        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+        $data['mapel'] = $this->Materi_model->getMapelGuru($idguru);
+        $data['materi']=$this->Materi_model->getOneMateribyId($id)->result();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $this->load->view('guru/form_edit_materi', $data);
+        $this->load->view('templates/footer');
+    }
+   
    
 
     public function proses_simpan_materi_guru() {
@@ -67,6 +83,29 @@ Class Guru extends CI_Controller {
             redirect(base_url("guru/daftar_materi/gagal_simpan_materi"));
         }
     }
+    public function proses_edit_materi_guru() {
+        $post = $this->input->post();
+        //print_r($post);
+        $kodemp = $this->Mapel_model->get_kode_mapel($post['id_mapel']);
+        $kodemapelajar = $kodemp . "-" . $post['idguru'];
+        $data = array(
+            'nomor_nama_kd' => $post['namakd'],
+            'topik_pembahasan' => $post['topik'],
+            'link_materi' => $post['link_materi'],
+            'idguru' => $post['idguru'],
+            'id_mapel' => $post['id_mapel'],
+            'topik_pembahasan' => $post['topik'],
+            'pertemuan_ke' => $post['pertemuanawal'],
+            'pertemuan_hingga' => $post['pertemuanakhir']
+            
+        );
+        $save= $this->Materi_model->editMateriAjar($data);
+        if($save==TRUE){
+            redirect(base_url("guru/daftar_materi/sukses_simpan_materi"));
+        }else{
+            redirect(base_url("guru/daftar_materi/gagal_simpan_materi"));
+        }
+    }
 
     function get_materi_mengajar() {
         
@@ -86,7 +125,7 @@ Class Guru extends CI_Controller {
             $row[] = $field->tapel;
            
 
-            $row[] = "<a href='" . base_url("admin/edit_materi/$field->id_materi") . "' class='btn btn-success btn-sm' >Edit</a>";
+            $row[] = "<a href='" . base_url("guru/form_edit_materi/$field->id_materi") . "' class='btn btn-success btn-sm' >Edit</a>";
             $data[] = $row;
         }
 
@@ -217,7 +256,7 @@ Class Guru extends CI_Controller {
         $data['presensi'] = $this->Presensi_model->RekapRangePresensi(strtolower($post['nama_mapel']),$post['nama_kelas'],$this->dateToTanggal($post['startdate']),$this->dateToTanggal($post['enddate']))->result();
         $data['dataijin'] = $this->Presensi_model->rekap_ijin_siswa(strtolower($post['nama_mapel']),$post['nama_kelas'],$this->dateToTanggal($post['startdate']),$this->dateToTanggal($post['enddate']))->result();
         $data['datasakit'] = $this->Presensi_model->rekap_sakit_siswa(strtolower($post['nama_mapel']),$post['nama_kelas'],$this->dateToTanggal($post['startdate']),$this->dateToTanggal($post['enddate']))->result();
-        //print_r($data['presensi']);
+       // print_r($data['datasakit']);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);

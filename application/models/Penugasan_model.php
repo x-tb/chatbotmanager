@@ -113,8 +113,8 @@ class Penugasan_model extends CI_Model {
     public function updateData($id,$data)
     {
       
-    $this->db->where('id_penugasan', $id);
-    return $this->db->update($this->table, $data);
+        $this->db->where('id_penugasan', $id);
+        return $this->db->update($this->table, $data);
     }
   
 

@@ -299,6 +299,10 @@
             			myAlert("Pesan", "Anda Gagal mengenroll kelas dalam mata pelajaran ", "error");
             		} else if (data[6] == "sukses_edit_presensi") {
             			myAlert("Pesan", "Selamat Anda telah berhasil mengubah Presensi kehadiran ", "success");
+            		}else if (data[6] == "gagal_simpan_materi") {
+            			myAlert("Pesan", "Maaf Gagal Update data baru ", "error");
+            		}else if (data[6] == "sukses_simpan_materi") {
+            			myAlert("Pesan", "Selamat Anda telah berhasil Menyimpan KD dan Materi Baru ", "success");
             		}
 
 

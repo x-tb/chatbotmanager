@@ -144,14 +144,21 @@
 								if(!empty($datasakit)){
 									foreach($datasakit as $sakit){
 										if($dt->nipd==$sakit->nipd){
-											if($ijin->ttl_sakit>0){
-												$totalsakit=$ijin->ttl_sakit;
-												echo "<td>".$ijin->ttl_sakit."</td>";
+											if($sakit->ttl_sakit>0){
+												$totalsakit=$sakit->ttl_sakit;
+												echo "<td>".$sakit->ttl_sakit."</td>";
+											
 											}else{
 												$totalsakit=0;
 												echo "<td>0</td>";
 											}
+											
 										}
+										else{
+											$totalijin=0;
+											echo "<td>0</td>";
+										}
+
 									}
 								}else{
 									$totalsakit=0;
@@ -163,6 +170,7 @@
 											if($ijin->ttl_ijin>0){
 												$totalijin=$ijin->ttl_ijin;
 												echo "<td>".$ijin->ttl_ijin."</td>";
+											
 											}else{
 												$totalijin=0;
 												echo "<td>0</td>";
