@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2020 at 01:17 PM
+-- Generation Time: Jun 17, 2020 at 04:54 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -158,7 +158,7 @@ CREATE TABLE `api_kelas` (
 -- Dumping data for table `api_kelas`
 --
 
-INSERT INTO `api_kelas` (`idkelas`, `nama_kelas`, `group_telegram`, `nama_walas`, `uname_telegram`, `kode_jurusan`, `tapel`, `status`) VALUES
+INSERT INTO `api_kelas` (`idkelas`, å`nama_kelas`, `group_telegram`, `nama_walas`, `uname_telegram`, `kode_jurusan`, `tapel`, `status`) VALUES
 (1, 'XII RPL 1', '@xii_rpl_1', 'Hesti Herawati', '@hestihera', 3, '2019/2020', 1),
 (2, 'XII RPL 2', '@xii_rpl_2', 'Verra Rousmawati', '@verraphi', 3, '2019/2020', 1),
 (3, 'XI RPL 1', '-1001485794207', 'Novita Ambarwati', '@novitaambarwati', 3, '2019/2020', 1),
@@ -190,14 +190,19 @@ CREATE TABLE `api_link_materi` (
 --
 
 INSERT INTO `api_link_materi` (`id_materi`, `nomor_nama_kd`, `topik_pembahasan`, `link_materi`, `idguru`, `id_mapel`, `pertemuan_ke`, `pertemuan_hingga`, `tapel`, `status`) VALUES
-(1, '3.15. Memodifikasi Website Interaktif', 'pembuatan form ajax', 'http://portal.smktarunabhakti.net/webinteraktif', 40, 20, 1, 2, '2019/2020', 1),
-(2, '4.15 Membuat web interaktif', 'praktek membuat form autocomplete dan CRUD dengan php ajax tanpa loading', 'http://portal.smktarunabhakti.net/webinteraktifpraktek', 40, 20, 3, 5, '2019/2020', 1),
-(3, '3.16 Menerapkan web hosting', 'memahami tata cara hosting web aplikasi', 'http://portal.smktarunabhakti.net/webihosting', 40, 20, 6, 7, '2019/2020', 1),
 (4, '3.21 Menerapkan Pemrograman Mobile', 'memahami arsitektur pemrograman perangkat bergerak', 'http://portal.smktarunabhakti.net/mobileajar', 40, 22, 1, 2, '2019/2020', 1),
-(5, '3.17 Menerapkan konsep sistem informasi', 'konsep sistem informasi berbasis web', 'http://portal.smktarunabhakti.net/websistem', 40, 20, 8, 9, '2019/2020', 1),
 (6, '3.22 Membuat List Dari Aplikasi Mobile', 'list dalam aplikasi android', 'http://portal.smktarunabhakti.net/mobileajarlist', 40, 22, 3, 4, '2019/2020', 1),
 (7, '3.10 Mengenal Konsep Objek dan Class', 'mengenal objek dan class dalam java', 'http://portal.smktarunabhakti.net/objek', 5, 19, 1, 2, '2019/2020', 1),
-(8, '3.16 Menerapkan Operasi File', 'modul PWPB SMK Taruna Bhakti Halaman 40 cek juga video tutorial di youtube puguhrismadi', '', 40, 20, 9, 10, '2019/2020', 1);
+(9, '3.1 Memahami Teknologi Web Server', 'Materi pada KD ini di gabung dengan KD berikut nya', 'https://portal.smktarunabhakti.net', 40, 20, 1, 1, '2019/2020', 1),
+(10, '3.2 Menerapkan Server Side Scripting', 'Materi ini digabung dengan KD sebelumnya', 'https://portal.smktarunabhakti.net', 40, 20, 1, 1, '2019/2020', 1),
+(11, '3.3 Menerapkan Struktur Kendali Program', 'Materi Struktur kendali lihat di modul 1 pwpb', 'https://portal.smktarunabhakti.net', 40, 20, 2, 2, '2019/2020', 1),
+(12, '3.4 Menerapkan Fungsi dalam program', 'Materi di modul pwpb 1', 'https://portal.smktarunabhakti.net', 40, 20, 2, 2, '2019/2020', 1),
+(13, '3.5 Menerapkan Library Standar dalam program', 'Materi lihat modul pwpb edisi kedua', 'https://portal.smktarunabhakti.net', 40, 20, 3, 4, '2019/2020', 1),
+(15, '3.15. Memodifikasi Website Interaktif', 'pembuatan form ajax', 'http://portal.smktarunabhakti.net/webinteraktif', 40, 20, 1, 2, '2019/2020', 1),
+(16, '4.15 Membuat web interaktif', 'praktek membuat form autocomplete dan CRUD dengan php ajax tanpa loading', 'http://portal.smktarunabhakti.net/webinteraktifpraktek', 40, 20, 3, 5, '2019/2020', 1),
+(17, '3.16 Menerapkan web hosting', 'memahami tata cara hosting web aplikasi', 'http://portal.smktarunabhakti.net/webihosting', 40, 20, 6, 7, '2019/2020', 1),
+(18, '3.17 Menerapkan konsep sistem informasi', 'konsep sistem informasi berbasis web', 'http://portal.smktarunabhakti.net/websistem', 40, 20, 8, 9, '2019/2020', 1),
+(19, '3.16 Menerapkan Operasi File', 'modul PWPB SMK Taruna Bhakti Halaman 40 cek juga video tutorial di youtube puguhrismadi', 'https://portal.smktarunabhakti.net', 40, 20, 9, 10, '2019/2020', 1);
 
 -- --------------------------------------------------------
 
@@ -349,20 +354,26 @@ CREATE TABLE `api_penugasan` (
 --
 
 INSERT INTO `api_penugasan` (`id_penugasan`, `id_materi`, `idguru`, `id_mapel`, `tipe_tugas`, `nama_tugas`, `deskripsi_tugas`, `tgl_penugasan`, `waktu_buka`, `deadline_tugas`, `waktu_tutup`, `tapel`, `status`) VALUES
-(1, 1, 40, 20, 'Projek', 'Projek Website interaktif', 'deskripsi tugas web interaktif', '2020-05-30', '19:00', '2020-06-02', '09:00', '2019/2020', 1),
-(2, 2, 40, 20, 'Projek', 'Membuat web interaktif dengan PHP dan ajax', 'membuat web dengan php dan ajax tanpa loading', '2020-06-01', '07:30', '2020-06-03', '21:00', '2019/2020', 1),
-(3, 5, 40, 20, 'Projek', 'Ulangan Harian 3 di portal belajar', 'UH di portal belajar SMK Taruna Bhakti', '2020-06-03', '09:00', '2020-06-03', '10:00', '2019/2020', 1),
+(1, 16, 40, 20, 'Projek', 'Projek Website interaktif', 'deskripsi tugas web interaktif', '2020-05-30', '19:00', '2020-06-02', '09:00', '2019/2020', 1),
+(2, 16, 40, 20, 'Projek', 'Membuat web interaktif dengan PHP dan ajax', 'membuat web dengan php dan ajax tanpa loading', '2020-06-01', '07:30', '2020-06-03', '21:00', '2019/2020', 1),
+(3, 16, 40, 20, 'Projek', 'Ulangan Harian 3 di portal belajar', 'UH di portal belajar SMK Taruna Bhakti', '2020-06-03', '09:00', '2020-06-03', '10:00', '2019/2020', 1),
 (4, 4, 40, 22, 'UH', 'UH 1 Konsep pemrograman mobile', 'konsep pemrograman mobile di portal belajar \r\nhttp://localhost/chatbotadmin/guru/form_penugasan_guru/4/40/22', '2020-06-04', '07:30', '2020-06-04', '08:00', '2019/2020', 1),
-(5, 5, 40, 20, 'UH', 'UH 1 Konsep sistem informasi', 'UH 1 Konsep sistem informasi\r\n', '2020-06-01', '07:30', '2020-06-02', '20:30', '2019/2020', 1),
-(6, 3, 40, 20, 'Projek', 'Upload web di free hosting', '<p><strong>HOSTING </strong></p><pre class=\"ql-syntax\" spellcheck=\"false\">$data = array(\r\n        \'title\' =&gt; $title,\r\n        \'name\' =&gt; $name,\r\n        \'date\' =&gt; $date\r\n);\r\n\r\n$this-&gt;db-&gt;where(\'id\', $id);\r\n$this-&gt;db-&gt;update(\'mytable\', $data);\r\n</pre><p>BISA</p><p>di localhost </p><p><br></p>', '2020-05-30', '14:30', '2020-06-01', '09:30', '2019/2020', 1),
+(5, 18, 40, 20, 'UH', 'UH 1 Konsep sistem informasi', 'UH 1 Konsep sistem informasi\r\n', '2020-06-01', '07:30', '2020-06-02', '20:30', '2019/2020', 1),
+(6, 17, 40, 20, 'Projek', 'Upload web di free hosting', '<p><strong>HOSTING </strong></p><pre class=\"ql-syntax\" spellcheck=\"false\">$data = array(\r\n        \'title\' =&gt; $title,\r\n        \'name\' =&gt; $name,\r\n        \'date\' =&gt; $date\r\n);\r\n\r\n$this-&gt;db-&gt;where(\'id\', $id);\r\n$this-&gt;db-&gt;update(\'mytable\', $data);\r\n</pre><p>BISA</p><p>di localhost </p><p><br></p>', '2020-05-30', '14:30', '2020-06-01', '09:30', '2019/2020', 1),
 (7, 6, 40, 22, 'Projek', 'membuat list menarik di flutter', '<p>Edit penugasan ggk bisa pulang</p><p><a href=\"https://codeigniter.com/\" target=\"_blank\">https://codeigniter.com/</a></p><p><strong>PULANG</strong></p><p><strong>﻿GGK jadi Sebentar lagi:</strong></p><ol><li>Ngopi Dulu</li><li>Mandi Dulu</li><li>simpan</li></ol><ol></ol>', '2020-05-30', '07:30', '2020-05-31', '09:30', '2019/2020', 1),
 (8, 1, 40, 20, 'Projek', 'Test Tugas Dengan Wyswig quil', '<p>Tuliskan Tugas deskripsi disini</p><p>yes <strong>bOld</strong></p><p><strong>link more : </strong></p><p><a href=\"https://api.jquery.com/text/\" target=\"_blank\">https://api.jquery.com/text/</a></p><p>jangan lupa belajar</p><p>guys</p><p><br></p><p><br></p>', '2020-05-30', '07:40', '2020-05-31', '07:06', '2019/2020', 1),
-(9, 2, 40, 20, 'Harian', 'Pembuatan Bot Telegram dengan python part 1', '<p>Langkah Pembuatan Tugas Projek :</p><ol><li>Membuat Bot Telegram dengan BotFather</li><li>Membuat code program dengan pycharm</li></ol><p>Video Tutorial pembuatan projek bot telegram di link : <a href=\"https://www.youtube.com/watch?v=BLng0w_9A10&amp;list=PLWsDFKQKMpU-iFjw0FmQExAV98BYf3mzv\" target=\"_blank\" savefrom_lm_index=\"0\" savefrom_lm=\"1\">link video youtube</a><span style=\"padding: 0; margin: 0; margin-left: 5px;\"></span><a href=\"http://savefrom.net/?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBLng0w_9A10%26list%3DPLWsDFKQKMpU-iFjw0FmQExAV98BYf3mzv&amp;utm_source=ff&amp;utm_medium=extensions&amp;utm_campaign=link_modifier\" target=\"_blank\" title=\"Dapatkan tautan langsung\" style=\"background-image: url(&quot;data:image/gif;base64,R0lGODlhEAAQAOZ3APf39+Xl5fT09OPj4/Hx8evr6/3+/u7u7uDh4OPi497e3t7e3/z8/P79/X3GbuXl5ubl5eHg4WzFUfb39+Pj4lzGOV7LOPz7+/n6+vn5+ZTLj9/e387Ozt7f3/7+/vv7/ISbePn5+m/JV1nRKXmVbkCnKVrSLDqsCuDh4d/e3uDn3/z7/H6TdVeaV1uSW+bn5v39/eXm5eXm5kyHP/f39pzGmVy7J3yRd9/f3mLEKkXCHJbka2TVM5vaZn6Wdfn6+YG/c/r5+ZO/jeLi41aHTIeageLn4f39/vr6+kzNG2PVM5i+lomdf2CXYKHVmtzo2YXNeDqsBebl5uHh4HDKWN3g3kKqEH6WeZHTXIPKdnSPbv79/pfmbE7PHpe1l4O8dTO5DODg4VDLIlKUUtzo2J7SmEWsLlG4NJbFjkrJHP7+/VK5Nfz8+zmnC3KKa+Hg4OHh4Y63j/3+/eDg4Ojo6P///8DAwP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAHcALAAAAAAQABAAAAfWgHd2g4SFhYJzdYqLjIpzgx5bBgYwHg1Hk2oNDXKDFwwfDF5NLmMtcStsn4MhGT8YS04aGmU1QRhIGYMTADQAQlAODlloAMYTgwICRmRfVBISIkBPKsqDBAREZmcVFhYVayUz2IMHB1dWOmImI2lgUVrmgwUFLzdtXTxKSSduMfSD6Aik48MGlx05SAykM0gKhAAPAhTB0oNFABkPHg5KMIBCxzlMQFQZMGBIggSDpsCJgGDOmzkIUCAIM2dOhEEcNijQuQDHgg4KOqRYwMGOIENIB90JBAA7&quot;); background-repeat: no-repeat; width: 16px; height: 16px; display: inline-block; border: medium none; text-decoration: none; padding: 0px; position: relative;\" savefrom_lm=\"1\" savefrom_lm_is_link=\"1\"><span style=\"padding: 0; margin: 0; margin-left: 5px;\"></span></a></p><p><br></p>', '2020-06-10', '08:50', '2020-06-10', '16:00', '2019/2020', 2),
-(10, 2, 40, 20, 'Harian', 'Pembuatan Bot Telegram dengan Python Part 2', '<p>Video Pembelajaran dapat di akses di link youtube pertemuan sebelumnya , untuk part 2 kali ini</p><p>saya akan membuat Bot terhubung ke database mysql dan menggunakan library tambahan</p><ol><li>library di install menggunakan command pip</li><li>Library mysql-connector cara ketikkan pip install <strong><em>mysql-connector</em></strong></li><li>Library menarik lainnya untuk kebutuhan pembuatan bot</li></ol><p><br></p><p><br></p>', '2020-06-11', '09:00', '2020-06-11', '14:00', '2019/2020', 2),
-(11, 2, 40, 20, 'Projek', 'Projek Pembuatan Bot Telegram dengan Python Tahap 1 Hari Pertama', '<p>Projek Pembuatan Bot Telegram dengan Python Tahap 1 mempunyai kriteria penilaian tugas sebagai berikut :</p><p>1. Bot Telegram yang dibuat Dapat Merespon command <strong>/start </strong>dan memberikan respon tampilan selamat datang ke bot yang dibuat</p><p>tugas ini sesuai dengan materi video yang sudah di share pada materi </p><p>Bentuk Upload Tugas yang di upload di portal belajar ini adalah :</p><p><br></p><p>2. Link kode program/source code yang sudah di upload di github (60%)</p><p><strong>Selamat Mengerjakan</strong></p>', '2020-06-12', '10:00', '2020-06-12', '14:00', '2019/2020', 1),
-(12, 2, 40, 20, 'Projek', 'Projek Pembuatan Bot Telegram dengan Python Tahap 1 Hari Kedua (final)', '<h2>Projek Pembuatan Bot Telegram dengan Python Tahap 1</h2><p>Projek Pembuatan Bot Telegram dengan Python Tahap 1 mempunyai kriteria penilaian tugas sebagai berikut :</p><p>1. Bot Telegram yang dibuat Dapat Merespon command <strong>/start </strong>dan memberikan respon tampilan selamat datang ke bot yang dibuat</p><p>2. Bot Telegram Terkoneksi ke database mysql yang dibuat (contoh video datasiswa boleh menggunakan database lain)</p><p>3. Bot Telegram dapat menerima perintah atau command /datasiswa (jika database siswa) dan respon di cetak di console terminal dengan print</p><p>4. Bot telegram memberikan respon data yang ada di tabel siswa dengan tampilan data yang sudah di bersihkan dari koma, kurung buka dan kutip ( , ) \'</p><p>5. Respon data tersebut di kirimkan ke client yang memberi perintah (metode reply_bot) </p><p>semua kegiatan di atas bisa di tambahkan sesuai kreatifitas masing-masing sebagai nilai tambah </p><p>tugas ini sesuai dengan materi video yang sudah di share pada materi </p><p>Bentuk Upload Tugas yang di upload di portal belajar ini adalah :</p><p>1. Link Video dari penjelasan kode program dan hasil output di youtube (40%)</p><p>2. Link kode program/source code yang sudah di upload di github (60%)</p><p><strong>Selamat Mengerjakan</strong></p><p><br></p><p><br></p>', '2020-06-13', '09:00', '2020-06-13', '15:00', '2019/2020', 1),
-(13, 2, 40, 20, 'UH', 'UH 1 Web Interaktif', '<p>U</p>', '2020-06-05', '07:30', '2020-05-08', '10:00', '2019/2020', 1),
-(14, 8, 40, 20, 'Harian', 'Praktek Membuat Form Upload Pada Form HTML dengan PHP', '<p>M</p>', '2020-06-15', '10:50', '2020-06-15', '15:00', '2019/2020', 1);
+(9, 13, 40, 20, 'Harian', 'Pembuatan Bot Telegram dengan python part 1', '<p>Langkah Pembuatan Tugas Projek :</p><ol><li>Membuat Bot Telegram dengan BotFather</li><li>Membuat code program dengan pycharm</li></ol><p>Video Tutorial pembuatan projek bot telegram di link : <a href=\"https://www.youtube.com/watch?v=BLng0w_9A10&amp;list=PLWsDFKQKMpU-iFjw0FmQExAV98BYf3mzv\" target=\"_blank\" savefrom_lm_index=\"0\" savefrom_lm=\"1\">link video youtube</a><span style=\"padding: 0; margin: 0; margin-left: 5px;\"></span><a href=\"http://savefrom.net/?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBLng0w_9A10%26list%3DPLWsDFKQKMpU-iFjw0FmQExAV98BYf3mzv&amp;utm_source=ff&amp;utm_medium=extensions&amp;utm_campaign=link_modifier\" target=\"_blank\" title=\"Dapatkan tautan langsung\" style=\"background-image: url(&quot;data:image/gif;base64,R0lGODlhEAAQAOZ3APf39+Xl5fT09OPj4/Hx8evr6/3+/u7u7uDh4OPi497e3t7e3/z8/P79/X3GbuXl5ubl5eHg4WzFUfb39+Pj4lzGOV7LOPz7+/n6+vn5+ZTLj9/e387Ozt7f3/7+/vv7/ISbePn5+m/JV1nRKXmVbkCnKVrSLDqsCuDh4d/e3uDn3/z7/H6TdVeaV1uSW+bn5v39/eXm5eXm5kyHP/f39pzGmVy7J3yRd9/f3mLEKkXCHJbka2TVM5vaZn6Wdfn6+YG/c/r5+ZO/jeLi41aHTIeageLn4f39/vr6+kzNG2PVM5i+lomdf2CXYKHVmtzo2YXNeDqsBebl5uHh4HDKWN3g3kKqEH6WeZHTXIPKdnSPbv79/pfmbE7PHpe1l4O8dTO5DODg4VDLIlKUUtzo2J7SmEWsLlG4NJbFjkrJHP7+/VK5Nfz8+zmnC3KKa+Hg4OHh4Y63j/3+/eDg4Ojo6P///8DAwP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAHcALAAAAAAQABAAAAfWgHd2g4SFhYJzdYqLjIpzgx5bBgYwHg1Hk2oNDXKDFwwfDF5NLmMtcStsn4MhGT8YS04aGmU1QRhIGYMTADQAQlAODlloAMYTgwICRmRfVBISIkBPKsqDBAREZmcVFhYVayUz2IMHB1dWOmImI2lgUVrmgwUFLzdtXTxKSSduMfSD6Aik48MGlx05SAykM0gKhAAPAhTB0oNFABkPHg5KMIBCxzlMQFQZMGBIggSDpsCJgGDOmzkIUCAIM2dOhEEcNijQuQDHgg4KOqRYwMGOIENIB90JBAA7&quot;); background-repeat: no-repeat; width: 16px; height: 16px; display: inline-block; border: medium none; text-decoration: none; padding: 0px; position: relative;\" savefrom_lm=\"1\" savefrom_lm_is_link=\"1\"><span style=\"padding: 0; margin: 0; margin-left: 5px;\"></span></a></p><p><br></p>', '2020-06-10', '08:50', '2020-06-10', '16:00', '2019/2020', 2),
+(10, 13, 40, 20, 'Harian', 'Pembuatan Bot Telegram dengan Python Part 2', '<p>Video Pembelajaran dapat di akses di link youtube pertemuan sebelumnya , untuk part 2 kali ini</p><p>saya akan membuat Bot terhubung ke database mysql dan menggunakan library tambahan</p><ol><li>library di install menggunakan command pip</li><li>Library mysql-connector cara ketikkan pip install <strong><em>mysql-connector</em></strong></li><li>Library menarik lainnya untuk kebutuhan pembuatan bot</li></ol><p><br></p><p><br></p>', '2020-06-11', '09:00', '2020-06-11', '14:00', '2019/2020', 2),
+(11, 13, 40, 20, 'Projek', 'Projek Pembuatan Bot Telegram dengan Python Tahap 1 Hari Pertama', '<p>Projek Pembuatan Bot Telegram dengan Python Tahap 1 mempunyai kriteria penilaian tugas sebagai berikut :</p><p>1. Bot Telegram yang dibuat Dapat Merespon command <strong>/start </strong>dan memberikan respon tampilan selamat datang ke bot yang dibuat</p><p>tugas ini sesuai dengan materi video yang sudah di share pada materi </p><p>Bentuk Upload Tugas yang di upload di portal belajar ini adalah :</p><p><br></p><p>2. Link kode program/source code yang sudah di upload di github (60%)</p><p><strong>Selamat Mengerjakan</strong></p>', '2020-06-12', '10:00', '2020-06-12', '14:00', '2019/2020', 1),
+(12, 13, 40, 20, 'Projek', 'Projek Pembuatan Bot Telegram dengan Python Tahap 1 Hari Kedua (final)', '<h2>Projek Pembuatan Bot Telegram dengan Python Tahap 1</h2><p>Projek Pembuatan Bot Telegram dengan Python Tahap 1 mempunyai kriteria penilaian tugas sebagai berikut :</p><p>1. Bot Telegram yang dibuat Dapat Merespon command <strong>/start </strong>dan memberikan respon tampilan selamat datang ke bot yang dibuat</p><p>2. Bot Telegram Terkoneksi ke database mysql yang dibuat (contoh video datasiswa boleh menggunakan database lain)</p><p>3. Bot Telegram dapat menerima perintah atau command /datasiswa (jika database siswa) dan respon di cetak di console terminal dengan print</p><p>4. Bot telegram memberikan respon data yang ada di tabel siswa dengan tampilan data yang sudah di bersihkan dari koma, kurung buka dan kutip ( , ) \'</p><p>5. Respon data tersebut di kirimkan ke client yang memberi perintah (metode reply_bot) </p><p>semua kegiatan di atas bisa di tambahkan sesuai kreatifitas masing-masing sebagai nilai tambah </p><p>tugas ini sesuai dengan materi video yang sudah di share pada materi </p><p>Bentuk Upload Tugas yang di upload di portal belajar ini adalah :</p><p>1. Link Video dari penjelasan kode program dan hasil output di youtube (40%)</p><p>2. Link kode program/source code yang sudah di upload di github (60%)</p><p><strong>Selamat Mengerjakan</strong></p><p><br></p><p><br></p>', '2020-06-13', '09:00', '2020-06-13', '15:00', '2019/2020', 1),
+(13, 16, 40, 20, 'UH', 'UH 1 Web Interaktif', '<p>U</p>', '2020-06-05', '07:30', '2020-05-08', '10:00', '2019/2020', 1),
+(14, 19, 40, 20, 'Harian', 'Praktek Membuat Form Upload Pada Form HTML dengan PHP', '<p>M</p>', '2020-06-15', '10:50', '2020-06-15', '15:00', '2019/2020', 1),
+(15, 19, 40, 20, 'Harian', 'Materi Menampilkan Gambar dan tampilkan di browser', '<p>M</p><p><br></p>', '2020-06-16', '10:00', '2020-06-16', '15:00', '2019/2020', 1),
+(16, 19, 40, 20, 'PAS', 'PAS Ganjil PWPB 2020', '<p>Penilaian Akhir Semester(PAS) Ganjil Mata Pelajaran PWPB </p><p>Materi yang di pelajari Modul PWPB edisi ketiga mengenai ajax dan sedikit materi pembuatan Bot dengan Python</p><p><br></p>', '2020-06-17', '10:00', '2020-06-17', '14:00', '2019/2020', 1),
+(17, 9, 40, 20, 'Projek', 'Tugas 1 Pembuatan Blog Materi pertemuan 1 PWPB', '<p>M</p>', '2020-06-10', '10:00', '2020-06-10', '14:00', '2019/2020', 1),
+(18, 10, 40, 20, 'Projek', 'Project Aplikasi CRUD tahap 1 ', '<p><strong>TEKNIS PELAKSANAAN TAHAP I :</strong></p><p>1) Buatlah form input data master produk seperti pada gambar 1.1</p><p>2) Buatlah Tampilan tampilan data tabel seperti tampak pada gambar 1.2</p><p>3) Buatlah Kode Program Menggunakan php Untuk inputan data yang</p><p>ada pada form (gambar 1.1) agar tersimpan (tampil) di Data Tabel seperti gambar 1.2</p><p>4) Gambar url bisa copy link dari url web dari internet / google</p><p>5) Setiap input data baru akan menambahkan row ke Tabel data Gambar 1.2</p><p>6) Buatlah Fungsi cek stok produk kurang dari 5 maka akan tampil di tabel</p><p>data master seperti tampak gambar 1.3 (background stock barang menjadi</p><p>merah dan warna font menjadi putih)</p><p>7) Membuat nomor Auto Increment Menggunakan looping for di php</p><p>8) Buatlah Fungsi Delete untuk menghapus row Data di tabel Master dan Stock</p><p>Produk</p><p>9) Upload Kode program di akun github masing-masing (bukti screenshot source code yang sudah di commit ke github) upload di portal belajar</p><p>10) Buat video penjelasan kode program di channel youtube masing-masing dan upload link (embed ) tugas project ini di portal belajar</p><p>M<br></p><p><br></p>', '2020-04-17', '10:00', '2020-04-20', '14:00', '2019/2020', 1),
+(19, 10, 40, 20, 'Projek', 'Tugas 3 Membuat akun Github dan Dasar Penggunaan Github', '<p>Buatlah akun github untuk masing-masing siswa dengan ketentuan :</p><p>1. Nama Akun github adalah nama lengkap sebenarnya (agar di kenali oleh pengajar)</p><p>2. Upload Screenshot yang menampilkan nama akun github kalian di sini </p><p>3. Buatlah sebuah file aboutme.php yang di upload di github dengan langkah kerja berikut ini : </p><ol><li>Tulis Nama Lengkap di baris pertama dengan perintah php echo \"Nama : Nama lengkap Saya \";</li><li>Tuliskan Kelas dengan echo&nbsp;</li><li>Tuliskan Asal Sekolah : SMK Taruna Bhakti Depok dengan perintah echo di php</li><li>Tuliskan Alamat Rumah : isi dengan alamat rumah masing-masing</li><li>Commit File tersebut dan screenshot hasil pertama untuk di upload di sini</li><li>Tambahkan Nomor HP dan email masing -masing di baris yang berbeda</li><li>Kemudian hapus baris alamat rumah dan commit (simpan kembali) serta screenshot kembali hasilnya </li><li>lihat history file perubahan dan screenshot</li><li>selesai </li></ol><p>silahkan kerjakan dengan penuh tanggung jawab</p><p><br></p>', '2020-04-15', '10:00', '2020-04-17', '15:00', '2019/2020', 1),
+(20, 13, 40, 20, 'Projek', 'Tugas KD Menggunakan Library dalam Bahasa Program', '<p>Buatlah Rest API mengikuti tutorial dari modul yang sudah di sediakan , dengan ketentuan sebagai berikut : </p><p>1. upload code program di github </p><p>2. buat screenshot code program dan hasil tampilan percobaan web service (di uji dengan REST client seperti , software POSTMAN atau Imsomnia) di upload di portal ini dengan format pdf</p><p>3. struktur tabel (kolom maupun tabel lain) dapat di tambahkan sehingga menjadi sebuah aplikasi untuk mmanjemen data pegawai </p><p>Lihat Materi di modul PWPB edisi kedua</p><p>link tugas : <a href=\"https://portal.smktarunabhakti.net/mod/assign/view.php?id=7968\" target=\"_blank\">https://portal.smktarunabhakti.net/mod/assign/view.php?id=7968</a></p>', '2020-04-23', '10:00', '2020-04-24', '15:00', '2019/2020', 1);
 
 -- --------------------------------------------------------
 
@@ -1025,7 +1036,6 @@ INSERT INTO `api_presensi_online` (`id_presensi_online`, `id_telegram`, `nama_si
 (677, '711686823', 'Syavira Aprilianti', 'XI RPL 1', '1819100109', 'pwpb-40', '1', '12/06/2020', '10:20:58', 'Absen By telegram', 1),
 (678, '970560213', 'Rayfan Tio Saputro', 'XI RPL 2', '1819100143', 'pwpb-40', '1', '12/06/2020', '10:20:58', 'Absen By telegram', 1),
 (679, '1021149626', 'Daniel Chandra', 'XI RPL 1', '1819100083', 'pwpb-40', '1', '11/06/2020', '01:06:46', 'Manual Edit Guru Mapel', 1),
-(680, '909987608', 'Fauzan Maulana', 'XI RPL 1', '1819100090', 'pwpb-40', 'i', '05/06/2020', '01:06:15', 'Manual Edit Guru Mapel', 1),
 (681, '1060917717', 'Dony Gita Ramadhan', 'XI RPL 2', '1819100119', 'pwpb-40', '1', '12/06/2020', '10:20:58', 'Absen By telegram', 1),
 (682, '1051826165', 'Muhammad Syahrevi', 'XI RPL 2', '1819100140', 'pwpb-40', '1', '12/06/2020', '10:20:58', 'Absen By telegram', 1),
 (683, '675219406', 'Hadi Firmansyah', 'XI RPL 2', '1819100124', 'pwpb-40', '1', '13/06/2020', '09:07:59', 'Absen By telegram', 1),
@@ -1141,9 +1151,9 @@ INSERT INTO `api_presensi_online` (`id_presensi_online`, `id_telegram`, `nama_si
 (793, '683313503', 'Hilal Rizqi Afrizal', 'XI RPL 2', '1819100125', 'pwpb-40', '1', '15/06/2020', '10:56:55', 'Absen By telegram', 1),
 (794, '974044612', 'Faris Ferdiansyah', 'XI RPL 2', '1819100120', 'pwpb-40', '1', '15/06/2020', '10:56:55', 'Absen By telegram', 1),
 (795, '778911752', 'Muhammad Faras Jibran', 'XI RPL 1', '1819100095', 'pwpb-40', '1', '15/06/2020', '10:56:55', 'Absen By telegram', 1),
-(796, '792909332', 'Donny Ramadhan', 'XI RPL 1', '1819100086', 'pwpb-40', '1', '15/06/2020', '10:56:55', 'Absen By telegram', 1);
+(796, '792909332', 'Donny Ramadhan', 'XI RPL 1', '1819100086', 'pwpb-40', '1', '15/06/2020', '10:56:55', 'Absen By telegram', 1),
+(797, '843805006', 'Muhammad Daffa Bagus Muttaqin', 'XI RPL 2', '1819100135', 'pwpb-40', '1', '15/06/2020', '10:56:55', 'Absen By telegram', 1);
 INSERT INTO `api_presensi_online` (`id_presensi_online`, `id_telegram`, `nama_siswa`, `kelas`, `nipd`, `kode_mapel_ajar`, `kehadiran`, `tgl_absen`, `jam_absen`, `keterangan`, `status`) VALUES
-(797, '843805006', 'Muhammad Daffa Bagus Muttaqin', 'XI RPL 2', '1819100135', 'pwpb-40', '1', '15/06/2020', '10:56:55', 'Absen By telegram', 1),
 (798, '681201754', 'Anisa', 'XI RPL 1', '1819100079', 'pwpb-40', '1', '15/06/2020', '10:56:55', 'Absen By telegram', 1),
 (799, '755190206', 'Syahdah Hamidah', 'XI RPL 1', '1819100108', 'pwpb-40', '1', '15/06/2020', '10:56:55', 'Absen By telegram', 1),
 (800, '980759797', 'Julius Ryan Listianto', 'XI RPL 2', '1819100130', 'pwpb-40', '1', '15/06/2020', '10:56:55', 'Absen By telegram', 1),
@@ -1168,7 +1178,146 @@ INSERT INTO `api_presensi_online` (`id_presensi_online`, `id_telegram`, `nama_si
 (819, '518251074', 'Nina Amalia', 'XI RPL 1', '1819100099', 'pwpb-40', '1', '13/06/2020', '02:06:37', 'Manual Edit Guru Mapel', 1),
 (820, '1253502243', 'Praditiya Maulana Yudistira', 'XI RPL 1', '1819100100', 'pwpb-40', '1', '13/06/2020', '02:06:47', 'Manual Edit Guru Mapel', 1),
 (821, '728091163', 'Rafi Izzatul Rizqu Faris', 'XI RPL 1', '1819100101', 'pwpb-40', '1', '15/06/2020', '12:33:41', 'Absen By telegram', 1),
-(822, '1238452707', 'Muhammad Farhan', 'XI RPL 2', '1819100136', 'pwpb-40', '1', '15/06/2020', '12:33:41', 'Absen By telegram', 1);
+(822, '1238452707', 'Muhammad Farhan', 'XI RPL 2', '1819100136', 'pwpb-40', '1', '15/06/2020', '12:33:41', 'Absen By telegram', 1),
+(823, '1044845889', 'Irsya Aliffio', 'XI RPL 2', '1819100127', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(824, '1068323418', 'Putri Aurellia Indriyani', 'XI RPL 2', '1819100142', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(825, '807381824', 'Muhamad Raffhiyansyah', 'XI RPL 2', '1819100132', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(826, '675219406', 'Hadi Firmansyah', 'XI RPL 2', '1819100124', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(827, '966549627', 'Bayu Kartiko', 'XI RPL 2', '1819100114', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(828, '817999403', 'Burhanudin Dwi Saputra', 'XI RPL 2', '1819100116', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(829, '908306662', 'Imam Afarizi Syahputra', 'XI RPL 2', '1819100126', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(830, '671191827', 'Cici Irma Yanti', 'XI RPL 2', '1819100117', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(831, '908239036', 'Anisa Zahra Widyanti', 'XI RPL 2', '1819100113', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(832, '843805006', 'Muhammad Daffa Bagus Muttaqin', 'XI RPL 2', '1819100135', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(833, '639463478', 'Muhamad Anwar', 'XI RPL 2', '1819100131', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(834, '856373747', 'Saddam Dermawan', 'XI RPL 2', '1819100146', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(835, '954975183', 'Bimo Prasetyo Wibowo', 'XI RPL 2', '1819100115', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(836, '1253502243', 'Praditiya Maulana Yudistira', 'XI RPL 1', '1819100100', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(837, '611011255', 'Alfino Putra Laksana', 'XI RPL 1', '1819100076', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(838, '730686712', 'Saffa Salsabilla', 'XI RPL 1', '1819100106', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(839, '1060917717', 'Dony Gita Ramadhan', 'XI RPL 2', '1819100119', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(840, '853079320', 'Fatimah Rizkiyana Nuraini', 'XI RPL 2', '1819100121', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(841, '902715486', 'Muhammad Rafi Zadanly', 'XI RPL 2', '1819100137', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(842, '678227912', 'Deva Abel Khan', 'XI RPL 1', '1819100084', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(843, '649711813', 'Abdi Maulana', 'XI RPL 1', '1819100073', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(844, '884951641', 'Aliffio', 'XI RPL 1', '1819100077', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(845, '880804108', 'Dian Sulistyarini', 'XI RPL 1', '1819100085', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(846, '905136202', 'Akmal Permata Sukma', 'XI RPL 1', '1819100075', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(847, '979219303', 'Yasinta Fajrin', 'XI RPL 2', '1819100148', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(848, '922678270', 'Dhony Nurhandoko', 'XI RPL 2', '1819100118', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(849, '721270213', 'Bimo Amanta Hidayat', 'XI RPL 1', '1819100081', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(850, '755190206', 'Syahdah Hamidah', 'XI RPL 1', '1819100108', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(851, '755301966', 'Shakila Indah Nurhasti', 'XI RPL 1', '1819100107', 'pwpb-40', '1', '16/06/2020', '10:23:25', 'Absen By telegram', 1),
+(852, '778911752', 'Muhammad Faras Jibran', 'XI RPL 1', '1819100095', 'pwpb-40', '1', '16/06/2020', '10:36:22', 'Absen By telegram', 1),
+(853, '831964935', 'Muhammad Ramadhan Fikri', 'XI RPL 2', '1819100139', 'pwpb-40', '1', '16/06/2020', '10:36:22', 'Absen By telegram', 1),
+(854, '947961243', 'Rigel Iksandy Marthana', 'XI RPL 2', '1819100144', 'pwpb-40', '1', '16/06/2020', '10:37:10', 'Absen By telegram', 1),
+(855, '893451904', 'Fauzan Adli Firdaus', 'XI RPL 1', '1819100089', 'pwpb-40', '1', '16/06/2020', '10:37:10', 'Absen By telegram', 1),
+(856, '854106622', 'Achmad Setiadji Nugroho', 'XI RPL 1', '1819100074', 'pwpb-40', '1', '16/06/2020', '10:38:20', 'Absen By telegram', 1),
+(857, '837778531', 'Pungki Arya Tama', 'XI RPL 2', '1819100141', 'pwpb-40', '1', '16/06/2020', '10:38:51', 'Absen By telegram', 1),
+(858, '785207465', 'Zaidan Fadhil', 'XI RPL 1', '1819100110', 'pwpb-40', '1', '16/06/2020', '10:38:51', 'Absen By telegram', 1),
+(860, '974044612', 'Faris Ferdiansyah', 'XI RPL 2', '1819100120', 'pwpb-40', '1', '16/06/2020', '10:42:04', 'Absen By telegram', 1),
+(861, '539979909', 'Raid Tammam', 'XI RPL 1', '1819100102', 'pwpb-40', '1', '16/06/2020', '10:42:04', 'Absen By telegram', 1),
+(862, '678290960', 'Fajar Junianto', 'XI RPL 1', '1819100088', 'pwpb-40', '1', '16/06/2020', '10:43:26', 'Absen By telegram', 1),
+(864, '700868935', 'Mochammad David Dasilya Akbar Max Simanjutak', 'XI RPL 1', '1819100093', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(865, '917381344', 'Rizki Alfa Reza', 'XI RPL 1', '1819100104', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(866, '782470606', 'Hani Fatimah', 'XI RPL 1', '1819100091', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(867, '666251480', 'Muhammad Rivaldi', 'XI RPL 1', '1819100097', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(868, '792909332', 'Donny Ramadhan', 'XI RPL 1', '1819100086', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(869, '980759797', 'Julius Ryan Listianto', 'XI RPL 2', '1819100130', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(870, '681201754', 'Anisa', 'XI RPL 1', '1819100079', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(871, '1111582650', 'Fransisco Allagan', 'XI RPL 2', '1819100123', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(872, '1238452707', 'Muhammad Farhan', 'XI RPL 2', '1819100136', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(873, '683313503', 'Hilal Rizqi Afrizal', 'XI RPL 2', '1819100125', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(874, '699154710', 'Muhammad Alif Kurniawan', 'XI RPL 2', '1819100134', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(875, '706016979', 'Adhi Satria Banyuaji', 'XI RPL 2', '1819100112', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(876, '708481801', 'Sefviana Anggraeni', 'XI RPL 2', '1819100147', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(877, '964226147', 'Muhammad Rafii', 'XI RPL 2', '1819100138', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(878, '992021123', 'Rizky Firmansyah', 'XI RPL 1', '1819100105', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(879, '909646654', 'Ammar Rais Suryawan', 'XI RPL 1', '1819100078', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(880, '975384905', 'Jerry Yusuf Simbolon', 'XI RPL 1', '1819100092', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(881, '628582159', 'Rifat Khadafy', 'XI RPL 1', '1819100103', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(882, '823412974', 'Fadlan Kasyfi', 'XI RPL 1', '1819100087', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(883, '1089410341', 'Anwar Syaripudin', 'XI RPL 1', '1819100080', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(884, '685702284', 'Nila Nur Azizah', 'XI RPL 1', '1819100098', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(885, '1021149626', 'Daniel Chandra', 'XI RPL 1', '1819100083', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(886, '728091163', 'Rafi Izzatul Rizqu Faris', 'XI RPL 1', '1819100101', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(887, '1051826165', 'Muhammad Syahrevi', 'XI RPL 2', '1819100140', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(888, '970560213', 'Rayfan Tio Saputro', 'XI RPL 2', '1819100143', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(889, '761510621', 'Julian Ruben Benedict', 'XI RPL 2', '1819100129', 'pwpb-40', '1', '16/06/2020', '10:50:00', 'Absen By telegram', 1),
+(890, '909987608', 'Fauzan Maulana', 'XI RPL 1', '1819100090', 'pwpb-40', '1', '16/06/2020', '12:43:40', 'Absen By telegram', 1),
+(891, '711686823', 'Syavira Aprilianti', 'XI RPL 1', '1819100109', 'pwpb-40', '1', '16/06/2020', '12:43:40', 'Absen By telegram', 1),
+(892, '889981712', 'Ismi Septiana', 'XI RPL 2', '1819100128', 'pwpb-40', '1', '16/06/2020', '14:18:09', 'Absen By telegram', 1),
+(893, '1054728173', 'Rosiyana', 'XI RPL 2', '1819100145', 'pwpb-40', '1', '16/06/2020', '04:06:25', 'Manual Edit Guru Mapel', 1),
+(894, '778911752', 'Muhammad Faras Jibran', 'XI RPL 1', '1819100095', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(895, '678290960', 'Fajar Junianto', 'XI RPL 1', '1819100088', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(896, '792909332', 'Donny Ramadhan', 'XI RPL 1', '1819100086', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(897, '831964935', 'Muhammad Ramadhan Fikri', 'XI RPL 2', '1819100139', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(898, '908239036', 'Anisa Zahra Widyanti', 'XI RPL 2', '1819100113', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(899, '721270213', 'Bimo Amanta Hidayat', 'XI RPL 1', '1819100081', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(900, '947961243', 'Rigel Iksandy Marthana', 'XI RPL 2', '1819100144', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(901, '853079320', 'Fatimah Rizkiyana Nuraini', 'XI RPL 2', '1819100121', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(902, '683313503', 'Hilal Rizqi Afrizal', 'XI RPL 2', '1819100125', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(903, '639463478', 'Muhamad Anwar', 'XI RPL 2', '1819100131', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(904, '685702284', 'Nila Nur Azizah', 'XI RPL 1', '1819100098', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(905, '970560213', 'Rayfan Tio Saputro', 'XI RPL 2', '1819100143', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(906, '902715486', 'Muhammad Rafi Zadanly', 'XI RPL 2', '1819100137', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(907, '856373747', 'Saddam Dermawan', 'XI RPL 2', '1819100146', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(908, '1253502243', 'Praditiya Maulana Yudistira', 'XI RPL 1', '1819100100', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(909, '905136202', 'Akmal Permata Sukma', 'XI RPL 1', '1819100075', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(910, '678227912', 'Deva Abel Khan', 'XI RPL 1', '1819100084', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(911, '539979909', 'Raid Tammam', 'XI RPL 1', '1819100102', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(912, '843805006', 'Muhammad Daffa Bagus Muttaqin', 'XI RPL 2', '1819100135', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(913, '954975183', 'Bimo Prasetyo Wibowo', 'XI RPL 2', '1819100115', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(914, '817999403', 'Burhanudin Dwi Saputra', 'XI RPL 2', '1819100116', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(915, '666251480', 'Muhammad Rivaldi', 'XI RPL 1', '1819100097', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(916, '884951641', 'Aliffio', 'XI RPL 1', '1819100077', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(917, '880804108', 'Dian Sulistyarini', 'XI RPL 1', '1819100085', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(918, '1111582650', 'Fransisco Allagan', 'XI RPL 2', '1819100123', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(919, '628582159', 'Rifat Khadafy', 'XI RPL 1', '1819100103', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(920, '922678270', 'Dhony Nurhandoko', 'XI RPL 2', '1819100118', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(921, '992021123', 'Rizky Firmansyah', 'XI RPL 1', '1819100105', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(922, '854106622', 'Achmad Setiadji Nugroho', 'XI RPL 1', '1819100074', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(923, '1238452707', 'Muhammad Farhan', 'XI RPL 2', '1819100136', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(924, '671191827', 'Cici Irma Yanti', 'XI RPL 2', '1819100117', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(925, '1054728173', 'Rosiyana', 'XI RPL 2', '1819100145', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(926, '699154710', 'Muhammad Alif Kurniawan', 'XI RPL 2', '1819100134', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(927, '782470606', 'Hani Fatimah', 'XI RPL 1', '1819100091', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(928, '785207465', 'Zaidan Fadhil', 'XI RPL 1', '1819100110', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(929, '708481801', 'Sefviana Anggraeni', 'XI RPL 2', '1819100147', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(930, '807381824', 'Muhamad Raffhiyansyah', 'XI RPL 2', '1819100132', 'pwpb-40', '1', '17/06/2020', '11:17:21', 'Absen By telegram', 1),
+(931, '974044612', 'Faris Ferdiansyah', 'XI RPL 2', '1819100120', 'pwpb-40', '1', '17/06/2020', '11:32:51', 'Absen By telegram', 1),
+(932, '611011255', 'Alfino Putra Laksana', 'XI RPL 1', '1819100076', 'pwpb-40', '1', '17/06/2020', '11:32:51', 'Absen By telegram', 1),
+(933, '649711813', 'Abdi Maulana', 'XI RPL 1', '1819100073', 'pwpb-40', '1', '17/06/2020', '11:32:51', 'Absen By telegram', 1),
+(934, '1021149626', 'Daniel Chandra', 'XI RPL 1', '1819100083', 'pwpb-40', '1', '17/06/2020', '11:32:51', 'Absen By telegram', 1),
+(935, '975384905', 'Jerry Yusuf Simbolon', 'XI RPL 1', '1819100092', 'pwpb-40', '1', '17/06/2020', '11:32:51', 'Absen By telegram', 1),
+(936, '711686823', 'Syavira Aprilianti', 'XI RPL 1', '1819100109', 'pwpb-40', '1', '17/06/2020', '11:32:51', 'Absen By telegram', 1),
+(937, '980759797', 'Julius Ryan Listianto', 'XI RPL 2', '1819100130', 'pwpb-40', '1', '17/06/2020', '11:38:07', 'Absen By telegram', 1),
+(938, '1068323418', 'Putri Aurellia Indriyani', 'XI RPL 2', '1819100142', 'pwpb-40', '1', '17/06/2020', '11:38:07', 'Absen By telegram', 1),
+(939, '889981712', 'Ismi Septiana', 'XI RPL 2', '1819100128', 'pwpb-40', '1', '17/06/2020', '11:38:07', 'Absen By telegram', 1),
+(940, '755301966', 'Shakila Indah Nurhasti', 'XI RPL 1', '1819100107', 'pwpb-40', '1', '17/06/2020', '11:38:07', 'Absen By telegram', 1),
+(941, '1051826165', 'Muhammad Syahrevi', 'XI RPL 2', '1819100140', 'pwpb-40', '1', '17/06/2020', '11:38:07', 'Absen By telegram', 1),
+(942, '823412974', 'Fadlan Kasyfi', 'XI RPL 1', '1819100087', 'pwpb-40', '1', '17/06/2020', '11:38:07', 'Absen By telegram', 1),
+(943, '893451904', 'Fauzan Adli Firdaus', 'XI RPL 1', '1819100089', 'pwpb-40', '1', '17/06/2020', '11:38:07', 'Absen By telegram', 1),
+(944, '755190206', 'Syahdah Hamidah', 'XI RPL 1', '1819100108', 'pwpb-40', '1', '17/06/2020', '11:56:59', 'Absen By telegram', 1),
+(945, '730686712', 'Saffa Salsabilla', 'XI RPL 1', '1819100106', 'pwpb-40', '1', '17/06/2020', '11:56:59', 'Absen By telegram', 1),
+(946, '837778531', 'Pungki Arya Tama', 'XI RPL 2', '1819100141', 'pwpb-40', '1', '17/06/2020', '11:56:59', 'Absen By telegram', 1),
+(947, '761510621', 'Julian Ruben Benedict', 'XI RPL 2', '1819100129', 'pwpb-40', '1', '17/06/2020', '11:56:59', 'Absen By telegram', 1),
+(948, '966549627', 'Bayu Kartiko', 'XI RPL 2', '1819100114', 'pwpb-40', '1', '17/06/2020', '11:56:59', 'Absen By telegram', 1),
+(949, '675219406', 'Hadi Firmansyah', 'XI RPL 2', '1819100124', 'pwpb-40', '1', '17/06/2020', '12:27:02', 'Absen By telegram', 1),
+(950, '979219303', 'Yasinta Fajrin', 'XI RPL 2', '1819100148', 'pwpb-40', '1', '17/06/2020', '12:27:02', 'Absen By telegram', 1),
+(951, '1089410341', 'Anwar Syaripudin', 'XI RPL 1', '1819100080', 'pwpb-40', '1', '17/06/2020', '12:27:02', 'Absen By telegram', 1),
+(952, '706016979', 'Adhi Satria Banyuaji', 'XI RPL 2', '1819100112', 'pwpb-40', '1', '17/06/2020', '12:27:02', 'Absen By telegram', 1),
+(953, '716948670', 'Firhan Nur Fadhilah', 'XI RPL 2', '1819100122', 'pwpb-40', '1', '17/06/2020', '12:27:02', 'Absen By telegram', 1),
+(954, '700868935', 'Mochammad David Dasilya Akbar Max Simanjutak', 'XI RPL 1', '1819100093', 'pwpb-40', '1', '17/06/2020', '12:27:02', 'Absen By telegram', 1),
+(955, '917381344', 'Rizki Alfa Reza', 'XI RPL 1', '1819100104', 'pwpb-40', '1', '17/06/2020', '12:27:02', 'Absen By telegram', 1),
+(956, '1060917717', 'Dony Gita Ramadhan', 'XI RPL 2', '1819100119', 'pwpb-40', '1', '17/06/2020', '12:39:10', 'Absen By telegram', 1),
+(957, '1044845889', 'Irsya Aliffio', 'XI RPL 2', '1819100127', 'pwpb-40', '1', '17/06/2020', '13:10:45', 'Absen By telegram', 1),
+(959, '518251074', 'Nina Amalia', 'XI RPL 1', '1819100099', 'pwpb-40', 's', '17/06/2020', '02:06:48', 'Manual Edit Guru Mapel', 1),
+(960, '681201754', 'Anisa', 'XI RPL 1', '1819100079', 'pwpb-40', '1', '17/06/2020', '13:57:49', 'Absen By telegram', 1),
+(961, '909646654', 'Ammar Rais Suryawan', 'XI RPL 1', '1819100078', 'pwpb-40', '1', '17/06/2020', '13:57:49', 'Absen By telegram', 1),
+(962, '518251074', 'Nina Amalia', 'XI RPL 1', '1819100099', 'pwpb-40', 's', '16/06/2020', '02:06:12', 'Manual Edit Guru Mapel', 1),
+(963, '728091163', 'Rafi Izzatul Rizqu Faris', 'XI RPL 1', '1819100101', 'pwpb-40', '1', '17/06/2020', '04:06:41', 'Manual Edit Guru Mapel', 1),
+(964, '909987608', 'Fauzan Maulana', 'XI RPL 1', '1819100090', 'pwpb-40', '1', '17/06/2020', '04:06:45', 'Manual Edit Guru Mapel', 1);
 
 -- --------------------------------------------------------
 
@@ -1801,6 +1950,7 @@ CREATE TABLE `hasil_test_wawancara_ppdb_siswa` (
   `id_wawancara` int(5) NOT NULL,
   `nomor_ppdb` varchar(20) NOT NULL,
   `catatan` varchar(200) NOT NULL,
+  `tanggal_kegiatan` varchar(15) NOT NULL,
   `id_telegram` varchar(20) NOT NULL,
   `username_telegram` varchar(50) NOT NULL,
   `status` int(11) NOT NULL
@@ -1810,9 +1960,160 @@ CREATE TABLE `hasil_test_wawancara_ppdb_siswa` (
 -- Dumping data for table `hasil_test_wawancara_ppdb_siswa`
 --
 
-INSERT INTO `hasil_test_wawancara_ppdb_siswa` (`id_wawancara`, `nomor_ppdb`, `catatan`, `id_telegram`, `username_telegram`, `status`) VALUES
-(5, 'PPDBOL2021100158', 'ini hanya contoh catatan untuk mungkin tidak buta warna', '211939880', 'puguhrismadi', 1),
-(7, 'PPDBOL2021100157', 'ini hanya contoh catatan untuk mungkin tidak buta warna', '211939880', 'puguhrismadi', 1);
+INSERT INTO `hasil_test_wawancara_ppdb_siswa` (`id_wawancara`, `nomor_ppdb`, `catatan`, `tanggal_kegiatan`, `id_telegram`, `username_telegram`, `status`) VALUES
+(12, 'PPDB2021100063', 'sudah melaksanakan test TPA', '2020-06-16', '211939880', 'puguhrismadi', 1),
+(13, 'PPDB2021100042', 'sudah melaksanakan test TPA', '2020-06-16', '144052180', 'OlanPinem', 1),
+(14, 'PPDB2021100072', 'sudah melaksanakan test TPA', '2020-06-16', '144052180', 'OlanPinem', 1),
+(15, 'PPDB2021100074', 'sudah melaksanakan test TPA', '2020-06-16', '144052180', 'OlanPinem', 1),
+(16, 'PPDB2021100075', 'sudah melaksanakan test TPA', '2020-06-16', '144052180', 'OlanPinem', 1),
+(17, 'PPDB2021100076', 'sudah melaksanakan test TPA', '2020-06-16', '144052180', 'OlanPinem', 1),
+(18, 'PPDB2021100077', 'sudah melaksanakan test TPA', '2020-06-16', '144052180', 'OlanPinem', 1),
+(19, 'PPDB2021100078', 'sudah melaksanakan test TPA', '2020-06-16', '144052180', 'OlanPinem', 1),
+(20, 'PPDB2021100079', 'sudah melaksanakan test TPA', '2020-06-16', '144052180', 'OlanPinem', 1),
+(21, 'PPDB2021100080', 'sudah melaksanakan test TPA', '2020-06-16', '144052180', 'OlanPinem', 1),
+(22, 'PPDB2021100073', 'BELUM melaksanakan test TPA', '2020-06-16', '144052180', 'OlanPinem', 1),
+(26, 'PPDB2021100082', 'sudah melaksanakan test TPA', '2020-06-17', '211939880', 'puguhrismadi', 1),
+(27, 'PPDB2021100096', 'sudah melaksanakan test TPA', '2020-06-17', '570540461', 'Shintadewi12', 1),
+(29, 'PPDB2021100084', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(30, 'PPDB2021100085', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(31, 'PPDB2021100086', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(32, 'PPDB2021100092', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(33, 'PPDB2021100093', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(34, 'PPDB2021100094', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(35, 'PPDB2021100095', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(36, 'PPDB2021100097', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(37, 'PPDB2021100098', 'siswa masih di kampung', '2020-06-17', '449603649', 'Ismawardani', 1),
+(38, 'PPDB2021100100', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(39, 'PPDB2021100082', 'sudah pengambilan berkas sesi1', '2020-06-17', '449603649', 'Ismawardani', 1),
+(40, 'PPDB2021100084', 'sudah pengambilan berkas sesi1', '2020-06-17', '449603649', 'Ismawardani', 1),
+(41, 'PPDB2021100085', 'sudah pengambilan berkas sesi1', '2020-06-17', '449603649', 'Ismawardani', 1),
+(42, 'PPDB2021100086', 'sudah pengambilan berkas sesi1', '2020-06-17', '449603649', 'Ismawardani', 1),
+(43, 'PPDB2021100092', 'sudah pengambilan berkas sesi1', '2020-06-17', '449603649', 'Ismawardani', 1),
+(44, 'PPDB2021100093', 'sudah pengambilan berkas sesi1', '2020-06-17', '449603649', 'Ismawardani', 1),
+(45, 'PPDB2021100094', 'sudah pengambilan berkas sesi1', '2020-06-17', '449603649', 'Ismawardani', 1),
+(46, 'PPDB2021100095', 'sudah pengambilan berkas sesi1', '2020-06-17', '449603649', 'Ismawardani', 1),
+(47, 'PPDB2021100096', 'sudah pengambilan berkas sesi1', '2020-06-17', '449603649', 'Ismawardani', 1),
+(48, 'PPDB2021100097', 'sudah pengambilan berkas sesi1', '2020-06-17', '449603649', 'Ismawardani', 1),
+(49, 'PPDB2021100100', 'sudah pengambilan berkas sesi1', '2020-06-17', '449603649', 'Ismawardani', 1),
+(50, 'PPDB2021100097', 'sudah melaksanakan wawancara siswa', '2020-06-17', '455517688', 'Rafikaaa', 1),
+(51, 'PPDB2021100093', 'sudah melaksanakan wawancara siswa', '2020-06-17', '455517688', 'Rafikaaa', 1),
+(52, 'PPDB2021100090', 'sudah melaksanakan test TPA', '2020-06-17', '570540461', 'Shintadewi12', 1),
+(53, 'PPDB2021100095', 'sudah melaksanakan wawancara siswa', '2020-06-17', '455517688', 'Rafikaaa', 1),
+(54, 'PPDB202100097', 'rambut merah', '2020-06-17', '332559092', 'Anitatrianasari', 1),
+(55, 'PPDB2021100082', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(56, 'PPDB2021100100', 'sudah melaksanakan wawancara siswa (siswa pernah di bully)', '2020-06-17', '455517688', 'Rafikaaa', 1),
+(57, 'PPDB2021100082', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(58, 'PPDB2021100085', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(59, 'PPDB2021100093', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(60, 'PPDB2021100095', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(61, 'PPDB2021100097', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(62, 'PPDB2021100084', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(63, 'PPDB2021100100', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(64, 'PPDB2021100086', 'sudah melaksanakan wawancara orang tua', '2020-06-17', '242392702', 'bundanajmisby', 1),
+(65, 'PPDB20211000100', 'sudah melaksanakan wawancara orang tua', '2020-06-17', '242392702', 'bundanajmisby', 1),
+(66, 'PPDB2021100094', 'sudah melaksanakan wawancara siswa', '2020-06-17', '455517688', 'Rafikaaa', 1),
+(67, 'PPDB2021100096', 'sudah melaksanakan wawancara orang tua', '2020-06-17', '242392702', 'bundanajmisby', 1),
+(68, 'PPDB2021100084', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(69, 'PPDB2021100090', 'sudah melaksanakan wawancara orang tua', '2020-06-17', '242392702', 'bundanajmisby', 1),
+(70, 'PPDB2021100094', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(71, 'PPDB2021100090', 'sudah pengambilan berkas sesi1', '2020-06-17', '449603649', 'Ismawardani', 1),
+(72, 'PPDB20211000100', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(73, 'PPDB2021100092', 'sudah melaksanakan wawancara siswa', '2020-06-17', '455517688', 'Rafikaaa', 1),
+(74, 'PPDB2021100094', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(75, 'PPDB2021100096', 'sudah melaksanakan wawancara siswa', '2020-06-17', '455517688', 'Rafikaaa', 1),
+(76, 'PPDB2021100086', 'buta warna parsial (Hijau dan Merah)', '2020-06-17', '332559092', 'Anitatrianasari', 1),
+(77, 'PPDB2021100112', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(79, 'PPDB2021100111', 'sudah melaksanakan test TPA', '2020-06-17', '570540461', 'Shintadewi12', 1),
+(80, 'PPDB2021100109', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(81, 'PPDB2021100102', 'sudah melaksanakan test TPA', '2020-06-17', '570540461', 'Shintadewi12', 1),
+(82, 'PPDB2021100115', 'sudah melaksanakan test TPA', '2020-06-17', '570540461', 'Shintadewi12', 1),
+(83, 'PPDB2021100116', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(84, 'PPDB2021100103', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(85, 'PPDB2021100082', 'sudah melaksanakan wawancara siswa', '2020-06-17', '1084666312', 'Wildhabanu', 1),
+(86, 'PPDB2021100119', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(87, 'PPDB2021100084', 'sudah melaksanakan wawancara siswa', '2020-06-17', '1084666312', 'Wildhabanu', 1),
+(88, 'PPDB2021100117', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(89, 'PPDB2021100085', 'sudah melaksanakan wawancara siswa', '2020-06-17', '1084666312', 'Wildhabanu', 1),
+(90, 'PPDB2021100086', 'sudah melaksanakan wawancara siswa', '2020-06-17', '1084666312', 'Wildhabanu', 1),
+(91, 'PPDB2021100101', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(92, 'PPDB2021100112', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(93, 'PPDB2021100090', 'sudah melaksanakan wawancara siswa', '2020-06-17', '1084666312', 'Wildhabanu', 1),
+(94, 'PPDB2021100106', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(95, 'PPDB2021100107', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(96, 'PPDB2021100105', 'sudah melaksanakan test TPA', '2020-06-17', '777018171', 'Tettysuryany', 1),
+(97, 'PPDB2021100101', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(98, 'PPDB2021100102', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(99, 'PPDB2021100103', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(100, 'PPDB2021100105', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(101, 'PPDB2021100106', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(102, 'PPDB2021100107', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(103, 'PPDB2021100109', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(104, 'PPDB2021100111', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(105, 'PPDB2021100112', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(106, 'PPDB2021100115', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(107, 'PPDB2021100116', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(108, 'PPDB2021100117', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(109, 'PPDB2021100119', 'sudah pengambilan berkas sesi2', '2020-06-17', '449603649', 'Ismawardani', 1),
+(110, 'PPDB2021100094', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(111, 'PPDB2021100086', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(112, 'PPDB2021100090', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(113, 'PPDB2021100092', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(114, 'PPDB2021100096', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(115, 'PPDB2021100117', 'sudah melaksanakan wawancara siswa', '2020-06-17', '455517688', 'Rafikaaa', 1),
+(116, 'PPDB2021100109', 'sudah melaksanakan tes fisik pria, riwayat sakit jantung', '2020-06-17', '199560007', 'Richadus', 1),
+(117, 'PPDB2021100117', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(118, 'PPDB2021100117', 'sudah melaksanakan tes fisik pria, buta warna persial', '2020-06-17', '199560007', 'Richadus', 1),
+(119, 'PPDB2021100109', 'sudah melaksanakan Pengukuran Seragam', '2020-06-17', '340422305', 'Singgih66', 1),
+(120, 'PPDB2021100119', 'sudah melaksanakan wawancara siswa', '2020-06-17', '455517688', 'Rafikaaa', 1),
+(121, 'PPDB2021100102', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(122, 'PPDB2021100112', 'sudah melaksanakan wawancara siswa', '2020-06-17', '455517688', 'Rafikaaa', 1),
+(123, 'PPDB2021100117', 'sudah melaksanakan Pengukuran Seragam', '2020-06-17', '340422305', 'Singgih66', 1),
+(124, 'PPDB2021100102', 'sudah melaksanakan Pengukuran Seragam', '2020-06-17', '340422305', 'Singgih66', 1),
+(125, 'PPDB2021100119', 'rambut diwarnai merah', '2020-06-17', '332559092', 'Anitatrianasari', 1),
+(126, 'PPDB2021100116', 'sudah melaksanakan wawancara siswa', '2020-06-17', '455517688', 'Rafikaaa', 1),
+(127, 'PPDB2021100119', 'sudah melaksanakan Pengukuran Seragam', '2020-06-17', '340422305', 'Singgih66', 1),
+(128, 'PPDB2021100106', 'sudah melaksanakan Pengukuran Seragam', '2020-06-17', '340422305', 'Singgih66', 1),
+(129, 'PPDB2021100107', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(130, 'PPDB2021100112', 'sudah melaksanakan Pengukuran Seragam', '2020-06-17', '340422305', 'Singgih66', 1),
+(131, 'PPDB2021100116', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(132, 'PPDB2021100105', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(133, 'PPDB2021100107', 'sudah melaksanakan Pengukuran Seragam', '2020-06-17', '340422305', 'Singgih66', 1),
+(134, 'PPDB2021100105', 'sudah melaksanakan Pengukuran Seragam', '2020-06-17', '340422305', 'Singgih66', 1),
+(135, 'PPDB2021100116', 'sudah melaksanakan Pengukuran Seragam', '2020-06-17', '340422305', 'Singgih66', 1),
+(136, 'PPDB2021100111', 'sudah melaksanakan wawancara siswa', '2020-06-17', '455517688', 'Rafikaaa', 1),
+(137, 'PPDB2021100081', 'tidak hadir test TPA', '2020-06-17', '570540461', 'Shintadewi12', 1),
+(138, 'PPDB2021100089', 'tidak hadir test TPA', '2020-06-17', '570540461', 'Shintadewi12', 1),
+(139, 'PPDB2021100104', 'tidak hadir test TPA', '2020-06-17', '570540461', 'Shintadewi12', 1),
+(140, 'PPDB2021100115', 'sudah melaksanakan wawancara siswa', '2020-06-17', '455517688', 'Rafikaaa', 1),
+(141, 'PPDB2021100102', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(142, 'PPDB2021100105', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(143, 'PPDB2021100098', 'tidak hadir test TPA', '2020-06-17', '570540461', 'Shintadewi12', 1),
+(144, 'PPDB2021100106', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(145, 'PPDB2021100107', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(146, 'PPDB2021100113', 'tidak hadir test TPA', '2020-06-17', '570540461', 'Shintadewi12', 1),
+(147, 'PPDB2021100109', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(148, 'PPDB2021100112', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(149, 'PPDB2021100118', 'tidak hadir test TPA', '2020-06-17', '570540461', 'Shintadewi12', 1),
+(150, 'PPDB2021100116', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(151, 'PPDB2021100120', 'tidak hadir test TPA', '2020-06-17', '570540461', 'Shintadewi12', 1),
+(152, 'PPDB2021100117', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(153, 'PPDB2021100119', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(154, 'PPDB2021100101', 'sudah melaksanakan wawancara siswa', '2020-06-17', '1084666312', 'Wildhabanu', 1),
+(155, 'PPDB2021100102', 'sudah melaksanakan wawancara siswa', '2020-06-17', '1084666312', 'Wildhabanu', 1),
+(156, 'PPDB2021100103', 'sudah melaksanakan wawancara siswa', '2020-06-17', '1084666312', 'Wildhabanu', 1),
+(157, 'PPDB2021100105', 'sudah melaksanakan wawancara siswa', '2020-06-17', '1084666312', 'Wildhabanu', 1),
+(158, 'PPDB2021100106', 'sudah melaksanakan wawancara siswa', '2020-06-17', '1084666312', 'Wildhabanu', 1),
+(159, 'PPDB2021100107', 'sudah melaksanakan wawancara siswa', '2020-06-17', '1084666312', 'Wildhabanu', 1),
+(160, 'PPDB2021100109', 'sudah melaksanakan wawancara siswa', '2020-06-17', '1084666312', 'Wildhabanu', 1),
+(161, 'PPDB2021100111', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(162, 'PPDB2021100111', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(163, 'PPDB2021100115', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(164, 'PPDB2021100111', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(165, 'PPDB2021100115', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(166, 'PPDB2021100101', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(167, 'PPDB2021100103', 'sudah melaksanakan tes fisik pria', '2020-06-17', '199560007', 'Richadus', 1),
+(168, 'PPDB2021100101', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1),
+(169, 'PPDB2021100103', 'sudah mengembalikan berkas', '2020-06-17', '250389527', 'hestihera', 1);
 
 -- --------------------------------------------------------
 
@@ -2239,7 +2540,7 @@ ALTER TABLE `api_kelas`
 -- AUTO_INCREMENT for table `api_link_materi`
 --
 ALTER TABLE `api_link_materi`
-  MODIFY `id_materi` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_materi` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `api_mapel`
@@ -2263,13 +2564,13 @@ ALTER TABLE `api_ortu`
 -- AUTO_INCREMENT for table `api_penugasan`
 --
 ALTER TABLE `api_penugasan`
-  MODIFY `id_penugasan` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_penugasan` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `api_presensi_online`
 --
 ALTER TABLE `api_presensi_online`
-  MODIFY `id_presensi_online` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=823;
+  MODIFY `id_presensi_online` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=965;
 
 --
 -- AUTO_INCREMENT for table `api_siswa`
@@ -2311,7 +2612,7 @@ ALTER TABLE `chatbot_reply_db`
 -- AUTO_INCREMENT for table `hasil_test_wawancara_ppdb_siswa`
 --
 ALTER TABLE `hasil_test_wawancara_ppdb_siswa`
-  MODIFY `id_wawancara` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_wawancara` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
 -- AUTO_INCREMENT for table `mapel_enrol_kelas`
