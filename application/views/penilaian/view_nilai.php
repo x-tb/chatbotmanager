@@ -116,7 +116,7 @@
 						echo "<input type='hidden' id='nipd$no' value='$nama->nipd' name='nipd'>";
 							
 							echo "<td width='10%'>";
-							echo "<input type='hidden'id=nilai$no class='form-inline nilaihidden col-md-10' value='0' name='nilai'>";
+							echo "<input type='hidden'id=nilai$no class='form-inline nilaihidden col-md-10' value='80' name='nilai'>";
 							echo "<span class=dtshow>0</span>";
 							echo "</td>";
 							echo "<td class='kolfeedback' width='20%'>";
