@@ -46,8 +46,8 @@ foreach($pelajaran as $mp):
 				</tr>
 				<tr class="bg-primary text-white">
 					<th>No</th>
-					<th>Tipe Nilai</th>
-					<th>Nama Penugasan/Penilaian</th>
+					<th width="10%">Kategori</th>
+					<th width="50%">Nama Penugasan/Penilaian</th>
 					<th>Upload</th>
 					<th>Modify</th>
 				</tr>
