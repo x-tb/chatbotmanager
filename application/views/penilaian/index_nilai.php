@@ -17,7 +17,7 @@
 			<h6 class="m-0 font-weight-bold text-primary">Daftar Nilai Guru Mata Pelajaran</h6>
 		</div>
 		<div class="card-body">
-
+		<img src="<?php echo base_url("assets/img/siennabot_onil.png"); ?>" width="100%" alt="">
 			<?php 
 
 //print_r($tugas);

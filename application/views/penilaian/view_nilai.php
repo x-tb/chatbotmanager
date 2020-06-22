@@ -98,8 +98,9 @@
 							$flagidnilai=$dt->id_tugas_siswa;
 							echo "<input type='hidden' id=idnilai$no value='$dt->id_tugas_siswa' name='idnilai'>";
 							echo "<input type='hidden' id=nilailama$no value='$dt->id_tugas_siswa' name='idnilai'>";
+							echo "<input type='hidden' id=nipd$no value='$dt->nipd' name='nipd'>";
 							echo "<td width='10%'>";
-							echo "<input type='hidden'id=nilaibaru$no class='form-inline nilaihidden col-md-10' value='$dt->nilai' name='nilai'>";
+							echo "<input type='hidden'id=nilai$no class='form-inline nilaihidden col-md-10' value='$dt->nilai' name='nilai'>";
 							echo "<span class=dtshow >".$dt->nilai."<span>";
 							echo "</td>";
 							echo "<td class='kolfeedback' width='20%'>";
@@ -113,8 +114,9 @@
 					endforeach;
 					if($flagidnilai==0){
 						
-						echo "<input type='hidden' id='nipd$no' value='$nama->nipd' name='nipd'>";
-							
+						echo "<input type='hidden' class='mynipd' id='snipd$no' value='$nama->nipd' name='nipd'>";
+						echo "<input type='hidden' id=idnilai$no value='0' name='idnilai'>";
+						
 							echo "<td width='10%'>";
 							echo "<input type='hidden'id=nilai$no class='form-inline nilaihidden col-md-10' value='80' name='nilai'>";
 							echo "<span class=dtshow>0</span>";
@@ -209,6 +211,7 @@ $("#btnPortofolio").click(function(e){
 });
 
 $("#ButtonSave").click(function(e){
+	console.log('btn klik save');
 	let urlInsert="<?php echo base_url("penilaian/multi_insert_nilai"); ?>";
 	let urlUpdate="<?php echo base_url("penilaian/multi_update_nilai"); ?>";
 	let jmlsiswa="<?=$jmlsiswa?>";
@@ -224,26 +227,29 @@ $("#ButtonSave").click(function(e){
 		let kodemapel="<?=$post['id_mapel']?>";
 		let idnilai=$("#idnilai"+i).val();
 		let nipd=$("#nipd"+i).val();
+		let nipdSimpan=$("#snipd"+i).val();
 		let nilai=$("#nilai"+i).val();
 		let feedback=$("#feedback"+i).val();
 		let link=$("#link"+i).val();
 		let tanggal="<?=date("d/m/Y")?>";
-		
+		let portofolio=$("#portofolio"+i).val();
+		console.log($("#nipd").val());
 		if(form==0){
 			
 			console.log("action = insert");
 			//tempInsert.push(dataInsert);
-			dataInsert.push({nipd:nipd,id_penugasan:idtugas,id_mapel:kodemapel,id_guru:idguru,tgl_pengumpulan:tanggal,nilai:nilai,feedback_guru:feedback,link_portofolio:link,link_video_yt:'link tidak ada',status:'1'});
+			dataInsert.push({id_tugas_siswa:0,nipd:nipdSimpan,id_penugasan:idtugas,id_mapel:kodemapel,id_guru:idguru,tgl_pengumpulan:tanggal,nilai:nilai,feedback_guru:feedback,link_portofolio:link,link_video_yt:'link tidak ada',status:'1'});
 			
 		}else if(form!=0){
 			console.log("action = update");
-			dataUpdate.push({id_tugas_siswa:idnilai,tgl_pengumpulan:tanggal,nilai:nilai,feedback_guru:feedback});
+			dataUpdate.push({id_tugas_siswa:idnilai,tgl_pengumpulan:tanggal,nilai:nilai,feedback_guru:feedback,link_portofolio:portofolio});
 			
 			
 		}
 	}
 	console.log(dataInsert);
 	console.log(dataUpdate);
+	
 	$.post( urlInsert, {dataInsert})
   		.done(function( dataInsert ) {
     		console.log("data berhasil simpan");
