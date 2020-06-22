@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 <style>
+
 	tbody {
 		font-size: 11pt;
 	}
@@ -13,11 +14,9 @@
 <div class="container">
 
 	<div class="card shadow mb-4">
-		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Daftar Nilai Guru Mata Pelajaran</h6>
-		</div>
+		
 		<div class="card-body">
-		<img src="<?php echo base_url("assets/img/siennabot_onil.png"); ?>" width="100%" alt="">
+		
 			<?php 
 
 //print_r($tugas);
@@ -29,13 +28,12 @@
 foreach($pelajaran as $mp):
 					
 						?>
-			<tr>
-				<div class="card-header bg-dark col-md-12 text-white">
-					<h4><?php echo $mp->nama_mapel; ?></h4>
-					<p><?php echo $mp->kode_mapel_ajar; ?></p>
+			
+				<div class="card-header bg-dark col-md-12 text-light">
+					<h4><?php echo $mp->nama_mapel; ?>&nbsp;<small>[<?php echo $mp->kode_mapel_ajar; ?>]</small></h4>
 
 				</div>
-			</tr>
+			
 			<!-- start -->
 			<table class="table table-bordered">
 

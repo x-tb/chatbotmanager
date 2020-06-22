@@ -13,14 +13,10 @@
 <div class="container">
 
 	<div class="card shadow mb-4">
-		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Jadwal  Kompetensi dan Penugasan Guru</h6>
-		</div>
+		
 		<div class="card-body">
-		<div>
-		<object type="image/svg+xml" data="<?php echo base_url("assets/img/starbotsapa.svg"); ?>" width="400">
-          Your browser does not support SVG.
-        </object>
+	
+		
 		<?php
 					
 					foreach($pelajaran as $mp): 
@@ -28,8 +24,8 @@
 						?>
                         <tr>
 					<div class="card-header bg-primary col-md-12 text-white">
-						<h4><?php echo $mp->nama_mapel; ?></h4>
-						<p><?php echo $mp->kode_mapel_ajar; ?></p>
+						<h4><?php echo $mp->nama_mapel; ?> [<small><?php echo $mp->kode_mapel_ajar; ?></small>]</h4>
+						
 
 					</div>
 				</tr>
