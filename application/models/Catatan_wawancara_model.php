@@ -93,6 +93,7 @@ class Catatan_wawancara_model extends CI_Model {
         $this->db->select("id_wawancara,calon_siswa.nomor_ppdb,nama,tempat_lahir,tanggal_lahir,pilihan_1,pilihan_2,asal_sekolah,catatan,tanggal_kegiatan,username_telegram,");
         $this->db->join('calon_siswa','calon_siswa.nomor_ppdb=hasil_test_wawancara_ppdb_siswa.nomor_ppdb') ;
         $this->db->from($this->table);
+        $this->db->order_by('calon_siswa.nomor_ppdb');
         return $this->db->get();
     }
 }
