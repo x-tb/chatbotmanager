@@ -49,17 +49,21 @@
 				center: 'agendaDay,agendaWeek,month',
 				right: 'prev,next today'
 			},
+			monthNames: ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'],
+			monthNamesShort: ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agt','Sep','Oct','Nov','Des'],
+			dayNames: ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],
+			dayNamesShort: ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],
 			editable: true,
-			firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+			firstDay: 0, //  1(Monday) this can be changed to 0(Sunday) for the USA system
 			selectable: true,
 			defaultView: 'month',
 			
 			axisFormat: 'h:mm',
 			columnFormat: {
                 month: 'ddd',    // Mon
-                week: 'ddd d', // Mon 7
+                week: 'd ddd', // Mon 7
                 day: 'dddd M/d',  // Monday 9/7
-                agendaDay: 'dddd d'
+                agendaDay: 'd dddd'
             },
             titleFormat: {
                 month: 'MMMM yyyy', // September 2009
@@ -150,7 +154,7 @@
 					title: 'Click for Google',
 					start: new Date(y, m, 28),
 					end: new Date(y, m, 29),
-					url: 'https://ccp.cloudaccess.net/aff.php?aff=5188',
+					url: 'https://google.com',
 					className: 'success'
 				}
 			],			

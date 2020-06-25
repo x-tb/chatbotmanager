@@ -19,7 +19,7 @@ td.fc-today {
 
 .fc-first th{
 	font-family: 'Roboto', sans-serif;
-    background:#9675ce !important;
+    background:#4e73df !important;
 	color:#FFF;
 	font-size:14px !important;
 	font-weight:500 !important;
@@ -97,11 +97,11 @@ html .fc,
 }
 	span.fc-button {
     font-family: 'Roboto', sans-serif;
-    border-color: #9675ce;
-	color: #9675ce;
+    border-color: #4e73df;
+	color: #4e73df;
 }
 .fc-state-down, .fc-state-active {
-    background-color: #9675ce !important;
+    background-color: #4e73df !important;
 	color: #FFF !important;
 }
 .fc .fc-header-space {
@@ -263,8 +263,8 @@ html .fc,
 .fc-state-down,
 .fc-state-active,
 .fc-state-disabled {
-	color: #333333;
-	background-color: #FFE3E3;
+	color: #fff !important;
+	background-color: #4e73df ;
 	}
 
 .fc-state-hover {
@@ -292,7 +292,7 @@ html .fc,
 	filter: alpha(opacity=65);
 	box-shadow: none;
 	border:1px solid #FFE3E3;
-	color: #ff3b30;
+	color: rgb(78, 115, 223);
 	}
 
 	
@@ -689,7 +689,7 @@ table.fc-header{
     transition: background-color 0.2s;
 }
 .fc-week .fc-day.fc-state-highlight:hover .fc-day-number{
-    background-color:  #ff3b30;
+   
 }
 .fc-button-today{
     border: 1px solid rgba(255,255,255,.0);
