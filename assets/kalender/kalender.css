@@ -202,6 +202,7 @@ html .fc,
 	
 .fc-state-default { /* non-theme */
 	border: 1px solid;
+	
 	}
 
 .fc-state-default.fc-corner-left { /* non-theme */
@@ -250,8 +251,8 @@ html .fc,
 
 
 .fc-state-default {
-	border-color: #ff3b30;
-	color: #ff3b30;	
+	border-color: #4e73df;
+	color: #4e73df;	
 }
 .fc-button-month.fc-state-default, .fc-button-agendaWeek.fc-state-default, .fc-button-agendaDay.fc-state-default{
     min-width: 67px;
@@ -268,7 +269,7 @@ html .fc,
 	}
 
 .fc-state-hover {
-	color: #ff3b30;
+	color: #fff;
 	text-decoration: none;
 	background-position: 0 -15px;
 	-webkit-transition: background-position 0.1s linear;
@@ -279,7 +280,7 @@ html .fc,
 
 .fc-state-down,
 .fc-state-active {
-	background-color: #ff3b30;
+	background-color: #4e73df;
 	background-image: none;
 	outline: 0;
 	color: #FFFFFF;
@@ -692,7 +693,9 @@ table.fc-header{
    
 }
 .fc-button-today{
-    border: 1px solid rgba(255,255,255,.0);
+	border: 1px solid #ff3b30;
+	color: #FFBEBE;
+	background-color: #D87F7F;
 }
 .fc-view-agendaDay thead tr.fc-first .fc-widget-header{
     text-align: right;
