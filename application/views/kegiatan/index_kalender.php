@@ -11,18 +11,33 @@ $(document).ready(function () {
     var calendar = $('#calendar').fullCalendar({
         header: {
 				center: 'title',
-				right: 'agendaDay,agendaWeek,month',
+				right: 'agendaDay,agendaWeek,month,listWeek',
 				left: 'prev,next today'
 			},
-			monthNames: ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'],
-			monthNamesShort: ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agt','Sep','Oct','Nov','Des'],
-			dayNames: ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],
-			dayNamesShort: ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],
-			editable: true,
-			firstDay: 0, //  1(Monday) this can be changed to 0(Sunday) for the USA system
-			selectable: true,
-			defaultView: 'month',
-			
+		monthNames: ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'],
+		monthNamesShort: ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agt','Sep','Oct','Nov','Des'],
+		dayNames: ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],
+		dayNamesShort: ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],
+		editable: true,
+		firstDay: 0, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+		selectable: true,
+       
+			selectHelper: true,
+			select: function(start, end, allDay) {
+				var title = prompt('Event Title:');
+				if (title) {
+					calendar.fullCalendar('renderEvent',
+						{
+							title: title,
+							start: start,
+							end: end,
+							allDay: allDay
+						},
+						true // make the event "stick"
+					);
+				}
+				calendar.fullCalendar('unselect');
+			},
         events: {
     			url: "<?=base_url("kegiatan/get_all_kalender")?>",  },
    				loading: function(bool) {
@@ -30,12 +45,22 @@ $(document).ready(function () {
    			},	
         displayEventTime: false,
         eventRender: function (event, element, view) {
+
             if (event.allDay === 'true') {
                 event.allDay = true;
             } else {
                 event.allDay = false;
             }
         },
+        eventRender: function (eventObj, $el) {
+        	$el.popover({
+            	title: eventObj.title,
+            	content: eventObj.description,
+            	trigger: 'hover',
+            	placement: 'top',
+            	container: 'body'
+        	});
+    	},
         selectable: true,
         selectHelper: true,
         select: function (start, end, allDay) {
@@ -107,15 +132,32 @@ function displayMessage(message) {
 
 <style>
 body {
-    margin-top: 50px;
+    
     text-align: center;
-    font-size: 12px;
-    font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+    font-size: 14px;
+	font-family: 'Roboto', sans-serif;
 }
-
+.fc-day-header {
+    background-color:#4e73df !important;
+    color:#fff;
+}
+.fc-title {
+    color:#fff;
+}
 #calendar {
-    width: 700px;
+    width: 100%;
     margin: 0 auto;
+}
+.fc-day-number {
+    font-size:20pt;
+}
+.fc-sun {
+    background-color:#eee;
+    
+}
+.fc-today {
+    font-weight:bold;
+    color:#4e73df;
 }
 
 .response {
@@ -139,12 +181,12 @@ body {
 		<div class="card-body">
            
 
-        <div class="response"></div>
-        <div id='calendar'></div>
+            <div class="response"></div>
+            <div id='calendar'></div>
 
 
 
-            </div>
+        </div>
 	</div>
 </div>
 
