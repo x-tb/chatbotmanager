@@ -17,19 +17,36 @@ Class Kegiatan extends CI_Controller {
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('kegiatan/kalender', $data);
+        $this->load->view('kegiatan/index_kalender', $data);
         $this->load->view('templates/footer');
     }
     public function get_all_kalender(){
         $data=$this->Kalender_model->getKalenderAll()->result();
         $dataready=[];
         foreach ($data as $row){
-            $datare=array(
-                'title'=>$row->title,
-                'start'=>$row->startdate,
-                'end'=>$row->enddate
-            );
-            array_push($dataready,$datare);
+            
+            if(strval($row->startdate)!=strval($row->enddate)){
+                    $datalong=array(
+                        'id'=>intval($row->id),
+                        'title'=>$row->title,
+                        'description'=>$row->description,
+                        'start'=>$row->startdate,
+                        'end'=>$row->enddate
+                    );
+                   
+                    array_push($dataready,$datalong);
+                    
+            }else{
+                $datare=array(
+                    'title'=>$row->title,
+                    'description'=>$row->description,
+                    'start'=>$row->startdate,
+                    'end'=>$row->enddate
+                );
+                array_push($dataready,$datare);
+            }
+           
+            
         }
 
         echo json_encode($dataready);

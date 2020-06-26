@@ -7,7 +7,7 @@ class Kalender_model extends CI_Model {
         $this->load->database();
     }
     public function getKalenderAll(){
-        $this->db->select("title,startdate,enddate");
+        $this->db->select("id,title,description,startdate,enddate");
         return $this->db->get('calendar');
     }
 }
