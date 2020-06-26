@@ -45,9 +45,9 @@
 		
 		var calendar =  $('#calendar').fullCalendar({
 			header: {
-				left: 'title',
-				center: 'agendaDay,agendaWeek,month',
-				right: 'prev,next today'
+				center: 'title',
+				right: 'agendaDay,agendaWeek,month',
+				left: 'prev,next today'
 			},
 			monthNames: ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'],
 			monthNamesShort: ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agt','Sep','Oct','Nov','Des'],
@@ -110,7 +110,15 @@
 					$(this).remove();
 				}
 				
-			},
+			},eventRender: function (eventObj, $el) {
+        	$el.popover({
+            	title: eventObj.title,
+            	content: eventObj.description,
+            	trigger: 'hover',
+            	placement: 'top',
+            	container: 'body'
+        	});
+    	},
 			events: {
     			url: "<?=base_url("kegiatan/get_all_kalender")?>",  },
    				loading: function(bool) {
