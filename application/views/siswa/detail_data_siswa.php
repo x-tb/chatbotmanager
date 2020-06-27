@@ -3,13 +3,13 @@
 		<tr>
 			<td>Nomor Induk Siswa Nasional <input type="hidden" name="id_profil" value="<?php echo $one->id_profil;?>">
 			</td>
-			<td> <input class="form-control col-md-10" type="text" name="nisn" id="nisn"
+			<td> <input class="form-control col-md-10" type="text" name="nisndetail" id="nisndetail"
 					value="<?php echo $one->nisn;?>" /> </td>
 		</tr>
         <tr>
 			<td>Nomor Induk Peserta Didik 
 			</td>
-			<td> <input class="form-control col-md-10" type="text" name="nipd" id="nipd"
+			<td> <input class="form-control col-md-10" type="text" name="nipddetail" id="nipddetail"
 					value="<?php echo $one->nipd;?>" /> </td>
 		</tr>
 		<tr>
@@ -75,13 +75,13 @@
 		<tr>
 			<td>Tanggal di terima <small>*lengkap dengan format tgl/bulan/tahun</small></td>
 			<td>
-				<input class="form-control col-md-5" type="text" name="tgl_diterima" id="tgl_diterima">
+				<input value="<?php echo $one->tgl_diterima;?>" class="form-control col-md-5" type="text" name="tgl_diterima" id="tgl_diterima">
 			</td>
 		</tr>
 		<tr>
 			<td>Tahun di terima <small>*format contoh 2020</small></td>
 			<td>
-				<input class="form-control col-md-5" type="text" name="tahun_diterima" id="tahun_diterima">
+				<input value="<?php echo $one->tahun_diterima;?>" class="form-control col-md-5" type="text" name="tahun_diterima" id="tahun_diterima">
 			</td>
 		</tr>
         <tr>

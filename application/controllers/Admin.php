@@ -84,7 +84,7 @@ class Admin extends CI_Controller {
     }
 
     function edit_siswa($idsiswa) {
-        $data['title'] = 'Form Edit Data siswa ';
+        $data['title'] = 'SMK Taruna Bhakti | Form Edit Data siswa ';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['siswa'] = $this->Siswa_model->get_one_by_id($idsiswa)->result();
         $kode = $this->Siswa_model->getKodeJurusanSiswa($idsiswa);
@@ -145,7 +145,30 @@ class Admin extends CI_Controller {
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Access Changed!</div>');
     }
-
+    function jurusanToID($string){
+        $stringlow=strtolower($string);
+        switch ($stringlow) {
+            case 'teknik komputer dan jaringan':
+                $kodejurusan=1;
+                break;
+            case 'multimedia':
+                $kodejurusan=2;
+                break;
+            case 'rekayasa perangkat lunak':
+                $kodejurusan=3;
+                break;
+            case 'broadcasting':
+                $kodejurusan=4;
+                break;
+            case 'teknik elektronika industri':
+                $kodejurusan=5;
+                break;
+            default:
+                $kodejurusan=0;
+                break;
+        }
+        return $kodejurusan;
+    }
     function doimport() {
         $jmlsukses = 0;
         $jmlgagal = 0;
@@ -184,16 +207,18 @@ class Admin extends CI_Controller {
                         TRUE,
                         FALSE
                 );
+                //untuk tabel api siswa
                 $nisn = $rowData[0][1];
                 $nipd = $rowData[0][2];
                 $nama = $rowData[0][3];
-                $kode_jurusan = $rowData[0][4];
-                $jurusan = $rowData[0][5];
-                $kelas = $rowData[0][6];
-                $tmplahir = $rowData[0][7];
-                $tgllahir = $rowData[0][8];
-                $foto_nipd = $rowData[0][9];
-                $status = $rowData[0][10];
+                
+                $jurusan = $rowData[0][4];
+                $kode_jurusan=$this->jurusanToID($jurusan);//convert teks jurusan ke kode jurusan
+                $kelas = $rowData[0][5];
+                $tmplahir = $rowData[0][6];
+                $tgllahir = $rowData[0][7];
+                $foto_nipd = $rowData[0][8];
+                $status = $rowData[0][9];
                 //$tgllahirReal=date('d-m-Y', PHPExcel_Shared_Date::ExcelToPHP($tgllahir));
 
                 $cekdata = $this->db->get_where('api_siswa', ['nisn' => $nisn]);
@@ -216,6 +241,49 @@ class Admin extends CI_Controller {
                     $this->db->insert('api_siswa', $datasimpan);
                     ++$jmlsukses;
                 }
+                //untuk tabel detail siswa
+
+                $agama=$rowData[0][10];
+                $stat_anak=$rowData[0][11];
+                $anak_ke=$rowData[0][12];
+                $alamat_siswa=$rowData[0][13];
+                $telpon_rumah=$rowData[0][14];
+                $sekolah_asal=$rowData[0][15];
+                $kelas_diterima=$rowData[0][16];
+                $tgl_diterima=$rowData[0][17];
+                $tahun_diterima=$rowData[0][18];
+                $nama_ayah=$rowData[0][19];
+                $nama_ibu=$rowData[0][20];
+                $pekerjaan_ayah=$rowData[0][21];
+                $pekerjaan_ibu=$rowData[0][22];
+                $nama_wali=$rowData[0][23];
+                $alamat_wali=$rowData[0][24];
+                $pekerjaan_wali=$rowData[0][25];
+                $telpon_wali=$rowData[0][26];
+                $detailsimpan = [
+                    'nipd' => $nipd,
+                    'agama' => $agama,
+                    'stt_dl_klg' => $stat_anak,
+                    'anak_ke' => $anak_ke,
+                    'alamat_siswa' => $alamat_siswa,
+                    'telp_rumah' => $telpon_rumah,
+                    'sekolah_asal' => $sekolah_asal,
+                    'kelas_diterima' => $kelas_diterima,
+                    'tgl_diterima'=>$tgl_diterima,
+                    'tahun_diterima'=>$tahun_diterima,
+                    'nama_ayah'=>$nama_ayah,
+                    'nama_ibu'=>$nama_ibu,
+                    'pekerjaan_ayah'=>$pekerjaan_ayah,
+                    'pekerjaan_ibu'=>$pekerjaan_ibu,
+                    'nama_wali'=>$nama_wali,
+                    'alamat_wali'=>$alamat_wali,
+                    'pekerjaan_wali'=>$pekerjaan_wali,
+                    'telpon_wali'=>$telpon_wali,
+                    'status' => $status
+                ];
+
+                $this->Siswa_model->insertDetailSiswa($detailsimpan);
+
             }
             redirect(base_url("admin/data_siswa/sukses_import/$jmlsukses/$jmlgagal"));
         }

@@ -147,19 +147,28 @@
 							<td>
                             <?php
                             function nama_status($stat){
-                                if($stat==1){
-                                    $status="Belum Aktif Telegram";
-                                }else if($stat==2){
-                                    $status="Telegram Aktif";
-                                }else {
-                                    $status="Siswa Non Aktif";
-                                }
+								switch ($stat) {
+									case '0':
+										$status="Siswa Non Aktif";
+										break;
+									case '1':
+										$status="Siswa Aktif Telegram Belum Aktif";
+										break;
+									case '2':
+										$status="Siswa dan Akun Telegram Aktif";
+										break;
+										
+									default:
+										$status="Siswa Belum Aktif";
+										break;
+								}
+                                
                                 return $status;
                             }
                             
                             ?>
                             <select class="form-control col-md-5" name="status" id="status">
-                            <option selected="selected" value="<?=$one->status?>"><?php echo nama_status($one->status); ?></option>
+                            <option selected="selected" value="<?=$one->status?>"><?php echo nama_status($one->sttsiswa); ?></option>
                             <option value="1">Belum Aktif Telegram</option>
                             <option value="0">Non Aktifkan Siswa</option>
                             <option value="2">Telegram Aktif</option>

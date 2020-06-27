@@ -14,7 +14,7 @@ class Siswa_model extends CI_Model {
         $this->load->database();
     }
     public function get_one_by_id($idsiswa){
-        $this->db->select('api_siswa.nisn,api_siswa.nipd,api_siswa.nama,api_siswa.kode_jurusan,api_siswa.komli,api_siswa.kelas,api_siswa.tempat_lahir,api_siswa.tanggal_lahir,api_siswa.foto_nipd,api_siswa.status,api_telegram_siswa.uname_tel');
+        $this->db->select('api_siswa.nisn,api_siswa.nipd,api_siswa.nama,api_siswa.kode_jurusan,api_siswa.komli,api_siswa.kelas,api_siswa.tempat_lahir,api_siswa.tanggal_lahir,api_siswa.foto_nipd,api_siswa.status as sttsiswa,api_telegram_siswa.uname_tel');
         $this->db->select('detail_siswa.*');
         $this->db->from('api_siswa');
         
@@ -217,6 +217,9 @@ class Siswa_model extends CI_Model {
         $this->db->like("kelas",$namakelas);
         $this->db->order_by('idsiswa');
         return $this->db->get();
+    }
+    public function insertDetailSiswa($data){
+        return $this->db->insert('detail_siswa',$data);
     }
  
 }
