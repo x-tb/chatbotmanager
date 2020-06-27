@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 25, 2020 at 01:34 PM
+-- Generation Time: Jun 27, 2020 at 12:14 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.19
 
@@ -201,7 +201,12 @@ INSERT INTO `api_link_materi` (`id_materi`, `nomor_nama_kd`, `topik_pembahasan`,
 (16, '4.15 Membuat web interaktif', 'praktek membuat form autocomplete dan CRUD dengan php ajax tanpa loading', 'http://portal.smktarunabhakti.net/webinteraktifpraktek', 40, 20, 3, 5, '2019/2020', 1),
 (17, '3.16 Menerapkan web hosting', 'memahami tata cara hosting web aplikasi', 'http://portal.smktarunabhakti.net/webihosting', 40, 20, 6, 7, '2019/2020', 1),
 (18, '3.17 Menerapkan konsep sistem informasi', 'konsep sistem informasi berbasis web', 'http://portal.smktarunabhakti.net/websistem', 40, 20, 8, 9, '2019/2020', 1),
-(19, '3.16 Menerapkan Operasi File', 'modul PWPB SMK Taruna Bhakti Halaman 40 cek juga video tutorial di youtube puguhrismadi', 'https://portal.smktarunabhakti.net', 40, 20, 9, 10, '2019/2020', 1);
+(19, '3.16 Menerapkan Operasi File', 'modul PWPB SMK Taruna Bhakti Halaman 40 cek juga video tutorial di youtube puguhrismadi', 'https://portal.smktarunabhakti.net', 40, 20, 9, 10, '2019/2020', 1),
+(21, '3.18 Menerapkan User Interface basis data pada halaman web', 'Materi projek membuat CRUD tanpa Loading dengan PHP dan AJAX', 'https://portal.smktarunabhakti.net/pluginfile.php/29845/mod_resource/content/2/MODUL%20PEMROGRAMAN%20WEB%20DAN%20PEMROGRAMAN%20MOBILE%20edisi%20KETIGA.pdf', 40, 20, 11, 12, '2019/2020', 1),
+(22, '3.19 Menerapkan aplikasi web statefull', 'Materi web stateful dapat dilihat link modul , projek ketrampilan mengenai pembuatan login dan logout aplikasi', 'https://portal.smktarunabhakti.net/pluginfile.php/29845/mod_resource/content/2/MODUL%20PEMROGRAMAN%20WEB%20DAN%20PEMROGRAMAN%20MOBILE%20edisi%20KETIGA.pdf', 40, 20, 13, 13, '2019/2020', 1),
+(23, '3.20 Mengevaluasi pengamanan data pada aplikasi web', 'materi pengamanan data ini dapat di lihat di modul pwpb link terkait dengan projek ketrampilan hashing dan materi keamanan web projek ', 'https://portal.smktarunabhakti.net/pluginfile.php/29845/mod_resource/content/2/MODUL%20PEMROGRAMAN%20WEB%20DAN%20PEMROGRAMAN%20MOBILE%20edisi%20KETIGA.pdf', 40, 20, 14, 14, '2019/2020', 1),
+(24, '3.23 Menerapkan Aplikasi web dengan Model View Controller (MVC)', 'materi pemahaman dan konsep MVC dan penerapan dalam aplikasi web', 'https://jagongoding.com/web/memahami-konsep-mvc/', 40, 20, 15, 15, '2019/2020', 1),
+(25, '3.24 Menerapkan Teknologi Framework dalam aplikasi web', 'Menerapkan framework laravel dalam aplikasi web , tutorial CRUD PHP laravel ReactJs', 'https://ilmucoding.com/crud-laravel-react-js/', 40, 20, 16, 20, '2019/2020', 1);
 
 -- --------------------------------------------------------
 
@@ -444,7 +449,9 @@ INSERT INTO `api_penugasan` (`id_penugasan`, `id_materi`, `idguru`, `id_mapel`, 
 (17, 9, 40, 20, 'Projek', 'Tugas 1 Pembuatan Blog Materi pertemuan 1 PWPB', '<p>M</p>', '2020-06-10', '10:00', '2020-06-10', '14:00', '2019/2020', 1),
 (18, 10, 40, 20, 'Projek', 'Project Aplikasi CRUD tahap 1 ', '<p><strong>TEKNIS PELAKSANAAN TAHAP I :</strong></p><p>1) Buatlah form input data master produk seperti pada gambar 1.1</p><p>2) Buatlah Tampilan tampilan data tabel seperti tampak pada gambar 1.2</p><p>3) Buatlah Kode Program Menggunakan php Untuk inputan data yang</p><p>ada pada form (gambar 1.1) agar tersimpan (tampil) di Data Tabel seperti gambar 1.2</p><p>4) Gambar url bisa copy link dari url web dari internet / google</p><p>5) Setiap input data baru akan menambahkan row ke Tabel data Gambar 1.2</p><p>6) Buatlah Fungsi cek stok produk kurang dari 5 maka akan tampil di tabel</p><p>data master seperti tampak gambar 1.3 (background stock barang menjadi</p><p>merah dan warna font menjadi putih)</p><p>7) Membuat nomor Auto Increment Menggunakan looping for di php</p><p>8) Buatlah Fungsi Delete untuk menghapus row Data di tabel Master dan Stock</p><p>Produk</p><p>9) Upload Kode program di akun github masing-masing (bukti screenshot source code yang sudah di commit ke github) upload di portal belajar</p><p>10) Buat video penjelasan kode program di channel youtube masing-masing dan upload link (embed ) tugas project ini di portal belajar</p><p>M<br></p><p><br></p>', '2020-04-17', '10:00', '2020-04-20', '14:00', '2019/2020', 1),
 (19, 10, 40, 20, 'Projek', 'Tugas 3 Membuat akun Github dan Dasar Penggunaan Github', '<p>Buatlah akun github untuk masing-masing siswa dengan ketentuan :</p><p>1. Nama Akun github adalah nama lengkap sebenarnya (agar di kenali oleh pengajar)</p><p>2. Upload Screenshot yang menampilkan nama akun github kalian di sini </p><p>3. Buatlah sebuah file aboutme.php yang di upload di github dengan langkah kerja berikut ini : </p><ol><li>Tulis Nama Lengkap di baris pertama dengan perintah php echo \"Nama : Nama lengkap Saya \";</li><li>Tuliskan Kelas dengan echo&nbsp;</li><li>Tuliskan Asal Sekolah : SMK Taruna Bhakti Depok dengan perintah echo di php</li><li>Tuliskan Alamat Rumah : isi dengan alamat rumah masing-masing</li><li>Commit File tersebut dan screenshot hasil pertama untuk di upload di sini</li><li>Tambahkan Nomor HP dan email masing -masing di baris yang berbeda</li><li>Kemudian hapus baris alamat rumah dan commit (simpan kembali) serta screenshot kembali hasilnya </li><li>lihat history file perubahan dan screenshot</li><li>selesai </li></ol><p>silahkan kerjakan dengan penuh tanggung jawab</p><p><br></p>', '2020-04-15', '10:00', '2020-04-17', '15:00', '2019/2020', 1),
-(20, 13, 40, 20, 'Projek', 'Tugas KD Menggunakan Library dalam Bahasa Program', '<p>Buatlah Rest API mengikuti tutorial dari modul yang sudah di sediakan , dengan ketentuan sebagai berikut : </p><p>1. upload code program di github </p><p>2. buat screenshot code program dan hasil tampilan percobaan web service (di uji dengan REST client seperti , software POSTMAN atau Imsomnia) di upload di portal ini dengan format pdf</p><p>3. struktur tabel (kolom maupun tabel lain) dapat di tambahkan sehingga menjadi sebuah aplikasi untuk mmanjemen data pegawai </p><p>Lihat Materi di modul PWPB edisi kedua</p><p>link tugas : <a href=\"https://portal.smktarunabhakti.net/mod/assign/view.php?id=7968\" target=\"_blank\">https://portal.smktarunabhakti.net/mod/assign/view.php?id=7968</a></p>', '2020-04-23', '10:00', '2020-04-24', '15:00', '2019/2020', 1);
+(20, 13, 40, 20, 'Projek', 'Tugas KD Menggunakan Library dalam Bahasa Program', '<p>Buatlah Rest API mengikuti tutorial dari modul yang sudah di sediakan , dengan ketentuan sebagai berikut : </p><p>1. upload code program di github </p><p>2. buat screenshot code program dan hasil tampilan percobaan web service (di uji dengan REST client seperti , software POSTMAN atau Imsomnia) di upload di portal ini dengan format pdf</p><p>3. struktur tabel (kolom maupun tabel lain) dapat di tambahkan sehingga menjadi sebuah aplikasi untuk mmanjemen data pegawai </p><p>Lihat Materi di modul PWPB edisi kedua</p><p>link tugas : <a href=\"https://portal.smktarunabhakti.net/mod/assign/view.php?id=7968\" target=\"_blank\">https://portal.smktarunabhakti.net/mod/assign/view.php?id=7968</a></p>', '2020-04-23', '10:00', '2020-04-24', '15:00', '2019/2020', 1),
+(21, 21, 40, 20, 'Projek', 'membuat CRUD ke Mysql PHP AJAX tanpa Loading', '<p>membuat projek CRUD dengan bahasa program php dan database mysql dengan metode ajax materi terdapat di modul pwpb edisi ketiga </p><p><br></p><p><br></p>', '2020-04-15', '07:00', '2020-05-01', '15:00', '2019/2020', 1),
+(22, 24, 40, 20, 'Harian', 'Materi Penerapan teknologi MVC dalam aplikasi web', '<p>https://jagongoding.com/web/memahami-konsep-mvc/</p><p>M<br></p>', '2020-06-29', '10:00', '2020-06-29', '03:00', '2019/2020', 1);
 
 -- --------------------------------------------------------
 
@@ -1614,19 +1621,23 @@ CREATE TABLE `calendar` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `startdate` varchar(48) NOT NULL,
-  `enddate` varchar(48) NOT NULL
+  `enddate` varchar(48) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `allday` tinyint(1) NOT NULL,
+  `level` int(1) NOT NULL,
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `calendar`
 --
 
-INSERT INTO `calendar` (`id`, `title`, `startdate`, `enddate`) VALUES
-(1, 'Jadwal 1', '2020-06-08T00:06:00', '2020-06-08T00:06:00'),
-(3, 'Jadwal 2', '2020-06-25T00:06:00+', '2020-06-25T00:06:00+'),
-(4, 'Jadwal 3', '2020-06-23T00:06:00+America/Chicago', '2020-06-23T00:06:00+America/Chicago'),
-(5, 'Jadwal 4', '2020-06-21T00:06:00+07:00', '2020-06-21T00:06:00+07:00'),
-(6, 'Jadwal 5', '2020-06-29T00:06:00+07:00', '2020-06-29T00:06:00+07:00');
+INSERT INTO `calendar` (`id`, `title`, `startdate`, `enddate`, `description`, `allday`, `level`, `status`) VALUES
+(1, 'Jadwal 1', '2020-06-08 00:06:00', '2020-06-08 06:06:00', 'Jadwal 1 contoh saja untuk deskripsi', 0, 1, 1),
+(3, 'Jadwal 2', '2020-06-25 07:00:00', '2020-06-25 09:30:00', 'Jadwal 2 contoh saja untuk deskripsi ', 0, 1, 1),
+(4, 'Jadwal 3', '2020-06-23 15:00:00', '2020-06-24 16:30:00', 'Jadwal 3 contoh saja untuk deskripsi', 0, 1, 1),
+(5, 'Jadwal 4', '2020-06-29 10:00:00', '2020-07-02 15:30:00', 'Jadwal 4 contoh saja untuk deskripsi \r\nstart : 2020-06-26 end : 2020-06-28', 0, 1, 1),
+(6, 'Jadwal 5', '2020-06-29 00:06:00', '2020-06-29 09:06:00', 'Jadwal 5 contoh saja untuk deskripsi', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1967,6 +1978,114 @@ CREATE TABLE `data_guru_mapel` (
 ,`nama_mapel` varchar(50)
 ,`nama_lengkap` varchar(26)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_siswa`
+--
+
+CREATE TABLE `detail_siswa` (
+  `id_profil` int(10) NOT NULL,
+  `nipd` varchar(20) NOT NULL,
+  `agama` varchar(20) NOT NULL,
+  `stt_dl_klg` varchar(20) NOT NULL,
+  `anak_ke` int(2) NOT NULL,
+  `alamat_siswa` varchar(200) NOT NULL,
+  `telp_rumah` varchar(15) NOT NULL,
+  `sekolah_asal` varchar(100) NOT NULL,
+  `kelas_diterima` varchar(15) NOT NULL,
+  `tgl_diterima` varchar(12) NOT NULL,
+  `tahun_diterima` year(4) NOT NULL,
+  `nama_ayah` varchar(100) NOT NULL,
+  `nama_ibu` varchar(100) NOT NULL,
+  `pekerjaan_ayah` varchar(100) NOT NULL,
+  `pekerjaan_ibu` varchar(100) NOT NULL,
+  `nama_wali` varchar(100) NOT NULL,
+  `alamat_wali` varchar(200) NOT NULL,
+  `pekerjaan_wali` varchar(100) NOT NULL,
+  `telpon_wali` varchar(15) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_siswa`
+--
+
+INSERT INTO `detail_siswa` (`id_profil`, `nipd`, `agama`, `stt_dl_klg`, `anak_ke`, `alamat_siswa`, `telp_rumah`, `sekolah_asal`, `kelas_diterima`, `tgl_diterima`, `tahun_diterima`, `nama_ayah`, `nama_ibu`, `pekerjaan_ayah`, `pekerjaan_ibu`, `nama_wali`, `alamat_wali`, `pekerjaan_wali`, `telpon_wali`, `status`) VALUES
+(2, '1819100073', 'Islam', 'Anak Kandung', 1, 'Alamat1', 'Telpon 1', 'Sekolah 1', 'X RPL ', '17 Juli 2019', 2019, 'Ayah 1', 'Ibu 1', 'Pkerjaan 1', 'pekerjaan ibu', 'nama wali 1', 'Alamat 2', 'pekerjaan wali 1', 'telpon wali', 1),
+(3, '1819100074', 'Islam', 'Anak Kandung', 2, 'Alamat2', 'Telpon 2', 'Sekolah 2', 'X RPL ', '18 Juli 2019', 2019, 'Ayah 2', 'Ibu 2', 'Pkerjaan 2', 'pekerjaan ibu', 'nama wali 2', 'Alamat 3', 'pekerjaan wali 2', 'telpon wali', 1),
+(4, '1819100075', 'Islam', 'Anak Kandung', 3, 'Alamat3', 'Telpon 3', 'Sekolah 3', 'X RPL ', '19 Juli 2019', 2019, 'Ayah 3', 'Ibu 3', 'Pkerjaan 3', 'pekerjaan ibu', 'nama wali 3', 'Alamat 4', 'pekerjaan wali 3', 'telpon wali', 1),
+(5, '1819100076', 'Islam', 'Anak Kandung', 4, 'Alamat4', 'Telpon 4', 'Sekolah 4', 'X RPL ', '20 Juli 2019', 2019, 'Ayah 4', 'Ibu 4', 'Pkerjaan 4', 'pekerjaan ibu', 'nama wali 4', 'Alamat 5', 'pekerjaan wali 4', 'telpon wali', 1),
+(6, '1819100077', 'Islam', 'Anak Kandung', 5, 'Alamat5', 'Telpon 5', 'Sekolah 5', 'X RPL ', '21 Juli 2019', 2019, 'Ayah 5', 'Ibu 5', 'Pkerjaan 5', 'pekerjaan ibu', 'nama wali 5', 'Alamat 6', 'pekerjaan wali 5', 'telpon wali', 1),
+(7, '1819100078', 'Islam', 'Anak Kandung', 6, 'Alamat6', 'Telpon 6', 'Sekolah 6', 'X RPL ', '22 Juli 2019', 2019, 'Ayah 6', 'Ibu 6', 'Pkerjaan 6', 'pekerjaan ibu', 'nama wali 6', 'Alamat 7', 'pekerjaan wali 6', 'telpon wali', 1),
+(8, '1819100079', 'Islam', 'Anak Kandung', 7, 'Alamat7', 'Telpon 7', 'Sekolah 7', 'X RPL ', '23 Juli 2019', 2019, 'Ayah 7', 'Ibu 7', 'Pkerjaan 7', 'pekerjaan ibu', 'nama wali 7', 'Alamat 8', 'pekerjaan wali 7', 'telpon wali', 1),
+(9, '1819100080', 'Islam', 'Anak Kandung', 8, 'Alamat8', 'Telpon 8', 'Sekolah 8', 'X RPL ', '24 Juli 2019', 2019, 'Ayah 8', 'Ibu 8', 'Pkerjaan 8', 'pekerjaan ibu', 'nama wali 8', 'Alamat 9', 'pekerjaan wali 8', 'telpon wali', 1),
+(10, '1819100081', 'Islam', 'Anak Kandung', 9, 'Alamat9', 'Telpon 9', 'Sekolah 9', 'X RPL ', '25 Juli 2019', 2019, 'Ayah 9', 'Ibu 9', 'Pkerjaan 9', 'pekerjaan ibu', 'nama wali 9', 'Alamat 10', 'pekerjaan wali 9', 'telpon wali', 1),
+(11, '1819100082', 'Islam', 'Anak Kandung', 10, 'Alamat10', 'Telpon 10', 'Sekolah 10', 'X RPL ', '26 Juli 2019', 2019, 'Ayah 10', 'Ibu 10', 'Pkerjaan 10', 'pekerjaan ibu', 'nama wali 10', 'Alamat 11', 'pekerjaan wali 10', 'telpon wali', 1),
+(12, '1819100083', 'Islam', 'Anak Kandung', 11, 'Alamat11', 'Telpon 11', 'Sekolah 11', 'X RPL ', '27 Juli 2019', 2019, 'Ayah 11', 'Ibu 11', 'Pkerjaan 11', 'pekerjaan ibu', 'nama wali 11', 'Alamat 12', 'pekerjaan wali 11', 'telpon wali', 1),
+(13, '1819100084', 'Islam', 'Anak Kandung', 12, 'Alamat12', 'Telpon 12', 'Sekolah 12', 'X RPL ', '28 Juli 2019', 2019, 'Ayah 12', 'Ibu 12', 'Pkerjaan 12', 'pekerjaan ibu', 'nama wali 12', 'Alamat 13', 'pekerjaan wali 12', 'telpon wali', 1),
+(14, '1819100085', 'Islam', 'Anak Kandung', 13, 'Alamat13', 'Telpon 13', 'Sekolah 13', 'X RPL ', '29 Juli 2019', 2019, 'Ayah 13', 'Ibu 13', 'Pkerjaan 13', 'pekerjaan ibu', 'nama wali 13', 'Alamat 14', 'pekerjaan wali 13', 'telpon wali', 1),
+(15, '1819100086', 'Islam', 'Anak Kandung', 14, 'Alamat14', 'Telpon 14', 'Sekolah 14', 'X RPL ', '30 Juli 2019', 2019, 'Ayah 14', 'Ibu 14', 'Pkerjaan 14', 'pekerjaan ibu', 'nama wali 14', 'Alamat 15', 'pekerjaan wali 14', 'telpon wali', 1),
+(16, '1819100087', 'Islam', 'Anak Kandung', 15, 'Alamat15', 'Telpon 15', 'Sekolah 15', 'X RPL ', '31 Juli 2019', 2019, 'Ayah 15', 'Ibu 15', 'Pkerjaan 15', 'pekerjaan ibu', 'nama wali 15', 'Alamat 16', 'pekerjaan wali 15', 'telpon wali', 1),
+(17, '1819100088', 'Islam', 'Anak Kandung', 16, 'Alamat16', 'Telpon 16', 'Sekolah 16', 'X RPL ', '32 Juli 2019', 2019, 'Ayah 16', 'Ibu 16', 'Pkerjaan 16', 'pekerjaan ibu', 'nama wali 16', 'Alamat 17', 'pekerjaan wali 16', 'telpon wali', 1),
+(18, '1819100089', 'Islam', 'Anak Kandung', 17, 'Alamat17', 'Telpon 17', 'Sekolah 17', 'X RPL ', '33 Juli 2019', 2019, 'Ayah 17', 'Ibu 17', 'Pkerjaan 17', 'pekerjaan ibu', 'nama wali 17', 'Alamat 18', 'pekerjaan wali 17', 'telpon wali', 1),
+(19, '1819100090', 'Islam', 'Anak Kandung', 18, 'Alamat18', 'Telpon 18', 'Sekolah 18', 'X RPL ', '34 Juli 2019', 2019, 'Ayah 18', 'Ibu 18', 'Pkerjaan 18', 'pekerjaan ibu', 'nama wali 18', 'Alamat 19', 'pekerjaan wali 18', 'telpon wali', 1),
+(20, '1819100091', 'Islam', 'Anak Kandung', 19, 'Alamat19', 'Telpon 19', 'Sekolah 19', 'X RPL ', '35 Juli 2019', 2019, 'Ayah 19', 'Ibu 19', 'Pkerjaan 19', 'pekerjaan ibu', 'nama wali 19', 'Alamat 20', 'pekerjaan wali 19', 'telpon wali', 1),
+(21, '1819100092', 'Islam', 'Anak Kandung', 20, 'Alamat20', 'Telpon 20', 'Sekolah 20', 'X RPL ', '36 Juli 2019', 2019, 'Ayah 20', 'Ibu 20', 'Pkerjaan 20', 'pekerjaan ibu', 'nama wali 20', 'Alamat 21', 'pekerjaan wali 20', 'telpon wali', 1),
+(22, '1819100093', 'Islam', 'Anak Kandung', 21, 'Alamat21', 'Telpon 21', 'Sekolah 21', 'X RPL ', '37 Juli 2019', 2019, 'Ayah 21', 'Ibu 21', 'Pkerjaan 21', 'pekerjaan ibu', 'nama wali 21', 'Alamat 22', 'pekerjaan wali 21', 'telpon wali', 1),
+(23, '1819100095', 'Islam', 'Anak Kandung', 22, 'Alamat22', 'Telpon 22', 'Sekolah 22', 'X RPL ', '38 Juli 2019', 2019, 'Ayah 22', 'Ibu 22', 'Pkerjaan 22', 'pekerjaan ibu', 'nama wali 22', 'Alamat 23', 'pekerjaan wali 22', 'telpon wali', 1),
+(24, '1819100097', 'Islam', 'Anak Kandung', 23, 'Alamat23', 'Telpon 23', 'Sekolah 23', 'X RPL ', '39 Juli 2019', 2019, 'Ayah 23', 'Ibu 23', 'Pkerjaan 23', 'pekerjaan ibu', 'nama wali 23', 'Alamat 24', 'pekerjaan wali 23', 'telpon wali', 1),
+(25, '1819100098', 'Islam', 'Anak Kandung', 24, 'Alamat24', 'Telpon 24', 'Sekolah 24', 'X RPL ', '40 Juli 2019', 2019, 'Ayah 24', 'Ibu 24', 'Pkerjaan 24', 'pekerjaan ibu', 'nama wali 24', 'Alamat 25', 'pekerjaan wali 24', 'telpon wali', 1),
+(26, '1819100099', 'Islam', 'Anak Kandung', 25, 'Alamat25', 'Telpon 25', 'Sekolah 25', 'X RPL ', '41 Juli 2019', 2019, 'Ayah 25', 'Ibu 25', 'Pkerjaan 25', 'pekerjaan ibu', 'nama wali 25', 'Alamat 26', 'pekerjaan wali 25', 'telpon wali', 1),
+(27, '1819100100', 'Islam', 'Anak Kandung', 26, 'Alamat26', 'Telpon 26', 'Sekolah 26', 'X RPL ', '42 Juli 2019', 2019, 'Ayah 26', 'Ibu 26', 'Pkerjaan 26', 'pekerjaan ibu', 'nama wali 26', 'Alamat 27', 'pekerjaan wali 26', 'telpon wali', 1),
+(28, '1819100101', 'Islam', 'Anak Kandung', 27, 'Alamat27', 'Telpon 27', 'Sekolah 27', 'X RPL ', '43 Juli 2019', 2019, 'Ayah 27', 'Ibu 27', 'Pkerjaan 27', 'pekerjaan ibu', 'nama wali 27', 'Alamat 28', 'pekerjaan wali 27', 'telpon wali', 1),
+(29, '1819100102', 'Islam', 'Anak Kandung', 28, 'Alamat28', 'Telpon 28', 'Sekolah 28', 'X RPL ', '44 Juli 2019', 2019, 'Ayah 28', 'Ibu 28', 'Pkerjaan 28', 'pekerjaan ibu', 'nama wali 28', 'Alamat 29', 'pekerjaan wali 28', 'telpon wali', 1),
+(30, '1819100103', 'Islam', 'Anak Kandung', 29, 'Alamat29', 'Telpon 29', 'Sekolah 29', 'X RPL ', '45 Juli 2019', 2019, 'Ayah 29', 'Ibu 29', 'Pkerjaan 29', 'pekerjaan ibu', 'nama wali 29', 'Alamat 30', 'pekerjaan wali 29', 'telpon wali', 1),
+(31, '1819100104', 'Islam', 'Anak Kandung', 30, 'Alamat30', 'Telpon 30', 'Sekolah 30', 'X RPL ', '46 Juli 2019', 2019, 'Ayah 30', 'Ibu 30', 'Pkerjaan 30', 'pekerjaan ibu', 'nama wali 30', 'Alamat 31', 'pekerjaan wali 30', 'telpon wali', 1),
+(32, '1819100105', 'Islam', 'Anak Kandung', 31, 'Alamat31', 'Telpon 31', 'Sekolah 31', 'X RPL ', '47 Juli 2019', 2019, 'Ayah 31', 'Ibu 31', 'Pkerjaan 31', 'pekerjaan ibu', 'nama wali 31', 'Alamat 32', 'pekerjaan wali 31', 'telpon wali', 1),
+(33, '1819100106', 'Islam', 'Anak Kandung', 32, 'Alamat32', 'Telpon 32', 'Sekolah 32', 'X RPL ', '48 Juli 2019', 2019, 'Ayah 32', 'Ibu 32', 'Pkerjaan 32', 'pekerjaan ibu', 'nama wali 32', 'Alamat 33', 'pekerjaan wali 32', 'telpon wali', 1),
+(34, '1819100107', 'Islam', 'Anak Kandung', 33, 'Alamat33', 'Telpon 33', 'Sekolah 33', 'X RPL ', '49 Juli 2019', 2019, 'Ayah 33', 'Ibu 33', 'Pkerjaan 33', 'pekerjaan ibu', 'nama wali 33', 'Alamat 34', 'pekerjaan wali 33', 'telpon wali', 1),
+(35, '1819100108', 'Islam', 'Anak Kandung', 34, 'Alamat34', 'Telpon 34', 'Sekolah 34', 'X RPL ', '50 Juli 2019', 2019, 'Ayah 34', 'Ibu 34', 'Pkerjaan 34', 'pekerjaan ibu', 'nama wali 34', 'Alamat 35', 'pekerjaan wali 34', 'telpon wali', 1),
+(36, '1819100109', 'Islam', 'Anak Kandung', 35, 'Alamat35', 'Telpon 35', 'Sekolah 35', 'X RPL ', '51 Juli 2019', 2019, 'Ayah 35', 'Ibu 35', 'Pkerjaan 35', 'pekerjaan ibu', 'nama wali 35', 'Alamat 36', 'pekerjaan wali 35', 'telpon wali', 1),
+(37, '1819100110', 'Islam', 'Anak Kandung', 36, 'Alamat36', 'Telpon 36', 'Sekolah 36', 'X RPL ', '52 Juli 2019', 2019, 'Ayah 36', 'Ibu 36', 'Pkerjaan 36', 'pekerjaan ibu', 'nama wali 36', 'Alamat 37', 'pekerjaan wali 36', 'telpon wali', 1),
+(38, '1819100112', 'Islam', 'Anak Kandung', 37, 'Alamat37', 'Telpon 37', 'Sekolah 37', 'X RPL ', '53 Juli 2019', 2019, 'Ayah 37', 'Ibu 37', 'Pkerjaan 37', 'pekerjaan ibu', 'nama wali 37', 'Alamat 38', 'pekerjaan wali 37', 'telpon wali', 1),
+(39, '1819100113', 'Islam', 'Anak Kandung', 38, 'Alamat38', 'Telpon 38', 'Sekolah 38', 'X RPL ', '54 Juli 2019', 2019, 'Ayah 38', 'Ibu 38', 'Pkerjaan 38', 'pekerjaan ibu', 'nama wali 38', 'Alamat 39', 'pekerjaan wali 38', 'telpon wali', 1),
+(40, '1819100114', 'Islam', 'Anak Kandung', 39, 'Alamat39', 'Telpon 39', 'Sekolah 39', 'X RPL ', '55 Juli 2019', 2019, 'Ayah 39', 'Ibu 39', 'Pkerjaan 39', 'pekerjaan ibu', 'nama wali 39', 'Alamat 40', 'pekerjaan wali 39', 'telpon wali', 1),
+(41, '1819100115', 'Islam', 'Anak Kandung', 40, 'Alamat40', 'Telpon 40', 'Sekolah 40', 'X RPL ', '56 Juli 2019', 2019, 'Ayah 40', 'Ibu 40', 'Pkerjaan 40', 'pekerjaan ibu', 'nama wali 40', 'Alamat 41', 'pekerjaan wali 40', 'telpon wali', 1),
+(42, '1819100116', 'Islam', 'Anak Kandung', 41, 'Alamat41', 'Telpon 41', 'Sekolah 41', 'X RPL ', '57 Juli 2019', 2019, 'Ayah 41', 'Ibu 41', 'Pkerjaan 41', 'pekerjaan ibu', 'nama wali 41', 'Alamat 42', 'pekerjaan wali 41', 'telpon wali', 1),
+(43, '1819100117', 'Islam', 'Anak Kandung', 42, 'Alamat42', 'Telpon 42', 'Sekolah 42', 'X RPL ', '58 Juli 2019', 2019, 'Ayah 42', 'Ibu 42', 'Pkerjaan 42', 'pekerjaan ibu', 'nama wali 42', 'Alamat 43', 'pekerjaan wali 42', 'telpon wali', 1),
+(44, '1819100118', 'Islam', 'Anak Kandung', 43, 'Alamat43', 'Telpon 43', 'Sekolah 43', 'X RPL ', '59 Juli 2019', 2019, 'Ayah 43', 'Ibu 43', 'Pkerjaan 43', 'pekerjaan ibu', 'nama wali 43', 'Alamat 44', 'pekerjaan wali 43', 'telpon wali', 1),
+(45, '1819100119', 'Islam', 'Anak Kandung', 44, 'Alamat44', 'Telpon 44', 'Sekolah 44', 'X RPL ', '60 Juli 2019', 2019, 'Ayah 44', 'Ibu 44', 'Pkerjaan 44', 'pekerjaan ibu', 'nama wali 44', 'Alamat 45', 'pekerjaan wali 44', 'telpon wali', 1),
+(46, '1819100120', 'Islam', 'Anak Kandung', 45, 'Alamat45', 'Telpon 45', 'Sekolah 45', 'X RPL ', '61 Juli 2019', 2019, 'Ayah 45', 'Ibu 45', 'Pkerjaan 45', 'pekerjaan ibu', 'nama wali 45', 'Alamat 46', 'pekerjaan wali 45', 'telpon wali', 1),
+(47, '1819100121', 'Islam', 'Anak Kandung', 46, 'Alamat46', 'Telpon 46', 'Sekolah 46', 'X RPL ', '62 Juli 2019', 2019, 'Ayah 46', 'Ibu 46', 'Pkerjaan 46', 'pekerjaan ibu', 'nama wali 46', 'Alamat 47', 'pekerjaan wali 46', 'telpon wali', 1),
+(48, '1819100122', 'Islam', 'Anak Kandung', 47, 'Alamat47', 'Telpon 47', 'Sekolah 47', 'X RPL ', '63 Juli 2019', 2019, 'Ayah 47', 'Ibu 47', 'Pkerjaan 47', 'pekerjaan ibu', 'nama wali 47', 'Alamat 48', 'pekerjaan wali 47', 'telpon wali', 1),
+(49, '1819100123', 'Islam', 'Anak Kandung', 48, 'Alamat48', 'Telpon 48', 'Sekolah 48', 'X RPL ', '64 Juli 2019', 2019, 'Ayah 48', 'Ibu 48', 'Pkerjaan 48', 'pekerjaan ibu', 'nama wali 48', 'Alamat 49', 'pekerjaan wali 48', 'telpon wali', 1),
+(50, '1819100124', 'Islam', 'Anak Kandung', 49, 'Alamat49', 'Telpon 49', 'Sekolah 49', 'X RPL ', '65 Juli 2019', 2019, 'Ayah 49', 'Ibu 49', 'Pkerjaan 49', 'pekerjaan ibu', 'nama wali 49', 'Alamat 50', 'pekerjaan wali 49', 'telpon wali', 1),
+(51, '1819100125', 'Islam', 'Anak Kandung', 50, 'Alamat50', 'Telpon 50', 'Sekolah 50', 'X RPL ', '66 Juli 2019', 2019, 'Ayah 50', 'Ibu 50', 'Pkerjaan 50', 'pekerjaan ibu', 'nama wali 50', 'Alamat 51', 'pekerjaan wali 50', 'telpon wali', 1),
+(52, '1819100126', 'Islam', 'Anak Kandung', 51, 'Alamat51', 'Telpon 51', 'Sekolah 51', 'X RPL ', '67 Juli 2019', 2019, 'Ayah 51', 'Ibu 51', 'Pkerjaan 51', 'pekerjaan ibu', 'nama wali 51', 'Alamat 52', 'pekerjaan wali 51', 'telpon wali', 1),
+(53, '1819100127', 'Islam', 'Anak Kandung', 52, 'Alamat52', 'Telpon 52', 'Sekolah 52', 'X RPL ', '68 Juli 2019', 2019, 'Ayah 52', 'Ibu 52', 'Pkerjaan 52', 'pekerjaan ibu', 'nama wali 52', 'Alamat 53', 'pekerjaan wali 52', 'telpon wali', 1),
+(54, '1819100128', 'Islam', 'Anak Kandung', 53, 'Alamat53', 'Telpon 53', 'Sekolah 53', 'X RPL ', '69 Juli 2019', 2019, 'Ayah 53', 'Ibu 53', 'Pkerjaan 53', 'pekerjaan ibu', 'nama wali 53', 'Alamat 54', 'pekerjaan wali 53', 'telpon wali', 1),
+(55, '1819100129', 'Islam', 'Anak Kandung', 54, 'Alamat54', 'Telpon 54', 'Sekolah 54', 'X RPL ', '70 Juli 2019', 2019, 'Ayah 54', 'Ibu 54', 'Pkerjaan 54', 'pekerjaan ibu', 'nama wali 54', 'Alamat 55', 'pekerjaan wali 54', 'telpon wali', 1),
+(56, '1819100130', 'Islam', 'Anak Kandung', 55, 'Alamat55', 'Telpon 55', 'Sekolah 55', 'X RPL ', '71 Juli 2019', 2019, 'Ayah 55', 'Ibu 55', 'Pkerjaan 55', 'pekerjaan ibu', 'nama wali 55', 'Alamat 56', 'pekerjaan wali 55', 'telpon wali', 1),
+(57, '1819100131', 'Islam', 'Anak Kandung', 56, 'Alamat56', 'Telpon 56', 'Sekolah 56', 'X RPL ', '72 Juli 2019', 2019, 'Ayah 56', 'Ibu 56', 'Pkerjaan 56', 'pekerjaan ibu', 'nama wali 56', 'Alamat 57', 'pekerjaan wali 56', 'telpon wali', 1),
+(58, '1819100132', 'Islam', 'Anak Kandung', 57, 'Alamat57', 'Telpon 57', 'Sekolah 57', 'X RPL ', '73 Juli 2019', 2019, 'Ayah 57', 'Ibu 57', 'Pkerjaan 57', 'pekerjaan ibu', 'nama wali 57', 'Alamat 58', 'pekerjaan wali 57', 'telpon wali', 1),
+(59, '1819100133', 'Islam', 'Anak Kandung', 58, 'Alamat58', 'Telpon 58', 'Sekolah 58', 'X RPL ', '74 Juli 2019', 2019, 'Ayah 58', 'Ibu 58', 'Pkerjaan 58', 'pekerjaan ibu', 'nama wali 58', 'Alamat 59', 'pekerjaan wali 58', 'telpon wali', 1),
+(60, '1819100134', 'Islam', 'Anak Kandung', 59, 'Alamat59', 'Telpon 59', 'Sekolah 59', 'X RPL ', '75 Juli 2019', 2019, 'Ayah 59', 'Ibu 59', 'Pkerjaan 59', 'pekerjaan ibu', 'nama wali 59', 'Alamat 60', 'pekerjaan wali 59', 'telpon wali', 1),
+(61, '1819100135', 'Islam', 'Anak Kandung', 60, 'Alamat60', 'Telpon 60', 'Sekolah 60', 'X RPL ', '76 Juli 2019', 2019, 'Ayah 60', 'Ibu 60', 'Pkerjaan 60', 'pekerjaan ibu', 'nama wali 60', 'Alamat 61', 'pekerjaan wali 60', 'telpon wali', 1),
+(62, '1819100136', 'Islam', 'Anak Kandung', 61, 'Alamat61', 'Telpon 61', 'Sekolah 61', 'X RPL ', '77 Juli 2019', 2019, 'Ayah 61', 'Ibu 61', 'Pkerjaan 61', 'pekerjaan ibu', 'nama wali 61', 'Alamat 62', 'pekerjaan wali 61', 'telpon wali', 1),
+(63, '1819100137', 'Islam', 'Anak Kandung', 62, 'Alamat62', 'Telpon 62', 'Sekolah 62', 'X RPL ', '78 Juli 2019', 2019, 'Ayah 62', 'Ibu 62', 'Pkerjaan 62', 'pekerjaan ibu', 'nama wali 62', 'Alamat 63', 'pekerjaan wali 62', 'telpon wali', 1),
+(64, '1819100138', 'Islam', 'Anak Kandung', 63, 'Alamat63', 'Telpon 63', 'Sekolah 63', 'X RPL ', '79 Juli 2019', 2019, 'Ayah 63', 'Ibu 63', 'Pkerjaan 63', 'pekerjaan ibu', 'nama wali 63', 'Alamat 64', 'pekerjaan wali 63', 'telpon wali', 1),
+(65, '1819100139', 'Islam', 'Anak Kandung', 64, 'Alamat64', 'Telpon 64', 'Sekolah 64', 'X RPL ', '80 Juli 2019', 2019, 'Ayah 64', 'Ibu 64', 'Pkerjaan 64', 'pekerjaan ibu', 'nama wali 64', 'Alamat 65', 'pekerjaan wali 64', 'telpon wali', 1),
+(66, '1819100140', 'Islam', 'Anak Kandung', 65, 'Alamat65', 'Telpon 65', 'Sekolah 65', 'X RPL ', '81 Juli 2019', 2019, 'Ayah 65', 'Ibu 65', 'Pkerjaan 65', 'pekerjaan ibu', 'nama wali 65', 'Alamat 66', 'pekerjaan wali 65', 'telpon wali', 1),
+(67, '1819100141', 'Islam', 'Anak Kandung', 66, 'Alamat66', 'Telpon 66', 'Sekolah 66', 'X RPL ', '82 Juli 2019', 2019, 'Ayah 66', 'Ibu 66', 'Pkerjaan 66', 'pekerjaan ibu', 'nama wali 66', 'Alamat 67', 'pekerjaan wali 66', 'telpon wali', 1),
+(68, '1819100142', 'Islam', 'Anak Kandung', 67, 'Alamat67', 'Telpon 67', 'Sekolah 67', 'X RPL ', '83 Juli 2019', 2019, 'Ayah 67', 'Ibu 67', 'Pkerjaan 67', 'pekerjaan ibu', 'nama wali 67', 'Alamat 68', 'pekerjaan wali 67', 'telpon wali', 1),
+(69, '1819100143', 'Islam', 'Anak Kandung', 68, 'Alamat68', 'Telpon 68', 'Sekolah 68', 'X RPL ', '84 Juli 2019', 2019, 'Ayah 68', 'Ibu 68', 'Pkerjaan 68', 'pekerjaan ibu', 'nama wali 68', 'Alamat 69', 'pekerjaan wali 68', 'telpon wali', 1),
+(70, '1819100144', 'Islam', 'Anak Kandung', 69, 'Alamat69', 'Telpon 69', 'Sekolah 69', 'X RPL ', '85 Juli 2019', 2019, 'Ayah 69', 'Ibu 69', 'Pkerjaan 69', 'pekerjaan ibu', 'nama wali 69', 'Alamat 70', 'pekerjaan wali 69', 'telpon wali', 1),
+(71, '1819100145', 'Islam', 'Anak Kandung', 70, 'Alamat70', 'Telpon 70', 'Sekolah 70', 'X RPL ', '86 Juli 2019', 2019, 'Ayah 70', 'Ibu 70', 'Pkerjaan 70', 'pekerjaan ibu', 'nama wali 70', 'Alamat 71', 'pekerjaan wali 70', 'telpon wali', 1),
+(72, '1819100146', 'Islam', 'Anak Kandung', 71, 'Alamat71', 'Telpon 71', 'Sekolah 71', 'X RPL ', '87 Juli 2019', 2019, 'Ayah 71', 'Ibu 71', 'Pkerjaan 71', 'pekerjaan ibu', 'nama wali 71', 'Alamat 72', 'pekerjaan wali 71', 'telpon wali', 1),
+(73, '1819100147', 'Islam', 'Anak Kandung', 72, 'Alamat72', 'Telpon 72', 'Sekolah 72', 'X RPL ', '88 Juli 2019', 2019, 'Ayah 72', 'Ibu 72', 'Pkerjaan 72', 'pekerjaan ibu', 'nama wali 72', 'Alamat 73', 'pekerjaan wali 72', 'telpon wali', 1),
+(74, '1819100148', 'Islam', 'Anak Kandung', 73, 'Alamat73', 'Telpon 73', 'Sekolah 73', 'X RPL ', '89 Juli 2019', 2019, 'Ayah 73', 'Ibu 73', 'Pkerjaan 73', 'pekerjaan ibu', 'nama wali 73', 'Alamat 74', 'pekerjaan wali 73', 'telpon wali', 1);
 
 -- --------------------------------------------------------
 
@@ -2657,6 +2776,179 @@ INSERT INTO `mapel_enrol_kelas` (`id_kelas_enrol`, `kode_mapel_ajar`, `id_kelas`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `raport_catatan_walas`
+--
+
+CREATE TABLE `raport_catatan_walas` (
+  `id_catatan_walas` int(10) NOT NULL,
+  `nama_kelas` varchar(10) NOT NULL,
+  `nisn` varchar(15) NOT NULL,
+  `catatan_raport` varchar(100) NOT NULL,
+  `catatan_sikap` varchar(200) NOT NULL,
+  `id_titimangsa` int(10) NOT NULL,
+  `wali_kelas` varchar(30) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `raport_ekskul`
+--
+
+CREATE TABLE `raport_ekskul` (
+  `id_ekskul` int(10) NOT NULL,
+  `nisn` varchar(15) NOT NULL,
+  `nama_ekskul` varchar(100) NOT NULL,
+  `nilai_ekskul` double NOT NULL,
+  `keterangan` varchar(200) NOT NULL,
+  `tapel` varchar(20) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `raport_ketentuan`
+--
+
+CREATE TABLE `raport_ketentuan` (
+  `id_ketentuan` int(2) NOT NULL,
+  `predikat` varchar(1) NOT NULL,
+  `min` double NOT NULL,
+  `max` double NOT NULL,
+  `aspek` int(1) NOT NULL,
+  `tapel` varchar(20) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `raport_nilai`
+--
+
+CREATE TABLE `raport_nilai` (
+  `id_nilai_raport` int(30) NOT NULL,
+  `nisn` varchar(15) NOT NULL,
+  `id_titimangsa` int(10) NOT NULL,
+  `id_mapel` int(10) NOT NULL,
+  `nilai_raport` double NOT NULL,
+  `predikat` varchar(1) NOT NULL,
+  `deskripsi` varchar(200) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `raport_pkl`
+--
+
+CREATE TABLE `raport_pkl` (
+  `id_pkl` int(10) NOT NULL,
+  `nisn` varchar(15) NOT NULL,
+  `nama_perusahaan` varchar(100) NOT NULL,
+  `alamat_perusahaan` varchar(200) NOT NULL,
+  `pembimbing_perusahaan` varchar(50) NOT NULL,
+  `kontak_pemb_perusahaan` varchar(20) NOT NULL,
+  `pembimbing_sekolah` varchar(30) NOT NULL,
+  `tgl_mulai_pkl` varchar(10) NOT NULL,
+  `tgl_selesai_pkl` varchar(10) NOT NULL,
+  `lama_pkl` varchar(30) NOT NULL,
+  `keterangan` varchar(100) NOT NULL,
+  `tapel` varchar(20) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `raport_presensi`
+--
+
+CREATE TABLE `raport_presensi` (
+  `id_presensi` int(10) NOT NULL,
+  `id_titimangsa` int(10) NOT NULL,
+  `nisn` varchar(15) NOT NULL,
+  `rekap_sakit` int(2) NOT NULL,
+  `rekap_ijin` int(3) NOT NULL,
+  `rekap_alpa` int(2) NOT NULL,
+  `tapel` varchar(15) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `raport_prestasi_siswa`
+--
+
+CREATE TABLE `raport_prestasi_siswa` (
+  `id_prestasi` int(10) NOT NULL,
+  `nisn` varchar(15) NOT NULL,
+  `jenis_prestasi` varchar(50) NOT NULL,
+  `keterangan` varchar(200) NOT NULL,
+  `tapel` varchar(20) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `raport_profil_sekolah`
+--
+
+CREATE TABLE `raport_profil_sekolah` (
+  `id_sekolah` int(1) NOT NULL,
+  `nama_sekolah` varchar(50) NOT NULL,
+  `npsn` varchar(15) NOT NULL,
+  `alamat_sekolah` varchar(200) NOT NULL,
+  `kelurahan` varchar(20) NOT NULL,
+  `kota_kab` varchar(40) NOT NULL,
+  `provinsi` varchar(40) NOT NULL,
+  `website` varchar(30) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `nama_kepsek` varchar(50) NOT NULL,
+  `nip_kepsek` varchar(50) NOT NULL,
+  `tapel` varchar(40) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `raport_riwayat_kelas`
+--
+
+CREATE TABLE `raport_riwayat_kelas` (
+  `id_riwayat` int(10) NOT NULL,
+  `nipd` varchar(15) NOT NULL,
+  `idkelas` int(5) NOT NULL,
+  `nama_kelas` varchar(10) NOT NULL,
+  `keterangan` varchar(50) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `raport_titimangsa`
+--
+
+CREATE TABLE `raport_titimangsa` (
+  `id_titimangsa` int(20) NOT NULL,
+  `semester` enum('Ganjil','Genap') NOT NULL,
+  `tanggal_bagi_raport` varchar(20) NOT NULL,
+  `tanggal_mulai` varchar(20) NOT NULL,
+  `tanggal_selesai` varchar(20) NOT NULL,
+  `tapel` varchar(20) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `template_broadcast`
 --
 
@@ -2728,7 +3020,9 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (26, 2, 12),
 (27, 1, 12),
 (28, 1, 13),
-(29, 1, 14);
+(29, 1, 14),
+(30, 2, 13),
+(31, 2, 14);
 
 -- --------------------------------------------------------
 
@@ -2991,6 +3285,12 @@ ALTER TABLE `chatbot_reply_db`
   ADD PRIMARY KEY (`id_chatbot_reply`);
 
 --
+-- Indexes for table `detail_siswa`
+--
+ALTER TABLE `detail_siswa`
+  ADD PRIMARY KEY (`id_profil`);
+
+--
 -- Indexes for table `hasil_test_wawancara_ppdb_siswa`
 --
 ALTER TABLE `hasil_test_wawancara_ppdb_siswa`
@@ -3001,6 +3301,60 @@ ALTER TABLE `hasil_test_wawancara_ppdb_siswa`
 --
 ALTER TABLE `mapel_enrol_kelas`
   ADD PRIMARY KEY (`id_kelas_enrol`);
+
+--
+-- Indexes for table `raport_catatan_walas`
+--
+ALTER TABLE `raport_catatan_walas`
+  ADD PRIMARY KEY (`id_catatan_walas`);
+
+--
+-- Indexes for table `raport_ketentuan`
+--
+ALTER TABLE `raport_ketentuan`
+  ADD PRIMARY KEY (`id_ketentuan`);
+
+--
+-- Indexes for table `raport_nilai`
+--
+ALTER TABLE `raport_nilai`
+  ADD PRIMARY KEY (`id_nilai_raport`);
+
+--
+-- Indexes for table `raport_pkl`
+--
+ALTER TABLE `raport_pkl`
+  ADD PRIMARY KEY (`id_pkl`);
+
+--
+-- Indexes for table `raport_presensi`
+--
+ALTER TABLE `raport_presensi`
+  ADD PRIMARY KEY (`id_presensi`);
+
+--
+-- Indexes for table `raport_prestasi_siswa`
+--
+ALTER TABLE `raport_prestasi_siswa`
+  ADD PRIMARY KEY (`id_prestasi`);
+
+--
+-- Indexes for table `raport_profil_sekolah`
+--
+ALTER TABLE `raport_profil_sekolah`
+  ADD PRIMARY KEY (`id_sekolah`);
+
+--
+-- Indexes for table `raport_riwayat_kelas`
+--
+ALTER TABLE `raport_riwayat_kelas`
+  ADD PRIMARY KEY (`id_riwayat`);
+
+--
+-- Indexes for table `raport_titimangsa`
+--
+ALTER TABLE `raport_titimangsa`
+  ADD PRIMARY KEY (`id_titimangsa`);
 
 --
 -- Indexes for table `template_broadcast`
@@ -3064,7 +3418,7 @@ ALTER TABLE `api_kelas`
 -- AUTO_INCREMENT for table `api_link_materi`
 --
 ALTER TABLE `api_link_materi`
-  MODIFY `id_materi` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_materi` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `api_mapel`
@@ -3088,7 +3442,7 @@ ALTER TABLE `api_ortu`
 -- AUTO_INCREMENT for table `api_penugasan`
 --
 ALTER TABLE `api_penugasan`
-  MODIFY `id_penugasan` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_penugasan` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `api_presensi_online`
@@ -3139,6 +3493,12 @@ ALTER TABLE `chatbot_reply_db`
   MODIFY `id_chatbot_reply` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `detail_siswa`
+--
+ALTER TABLE `detail_siswa`
+  MODIFY `id_profil` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+
+--
 -- AUTO_INCREMENT for table `hasil_test_wawancara_ppdb_siswa`
 --
 ALTER TABLE `hasil_test_wawancara_ppdb_siswa`
@@ -3149,6 +3509,60 @@ ALTER TABLE `hasil_test_wawancara_ppdb_siswa`
 --
 ALTER TABLE `mapel_enrol_kelas`
   MODIFY `id_kelas_enrol` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `raport_catatan_walas`
+--
+ALTER TABLE `raport_catatan_walas`
+  MODIFY `id_catatan_walas` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `raport_ketentuan`
+--
+ALTER TABLE `raport_ketentuan`
+  MODIFY `id_ketentuan` int(2) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `raport_nilai`
+--
+ALTER TABLE `raport_nilai`
+  MODIFY `id_nilai_raport` int(30) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `raport_pkl`
+--
+ALTER TABLE `raport_pkl`
+  MODIFY `id_pkl` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `raport_presensi`
+--
+ALTER TABLE `raport_presensi`
+  MODIFY `id_presensi` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `raport_prestasi_siswa`
+--
+ALTER TABLE `raport_prestasi_siswa`
+  MODIFY `id_prestasi` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `raport_profil_sekolah`
+--
+ALTER TABLE `raport_profil_sekolah`
+  MODIFY `id_sekolah` int(1) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `raport_riwayat_kelas`
+--
+ALTER TABLE `raport_riwayat_kelas`
+  MODIFY `id_riwayat` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `raport_titimangsa`
+--
+ALTER TABLE `raport_titimangsa`
+  MODIFY `id_titimangsa` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `template_broadcast`
@@ -3166,7 +3580,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
