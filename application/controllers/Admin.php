@@ -93,7 +93,7 @@ class Admin extends CI_Controller {
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('templates/detail/form_edit_data_siswa', $data);
+        $this->load->view('siswa/form_edit_siswa', $data);
         $this->load->view('templates/footer');
     }
 
