@@ -105,17 +105,14 @@ $(document).ready(function () {
                     });
                 },
         eventClick: function (event) {
-            var deleteMsg = confirm("Do you really want to delete?");
+            var deleteMsg = confirm("Apakah kamu akan View/Mengubah Kegiatan ini?");
             if (deleteMsg) {
                 $.ajax({
                     type: "POST",
-                    url: "delete-event.php",
+                    url: "<?=base_url('kegiatan/form_view_kegiatan/')?>"+event.id,
                     data: "&id=" + event.id,
                     success: function (response) {
-                        if(parseInt(response) > 0) {
-                            $('#calendar').fullCalendar('removeEvents', event.id);
-                            displayMessage("Deleted Successfully");
-                        }
+                        window.location="<?=base_url('kegiatan/form_view_kegiatan/')?>"+event.id;
                     }
                 });
             }
