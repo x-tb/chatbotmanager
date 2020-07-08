@@ -154,7 +154,7 @@ body {
 }
 .fc-today {
     font-weight:bold;
-    color:#4e73df;
+    color: #ff9005;
 }
 
 .response {
