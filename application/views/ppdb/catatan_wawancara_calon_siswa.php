@@ -17,7 +17,12 @@
 			<h6 class="m-0 font-weight-bold text-primary">Data Catatan Wawancara Calon Siswa PPDB SMK Taruna Bhakti </h6>
 		</div>
 		<div class="card-body">
-<div class="col-md-6"><a class="btn btn-success" href="<?=base_url("dashboardppdb/export_excel_rekap_catatan")?>">Export Excel</a></div>
+		<form action="<?=base_url('dashboardppdb/export_excel_range_catatan')?>" method="post">
+<div class="row">
+<div class="col-md-6"><input type="submit" class="btn btn-success" value="Export Excel" /></div>
+<div class="col-md-6">Tanggal Mulai &nbsp;<input type="date" name="tglmulai" id="">&nbsp;Tanggal Selesai&nbsp;<input type="date" name="tglakhir" id=""></div>
+</form>
+</div>
 <hr>
 			
 			<table class="display table table-bordered" cellspacing="0" id="datawawancara" 
