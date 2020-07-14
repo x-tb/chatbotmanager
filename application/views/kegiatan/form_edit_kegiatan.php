@@ -83,8 +83,7 @@
 				<table width="100%">
 					<tr>
 						<td><input type="submit" class="btn btn-primary" value="Simpan"> <a class="btn btn-success"
-								href="<?php echo base_url('penugasan'); ?>">Kembali ke Daftar Materi
-								dan Tugas</a></td>
+								href="<?php echo base_url('kegiatan/kalender'); ?>">Kembali ke Kalender Kegiatan</a></td>
 
 					</tr>
 				</table>

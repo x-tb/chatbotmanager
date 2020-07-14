@@ -23,7 +23,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+<<<<<<< HEAD
 $config['base_url'] = 'http://localhost/chatbotadmin';
+=======
+$config['base_url'] = 'http://localhost/chatbotmanager';
+>>>>>>> 0674d1b0549b8a8c5b4eb9615b4e9feaa363aa7a
 
 /*
 |--------------------------------------------------------------------------

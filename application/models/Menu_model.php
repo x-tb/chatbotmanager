@@ -21,5 +21,12 @@ class Menu_model extends CI_Model
         $this->db->where('id', $id);
         return $this->db->update('user_sub_menu', $data);
     }
+    public function simpanRoleBaru($role){
+        $datasimpan=array(
+            'id'=>NULL,
+            'role'=>$role
+        );
+        return $this->db->insert('user_role',$datasimpan);
+    }
    
 }

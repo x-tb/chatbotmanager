@@ -100,7 +100,7 @@ class Admin extends CI_Controller {
     public function role() {
         $data['title'] = 'Role';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
+       
         $data['role'] = $this->db->get('user_role')->result_array();
 
         $this->load->view('templates/header', $data);
@@ -108,6 +108,16 @@ class Admin extends CI_Controller {
         $this->load->view('templates/topbar', $data);
         $this->load->view('admin/role', $data);
         $this->load->view('templates/footer');
+    }
+    public function simpan_role(){
+        $role=$this->input->post('role');
+        $this->load->model('Menu_model');
+        $query=$this->Menu_model->simpanRoleBaru($role);
+        if($query==TRUE){
+            redirect(base_url("admin/role"));
+        }else{
+            redirect(base_url("admin/role"));
+        }
     }
 
     public function roleAccess($role_id) {
