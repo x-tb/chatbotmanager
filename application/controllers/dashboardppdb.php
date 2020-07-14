@@ -214,7 +214,27 @@ Class Dashboardppdb extends CI_Controller {
         $mail=$this->session->userdata('email');
         $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
         $idguru=$this->Guru_model->getIDguruFromMail($mail);
-        $data['calon']=$this->Catatan_wawancara_model->get_catatan_rekap()->result();
+        $start=date('Y-m-d',strtotime('2020-07-06'));
+        $end =date('Y-m-d',strtotime('2020-07-08'));
+        $data['calon']=$this->Catatan_wawancara_model->range_catatan_rekap($start,$end)->result();
+       
+        // $this->load->view('guru/form_input_guru_ajar', $data);
+        $this->load->view('ppdb/export_excel_catatan', $data);
+     
+    }
+    public function export_excel_range_catatan()
+    {
+        $tglmulai=$this->input->post('tglmulai');
+        $tglakhir=$this->input->post('tglakhir');
+        $data['title'] = 'Data Catatan Calon siswa';
+        $data['namafile']="rekap_catatan_ppdb_".date("d_m_Y");
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mail=$this->session->userdata('email');
+        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
+        $idguru=$this->Guru_model->getIDguruFromMail($mail);
+        $start=date('Y-m-d',strtotime('2020-07-06'));
+        $end =date('Y-m-d',strtotime('2020-07-08'));
+        $data['calon']=$this->Catatan_wawancara_model->range_catatan_rekap($start,$end)->result();
        
         // $this->load->view('guru/form_input_guru_ajar', $data);
         $this->load->view('ppdb/export_excel_catatan', $data);
