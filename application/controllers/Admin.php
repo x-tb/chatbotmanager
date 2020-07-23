@@ -622,8 +622,8 @@ class Admin extends CI_Controller {
             $row[] = $jurusan[$field->kode_jurusan];
             $row[] = $field->status;
 
-            $row[] = "<a href='" . base_url("admin/edit_kelas/$field->idkelas") . "' class='btn btn-primary btn-sm' >view</a>";
-            $row[] = "<a href='" . base_url("admin/delete_kelas/$field->idkelas") . "' class='btn btn-success btn-sm' >Edit</a>";
+            $row[] = "<a href='" . base_url("admin/edit_kelas/$field->idkelas") . "' class='btn btn-primary btn-sm' >Edit</a>";
+            $row[] = "<a href='" . base_url("admin/delete_kelas/$field->idkelas") . "' class='btn btn-success btn-sm' >Hapus</a>";
             $data[] = $row;
         }
 
@@ -667,7 +667,41 @@ class Admin extends CI_Controller {
                 redirect(base_url("admin/data_mapel_kelas/gagal_simpan_mapelkelas"));
             }
         }
-    
+        public function edit_kelas($idkelas){
+            $data['title'] = 'Edit Kelas | SMK Taruna Bhakti';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['mapel'] = $this->Kelas_model->getKelasMapel();
+            $data['kelas']=$this->Kelas_model->getAllkelas();
+            $data['guru'] = $this->Guru_model->getAllguru();
+            $data['satukelas']=$this->Kelas_model->get_one_by_id($idkelas)->result();
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            // $this->load->view('guru/form_input_guru_ajar', $data);
+            $this->load->view('kelas/editkelas', $data);
+            $this->load->view('templates/footer');
+        }
+        public function proses_edit_kelas() {
+            $post = $this->input->post();
+            //print_r($post);
+            $idkelas=$post['idkelas'];
+            $data=array(
+                'nama_kelas'=>$post['nama_kelas'],
+                'group_telegram'=>$post['group'],
+                'nama_walas'=>$post['nama_walas'],
+                'uname_telegram'=>$post['username'],
+                'kode_jurusan'=>$post['jurusan'],
+                'tapel'=>$post['tapel'],
+                'status'=>$post['status']
+            );
+            
+            $save= $this->Kelas_model->update($idkelas,$data);
+            if($save==TRUE){
+                redirect(base_url("admin/data_kelas/sukses_simpan_mapelkelas"));
+            }else{
+                redirect(base_url("admin/data_kelas/gagal_simpan_mapelkelas"));
+            }
+        }
         public function get_data_mapel_kelas() {
             $list = $this->KeMapel_model->get_datatables();
             $data = array();

@@ -91,19 +91,10 @@ class Kelas_model extends CI_Model {
         return $this->db->count_all_results();
     }
   
-    public function update()
+    public function update($idkelas,$data_source)
     {
         $post = $this->input->post();
-        $data_source=array(
-            'idkelas' => $post['idkelas'], 
-            'nama_kelas' => $post['namakelas'],
-            'group_telegram'=>$post['group'],
-            'nama_walas'=>$post['namawalas'],
-            'uname_telegram' => $post['unametelegram'],
-            'kode_jurusan' => $post['jurusan'],
-            'tapel' => $post['tapel'],
-            'status'=>$post['status'] 
-        );
+       
         
         return $this->db->update('api_kelas', $data_source, array('idkelas' => $post['idkelas']));
     }
