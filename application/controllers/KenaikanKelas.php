@@ -14,12 +14,13 @@ Class KenaikanKelas extends CI_Controller {
     }
     public function index()
     {
+        $this->load->model("Kelas_model");
         $data['title'] = 'SMK Taruna Bhakti| Kenaikan Kelas ';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $mail=$this->session->userdata('email');
         $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
         $idguru=$this->Guru_model->getIDguruFromMail($mail);
-       
+        $data['kelas']=$this->Kelas_model->getSemuakelas();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -27,219 +28,42 @@ Class KenaikanKelas extends CI_Controller {
         $this->load->view('kelas/kenaikanview', $data);
         $this->load->view('templates/footer');
     }
-    public function data_calon_siswa()
-    {
-        $data['title'] = 'Data Calon Siswa';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $mail=$this->session->userdata('email');
-        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
-        $idguru=$this->Guru_model->getIDguruFromMail($mail);
-       
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        // $this->load->view('guru/form_input_guru_ajar', $data);
-        $this->load->view('ppdb/index_calon_siswa', $data);
-        $this->load->view('templates/footer');
-    }
-    public function import_data_calon() {
-        $data['title'] = 'Import Data Calon Siswa ';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    public function naik_kelas_all(){
+        $post=$this->input->post();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('ppdb/import_calon_siswa', $data);
-        $this->load->view('templates/footer');
-    }
-    function doimportcalon() {
-        $jmlsukses = 0;
-        $jmlgagal = 0;
-        $fileName = $_FILES['uploadfile']['name'];
+        $kelaslama=$post['nama_kelas'];
+        $explode=explode(' ',$kelaslama);
+        $kelasBaru=$explode[0]."I ".$explode[1]." ".$explode[2];
+        $extapelLama=explode('/',$post['tapel']);
+        $pecah1=intval($extapelLama[0])+1;
+        $pecah2=intval($extapelLama[1])+1;
+        $tapelBaru=$pecah1."/".$pecah2;
+        //datakelas
+        $datakelasbaru=array(
+            'idkelas'=>NULL,
+            'nama_kelas'=>$kelasBaru,
+            'group_telegram'=>$post['group_kelas'],
+            'nama_walas'=>$post['nama_walas'],
+            'uname_telegram'=>$post['username_walas'],
+            'kode_jurusan'=>$post['kode_jurusan'],
+            'tapel'=>$tapelBaru,
+            'status'=>1
 
-        $config['upload_path'] = './assets/fileimport/'; //buat folder dengan nama assets di root folder
-        $config['file_name'] = $fileName;
-        $config['allowed_types'] = 'xls|xlsx';
-        $config['max_size'] = 10000;
-
-        $this->load->library('upload');
-        $this->upload->initialize($config);
-
-        if (!$this->upload->do_upload('uploadfile')) {
-            echo $this->upload->display_errors();
-        } else {
-            $media = $this->upload->data();
-            $inputFileName = './assets/fileimport/' . $media['file_name'];
-
-            try {
-                $inputFileType = IOFactory::identify($inputFileName);
-                $objReader = IOFactory::createReader($inputFileType);
-                $objPHPExcel = $objReader->load($inputFileName);
-            } catch (Exception $e) {
-                die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME) . '": ' . $e->getMessage());
-            }
-
-            $sheet = $objPHPExcel->getSheet(0);
-            $highestRow = $sheet->getHighestRow();
-            $highestColumn = $sheet->getHighestColumn();
-
-            for ($row = 2; $row <= $highestRow; $row++) {                  //  Read a row of data into an array                 
-                $rowData = $sheet->rangeToArray(
-                        'A' . $row . ':' . $highestColumn . $row,
-                        NULL,
-                        TRUE,
-                        FALSE
-                );
-                $id_calon = $rowData[0][0];
-                $nomor_ppdb = $rowData[0][1];
-                $nama = $rowData[0][2];
-                $jkl = $rowData[0][3];
-                $tempat_lahir = $rowData[0][4];
-                $tanggal_lahir = $rowData[0][5];
-                $pilihan_1 = $rowData[0][6];
-                $pilihan_2 = $rowData[0][7];
-                $asal_sekolah = $rowData[0][8];
-                $status = $rowData[0][9];
-                //$tgllahirReal=date('d-m-Y', PHPExcel_Shared_Date::ExcelToPHP($tgllahir));
-
-                $cekdata = $this->db->get_where('calon_siswa', ['nomor_ppdb' => $nomor_ppdb]);
-                if ($cekdata->num_rows() > 0) {
-                    ++$jmlgagal;
-                } else {
-                    //lanjut disini
-                    $datasimpan = [
-                        'id_calon' => NULL,
-                        'nomor_ppdb' => $nomor_ppdb,
-                        'nama' => $nama,
-                        'jkl' => $jkl,
-                        'tempat_lahir' => $tempat_lahir,
-                        'tanggal_lahir' => $tanggal_lahir,
-                        'pilihan_1' => $pilihan_1,
-                        'pilihan_2' => $pilihan_2,
-                        'asal_sekolah' => $asal_sekolah,
-                        'status' => $status
-                    ];
-
-                    $this->db->insert('calon_siswa', $datasimpan);
-                    ++$jmlsukses;
-                }
-            }
-            redirect(base_url("dashboardppdb/index/sukses_import/$jmlsukses/$jmlgagal"));
-        }
-    }
-    function get_calon_siswa() {
-        $list = $this->Calon_siswa_model->get_datatables();
-        $data = array();
-        $no = $_POST['start'];
-        foreach ($list as $field) {
-            $no++;
-            $row = array();
-            $row[] = $field->id_calon;
-            $row[] = $field->nomor_ppdb;
-            $row[] = $field->nama;
-           
-           
-            $row[] = $field->pilihan_1;
-            $row[] = $field->pilihan_2;
-            $row[] = $field->tempat_lahir;
-            $row[] = $field->tanggal_lahir;
-            $row[] =$field->asal_sekolah;
-          
-            $row[] = "<a href='" . base_url("dashboardppdb/edit_siswa/$field->id_calon") . "' class='btn btn-success btn-sm' >Edit</a>";
-            $data[] = $row;
-        }
-
-        $output = array(
-            "draw" => $_POST['draw'],
-            "recordsTotal" => $this->Calon_siswa_model->count_all(),
-            "recordsFiltered" => $this->Calon_siswa_model->count_filtered(),
-            "data" => $data,
         );
-        //output dalam format JSON
-        echo json_encode($output);
-    }
-    public function data_catatan_calon_siswa()
-    {
-        $data['title'] = 'Data Calon Siswa';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $mail=$this->session->userdata('email');
-        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
-        $idguru=$this->Guru_model->getIDguruFromMail($mail);
-       
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        // $this->load->view('guru/form_input_guru_ajar', $data);
-        $this->load->view('ppdb/catatan_wawancara_calon_siswa', $data);
-        $this->load->view('templates/footer');
-    }
-    function get_ctt_calon_siswa() {
-        $list = $this->Catatan_wawancara_model->get_datatables();
-        $data = array();
-        $no = $_POST['start'];
-        foreach ($list as $field) {
-            $no++;
-            $row = array();
-            $row[] = $no;
-            $row[] = $field->nomor_ppdb;
-            $row[] = $field->nama;
-           
-           
-            $row[] = $field->pilihan_1;
-            $row[] = $field->pilihan_2;
-          
-            $row[] =$field->asal_sekolah;
-            $row[]=$field->catatan;
-            $row[]=$field->tanggal_kegiatan;
-            $row[]=$field->username_telegram;
-          
-            $row[] = "<a href='" . base_url("dashboardppdb/hapus_catatan/$field->id_wawancara") . "' class='btn btn-danger btn-sm' >hapus</a>";
-            $data[] = $row;
-        }
 
-        $output = array(
-            "draw" => $_POST['draw'],
-            "recordsTotal" => $this->Catatan_wawancara_model->count_all(),
-            "recordsFiltered" => $this->Catatan_wawancara_model->count_filtered(),
-            "data" => $data,
-        );
-        //output dalam format JSON
-        echo json_encode($output);
+        //input ke kelas baru
+        $this->load->model('Kelas_model');
+        $simpanKelasBaru=$this->Kelas_model->simpanKelas($datakelasbaru);
+        //update data siswa
+        $ubahkelassiswa=$this->Kelas_model->ubahKelasSiswa($kelasBaru,$kelaslama);
+
+        //insert riwayat kelas group 
+       // $tambahRiwayatKelasLama=$this->Kelas_model->simpanRiwayatGroupKelas($post['nama_kelas'],$post['nama_walas'],$post['tapel']);
+        $tambahRiwayatKelasBaru=$this->Kelas_model->simpanRiwayatGroupKelas($kelasBaru,$post['nama_walas'],$tapelBaru);
+        //insert ke riwayat kelas siswa
+        print_r($post);
     }
-    public function export_excel_rekap_catatan()
-    {
-        $data['title'] = 'Data Catatan Calon siswa';
-        $data['namafile']="rekap_catatan_ppdb_".date("d_m_Y");
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $mail=$this->session->userdata('email');
-        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
-        $idguru=$this->Guru_model->getIDguruFromMail($mail);
-        $start=date('Y-m-d',strtotime('2020-07-06'));
-        $end =date('Y-m-d',strtotime('2020-07-08'));
-        $data['calon']=$this->Catatan_wawancara_model->range_catatan_rekap($start,$end)->result();
-       
-        // $this->load->view('guru/form_input_guru_ajar', $data);
-        $this->load->view('ppdb/export_excel_catatan', $data);
-     
-    }
-    public function export_excel_range_catatan()
-    {
-        $tglmulai=$this->input->post('tglmulai');
-        $tglakhir=$this->input->post('tglakhir');
-        $data['title'] = 'Data Catatan Calon siswa';
-        $data['namafile']="rekap_catatan_ppdb_".date("d_m_Y");
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $mail=$this->session->userdata('email');
-        $data['namagr'] = $this->Guru_model->getSatuGuru($mail);
-        $idguru=$this->Guru_model->getIDguruFromMail($mail);
-        $start=date('Y-m-d',strtotime('2020-07-06'));
-        $end =date('Y-m-d',strtotime('2020-07-08'));
-        $data['calon']=$this->Catatan_wawancara_model->range_catatan_rekap($start,$end)->result();
-       
-        // $this->load->view('guru/form_input_guru_ajar', $data);
-        $this->load->view('ppdb/export_excel_catatan', $data);
-     
-    }
+   
     public function hapus_catatan($id){
         $hapus=$this->Catatan_wawancara_model->delete($id);
         if($hapus==TRUE){

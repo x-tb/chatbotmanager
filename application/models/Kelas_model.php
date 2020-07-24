@@ -121,6 +121,10 @@ class Kelas_model extends CI_Model {
         $this->db->select('idkelas,nama_kelas');
         return $this->db->get('api_kelas')->result();
     }
+    public function getSemuakelas(){
+        
+        return $this->db->get('api_kelas')->result();
+    }
     public function getKelasMapel(){
         $this->db->select('api_guru_ajar.kode_mapel_ajar,api_guru.nama_lengkap,api_mapel.id_mapel,api_mapel.nama_mapel');
         $this->db->from('api_guru_ajar');
@@ -141,5 +145,33 @@ class Kelas_model extends CI_Model {
         foreach($q as $dt){
             return $dt->nama_kelas;
         }
+    }
+    public function simpanRiwayatKelas($nipd,$idkelas,$namakelas,$tapel,$keterangan,$status){
+        $datasimpan=array(
+            'id_riwayat'=>NULL,
+            'nipd'=>$nipd,
+            'idkelas'=>$idkelas,
+            'nama_kelas'=>$namakelas,
+            'tapel'=>$tapel,
+            'keterangan'=>$keterangan,
+            'status'=>$status
+        );
+        return $this->db->insert('raport_riwayat_kelas',$datasimpan);
+    }
+    public function simpanRiwayatGroupKelas($namakelas,$namawalas,$tapel){
+        $datasimpan=array(
+            'id_riwayat_kelas'=>NULL,
+            'nama_kelas_sebelumnya'=>$namakelas,
+            'tapel_kelas'=>$tapel,
+            'walas'=>$namawalas,
+            'status'=>0
+
+        );
+        return $this->db->insert('riwayat_kelas',$datasimpan);
+    }
+    public function ubahKelasSiswa($kelasbaru,$kelaslama){
+        $this->db->set('kelas',$kelasbaru);
+        $this->db->where('kelas',$kelaslama);
+        return $this->db->update('api_siswa');
     }
 }
