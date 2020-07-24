@@ -404,5 +404,6 @@ Class Guru extends CI_Controller {
             echo "Gagal Ubah multi presensi ajax";
         }
     }
+    
 }
 ?>

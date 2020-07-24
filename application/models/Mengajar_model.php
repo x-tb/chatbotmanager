@@ -126,6 +126,9 @@ class Mengajar_model extends CI_Model {
 
         return $this->db->get()->result();
     }
+    public function simpanGuruAjar($data){
+        return $this->db->insert('api_guru_ajar',$data);
+    }
     
  
 }

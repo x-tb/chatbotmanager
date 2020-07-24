@@ -24,7 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'http://localhost/chatbotmanager/';
+$config['base_url'] = 'http://553e49a8496f.ngrok.io/';
 
 
 /*
