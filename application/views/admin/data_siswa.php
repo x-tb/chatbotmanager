@@ -1,5 +1,4 @@
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<link rel="stylesheet" href="<?=base_url('assets/css/jquery.dataTables.css')?>">
 <style>
 tbody {
     font-size:11pt;
