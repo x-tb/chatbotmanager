@@ -98,7 +98,7 @@
 					<tr>
 						<th>No</th>
 						<th>Nomor dan KD</th>
-						<th>Link Materi</th>
+						<th width="30%">Link Materi</th>
                         <th>Nama Guru</th>
 						<th>Nama Mapel</th>
 						<th>Pert Ke </th>
